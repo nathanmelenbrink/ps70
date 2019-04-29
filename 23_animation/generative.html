@@ -1,0 +1,181 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>ARTG2260: Programming Basics</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script> 
+	$(function(){
+	  $("#header").load("../header.html"); 
+	  $("#footer").load("../footer.html"); 
+	});
+</script>
+
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+<script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
+<script src="../js/p5.min.js"></script>
+
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<!-- FIRST ROW -->
+<div class="row">
+	<div class="large-3  columns">
+		<h3> Generative Drawing</h3>
+	</div >
+
+	<div class="small-12 medium-12 large-9  columns">
+
+		<h3> Resources: </h3>
+		<p> 
+			<a href="https://p5js.org/reference/#/p5/frameCount">p5 Reference: FrameCount()</a><br>
+
+		</p>
+
+		<h3> FrameCount() </h3>
+		<p> The system variable frameCount contains the number of frames that have been displayed since the program started. Inside setup() the value is 0, after the first iteration of draw it is 1, etc.
+		</p>
+
+<script type="text/p5" data-height="300" data-preview-width="220">
+function setup() {
+  frameRate(30);
+  textSize(30);
+  textAlign(CENTER);
+}
+
+function draw() {
+  background(200);
+  text(frameCount, width / 2, height / 2);
+}
+</script>
+
+		<p> FrameCount, when used together with the modulus operator (%) is a great way to make repeating, cyclical effects. </p>
+
+<script type="text/p5" data-height="300" data-preview-width="220">
+function setup() {
+  frameRate(30);
+  textSize(30);
+  textAlign(CENTER);
+}
+
+function draw() {
+  background(frameCount % 255);
+  text(frameCount, width / 2, height / 2);
+}
+</script>
+
+		<p> The following example shows an ellipse moving vertically, with a conditional statement to send it back to the bottom of the canvas when it reaches the top. It moves randomly in the x direction to create a jittery effect. We have also added a fading effect by drawing a low-opacity white rectangle over the whole canvas at each frame.  </p>
+
+<script type="text/p5" data-height="420" data-preview-width="320">
+var x, y;
+
+function setup() {
+  createCanvas(300, 300);
+  x = width / 2;
+  y = height;
+}
+
+function draw() {
+  // Draw a low-opacity white rectangle 
+  fill(255, 10); 
+  rect(0, 0, width, height);
+
+  // Draw a circle
+  stroke(50);
+  fill(100);
+  ellipse(x, y, 24, 24);
+  
+  // Jiggling randomly on the horizontal axis
+  x = x + random(-1, 1);
+  // Moving up at a constant speed
+  y = y - 1;
+  
+  // Reset to the bottom
+  if (y < 0) {
+    y = height;
+  }
+}
+</script>
+
+		<p> Try modifying the above code with frameCount and modulus for a cyclical effect, for example the fill of the circle.   </p>
+
+		<p> Next, we can start to use the random() function within a for() loop to get controlled randomness. Here, we're using the variables pX and pY to store the coordinates from the previous pass of the loop. We then draw a line connecting the two points. We do this n times, resulting in a randomized, segmented polyline.  </p>
+
+<script type="text/p5" data-height="400" data-preview-width="320">
+var n = 30;
+
+function setup() {
+  createCanvas(300, 300);
+}
+
+function draw() {
+  var pX = 0;
+  var pY = 0;
+
+  for (var i=0; i<n; i++) {   
+    var x = (frameCount + random(-1,1))% width;
+    var y = i*10;
+    line(pX, pY, x, y);
+    pX = x;
+    pY = y;
+  }
+}
+</script>
+
+
+		<p> Now, instead of adding a random x offset between -1 and 1, what happens if we replace the 1 with i? Now the offset will be a function of the y coordinate, in other words, more controlled up top, and more chaotic at the bottom of the canvas.  </p>
+
+<script type="text/p5" data-height="400" data-preview-width="320">
+var n = 30;
+
+function setup() {
+  createCanvas(300, 300);
+}
+
+function draw() {
+  fill(255, 10);
+  rect(0,0,width,height);
+  var pX = 0;
+  var pY = 0;
+
+  for (var i=0; i<n; i++) {   
+    var x = (frameCount + random(-i,i))% width;
+    var y = i*10;
+    line(pX, pY, x, y);
+    pX = x;
+    pY = y;
+  }
+}
+</script>
+
+		<p> What are some ways in which we could extend this program? If you like this example, you might consider expanding on this for this week's assignment. If you're not afraid of a little math, there are some similar <a href='https://www.openprocessing.org/sketch/462044'>"amoeba" examples</a> on OpenProcessing. </p>
+
+
+	</div>
+</div>
+
+
+
+<div id="footer"></div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/htdaa.js"></script>
+
+
+</body>
+</html>

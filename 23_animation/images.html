@@ -1,0 +1,214 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>ARTG2260: Programming Basics</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script> 
+	$(function(){
+	  $("#header").load("../header.html"); 
+	  $("#footer").load("../footer.html"); 
+	});
+</script>
+
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+<script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
+<script src="../js/p5.min.js"></script>
+
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<!-- FIRST ROW -->
+<div class="row">
+	<div class="large-3  columns">
+		<h3> Images</h3>
+	</div >
+
+	<div class="small-12 medium-12 large-9  columns">
+
+		<h3> Resources: </h3>
+		<p> 
+			<!-- <a href='https://www.youtube.com/watch?v=D1ELEeIs0j8' >Shiffman - 2.1 Variables in p5.js - p5.js</a><br> -->
+			<a href="https://p5js.org/reference/#/p5/preload">p5 Reference: preload()</a><br>
+			<a href="https://p5js.org/reference/#/p5/loadImage">p5 Reference: loadImage()</a><br>
+			<a href="https://p5js.org/reference/#/p5/image">p5 Reference: image()</a><br>
+			<a href="https://p5js.org/reference/#/p5/tint">p5 Reference: tint()</a><br>
+			<a href="https://p5js.org/examples/image-pointillism.html">p5 Examples: Pointilism</a><br>
+			<a href="https://p5js.org/examples/image-transparency.html">p5 Examples: Transparency</a><br>
+		</p>
+
+		<p> Syntax: <br>
+		<code>var img, preload(), loadImage(), image() <br>
+		tint(), noTint()<br><br>
+		image(name, x, y)<br>
+		image(name, x, y, width, height)</code><br> <br>
+
+
+		We can use this syntax to scale (resize) the image according to absolute pixel values. <br></p>
+
+		<h3> Preload()</h3>
+		<p>Called directly before setup(), the preload() function is used to handle asynchronous loading of external files. If a preload function is defined, setup() will wait until any load calls within have finished. Nothing besides load calls should be inside preload (loadImage, loadJSON, loadFont, loadStrings, etc).</p>
+		
+		<p>	We typically will make a new folder inside your project directory called "assets". That just a standard; really we can tell p5 to find our images anywhere, locally or externally. 
+		</p>
+
+<script type="text/p5" data-height="300" data-preview-width="220">
+var img;
+function preload() {
+  img = loadImage('assets/myImg.png');
+}
+
+function setup() {
+  // Top-left corner of the img is at (0, 0)
+  // Width and height are the img's original width and height
+  image(img, 0, 0);
+}
+</script>
+		
+		<p> The image() function can be used with different numbers of parameters. The simplest use requires only three parameters: img, x, and y—where (x, y) is the position of the image. Two more parameters can optionally be added to specify the width and height of the image.</p>
+
+		<!-- <p> This function can also be used with all eight Number parameters. To differentiate between all these parameters, p5.js uses the language of "destination rectangle" (which corresponds to "dx", "dy", etc.) and "source image" (which corresponds to "sx", "sy", etc.) below. Specifying the "source image" dimensions can be useful when you want to display a subsection of the source image instead of the whole thing. Here's a diagram to explain further: </p>
+
+		<img src='https://p5js.org/reference/assets/drawImage.png' alt='image'> -->
+
+		<!-- <p> Synatx: <br>
+			image(img,x,y,[width],[height]) <br>
+			 -->
+			<!-- image(img,dx,dy,dWidth,dHeight,sx,sy,[sWidth],[sHeight])<br> -->
+		<!-- </p> -->
+
+<script type="text/p5" data-height="320" data-preview-width="220">
+var img;
+function preload() {
+  img = loadImage('assets/myImg.png');
+}
+
+function setup() {
+  background(50);
+  // Top-left corner of the img is at (10, 10)
+  // Width and height are 50 x 50
+  image(img, 10, 10, 50, 50);
+}
+</script>
+
+		<p> We can also scale the image according to its original size: 
+		</p>
+
+<script type="text/p5" data-height="320" data-preview-width="220">
+var img;
+function preload() {
+  img = loadImage('assets/myImg.png');
+}
+
+function setup() {
+  // Displays the image at its actual size at point (0,0)
+  image(img, 0, 0);
+  // Displays the image at point (0, height/2) at 20% scale
+  image(img, 0, height/2, img.width/5, img.height/5);
+}
+</script>
+
+		<p> The tint() function allows us to color the image. Similar to fill() or stroke(), we just call the tint() function once before the image() function. The styling applies to all subsequent image() calls. 
+		</p>
+
+<script type="text/p5" data-height="320" data-preview-width="220">
+var img;
+function preload() {
+  img = loadImage('assets/myImg.png');
+}
+
+function setup() {
+	tint(255, 102); // Alpha to 102 without changing the tint
+	image(img, 0, 0, 100, 100);
+	tint(255, 204, 0, 153); // Tint to yellow, alpha to 153
+	image(img, 20, 20, 100, 100);
+}
+</script>
+		
+		<p> We can use for() loops to automate the placement of images on our canvas:
+		</p>
+
+<script type="text/p5" data-height="340" data-preview-width="220">
+var img;
+function preload() {
+  img = loadImage('assets/myImg.png');
+}
+
+function setup() {
+	tint(255, 51);
+	// Draw the image 10 times, moving each to the right
+	for (var i = 0; i < 10; i++) {
+		image(img, i*10, 0, 100, 100);
+	}
+}
+</script>
+		
+		<p> Complete the following code and submit it as Exercise 3.0: Screen Saver
+		</p>
+
+<script type="text/p5" data-height="400" data-preview-width="220">
+// declare variables xPos and yPos
+// declare a var called xSpeed;
+// declare a var called ySpeed
+// declare a variable called img 
+// declare a var for image width, assign 40 
+// declare a var for image height, assign 30
+
+// use the preload()function to load an image, 
+// format: img = loadImage('assets/imageName.png');
+// you'll need to create a folder called assets, and include the png there
+
+function setup() {
+	// create a canvas at least 400 x 400
+	// set xPos to be half of the width 
+	// set yPos to be half of the height
+
+	// assign xSpeed and ySpeed 
+	// with random values between 1 and 10
+}
+
+function draw(){
+	background(0);                 // set the background to black
+
+	// draw the image at the (xPos, yPos) coordinate,
+	// using the template image(img, xPos, yPos, width, height)
+
+	// add the xSpeed to xPos
+	// add the ySpeed to yPos
+
+	// if we reach the edge of the canvas
+	// turn around (toggle xSpeed negative to positive)
+
+	// same as above, toggle ySpeed if we hit the top or bottom
+}
+</script>
+
+
+	</div>
+</div>
+
+
+
+<div id="footer"></div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/htdaa.js"></script>
+
+
+</body>
+</html>

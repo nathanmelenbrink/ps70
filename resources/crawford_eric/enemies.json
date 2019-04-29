@@ -1,0 +1,177 @@
+{
+	"enemies":[
+		{
+			"name": "Knight",
+			"description": "A basic enemy with decent health and basic attacks.",
+			"sprite": "specify a sprite to use here I guess",
+			"health": "6",
+			"start_armor": "0",
+			"type": "Normal",
+			"moves": [
+				{
+					"name": "Charge",
+					"description": "Runs at you and swipes with a sword.",
+					"weight": 3,
+					"type": "attack",
+					"power": "2",
+					"method": "remove",
+					"damage_type": "normal",
+					"chance_of_special": "0"
+				},
+				{
+					"name": "Heavy Hit",
+					"description": "A slow and hard-hitting move.",
+					"weight": 1,
+					"type": "attack",
+					"power": "4",
+					"method": "remove",
+					"damage_type": "normal",
+					"chance_of_special": "0"
+				},
+				{
+					"name": "Block",
+					"description": "Takes less damage next turn.",
+					"weight": 2,
+					"type": "defend",
+					"power": "2",
+					"method": "remove",
+					"damage_type": "normal",
+					"chance_of_special": "0"
+				}
+			]
+		},
+		{
+			"name": "Rogue",
+			"description": "Attacks quickly, but with low damage.",
+			"sprite": "specify a sprite to use here I guess",
+			"health": "4",
+			"start_armor": "1",
+			"type": "Poison",
+			"moves": [
+				{
+					"name": "Slash",
+					"description": "Charges quickly with a dagger.",
+					"weight": 1,
+					"type": "attack",
+					"power": "1",
+					"method": "remove",
+					"damage_type": "normal",
+					"chance_of_special": "0"
+				},
+				{
+					"name": "Block",
+					"description": "Light defence.",
+					"weight": 1,
+					"type": "defend",
+					"power": "1",
+					"method": "remove",
+					"damage_type": "poison",
+					"chance_of_special": "1"
+				}
+			]
+		},
+		{
+			"name": "Commander",
+			"description": "TEST TEST TEST",
+			"sprite": "specify a sprite to use here I guess",
+			"health": "20",
+			"start_armor": "0",
+			"type": "Normal",
+			"moves": [
+				{
+					"name": "1/6",
+					"description": "Description 1",
+					"weight": 1,
+					"type": "attack",
+					"power": "4",
+					"method": "remove",
+					"damage_type": "normal",
+					"chance_of_special": "0"
+				},
+				{
+					"name": "2/6",
+					"description": "Description 2",
+					"weight": 2,
+					"type": "attack",
+					"power": "2",
+					"method": "remove",
+					"damage_type": "normal",
+					"chance_of_special": "0"
+				},
+				{
+					"name": "3/6",
+					"description": "Description 3",
+					"weight": 3,
+					"type": "defend",
+					"power": "3",
+					"method": "remove",
+					"damage_type": "normal",
+					"chance_of_special": "0"
+				}
+			]
+		}
+	],
+	"encounters":[
+		{
+			"name": "Basic1",
+			"group": [
+				{
+					"name": "Knight"
+				},
+				{
+					"name": "Rogue"
+				}
+			]
+		},
+		{
+			"name": "Basic2",
+			"group": [
+				{
+					"name": "Rogue"
+				},
+				{
+					"name": "Knight"
+				},
+				{
+					"name": "Knight"
+				}
+			]
+		},
+		{
+			"name": "Basic3",
+			"group": [
+				{
+					"name": "Rogue"
+				},
+				{
+					"name": "Rogue"
+				},
+				{
+					"name": "Knight"
+				}
+			]
+		},
+		{
+			"name": "Debug1",
+			"group": [
+				{
+					"name": "Commander"
+				},
+				{
+					"name": "Commander"
+				}
+			]
+		},
+		{
+			"name": "Basic4",
+			"group": [
+				{
+					"name": "Knight"
+				},
+				{
+					"name": "Knight"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,331 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>ARTG2260: Programming Basics</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script> 
+	$(function(){
+	  $("#header").load("../header.html"); 
+	  $("#footer").load("../footer.html"); 
+	});
+</script>
+
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+<script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
+<script src="../js/p5.min.js"></script>
+</head>
+<body>
+
+<div id="header"></div>
+
+<!-- FIRST ROW -->
+<div class="row">
+	<div class="large-3  columns">
+		<h3> Google Maps and Fusion Tables API</h3>
+	</div >
+
+	<div class="small-12 medium-12 large-9  columns">
+
+    <h3> Resources </h3>
+    <p> 
+    </p>
+		
+
+    <h3> Google Maps </h3>
+	<p> When working with Google Maps, we'll not be using p5. This is because p5 renders to html canvas objects, and Google Maps do not. Google Maps render to a complex custom series of nested &lt;div&gt; elements. We can, of course, use a static image of a map as a background and render data on to the map by converting (lat, long) coordinates into pixel coordinates. Daniel Shiffman has a <a href ='https://www.youtube.com/watch?v=ZiYdOwOrGyc&t=1265s' > great turorial </a> where he goes through this. However, if we want to be able to zoom or pan the map, we quickly find that working with the canvas element is constraining. Google Maps on the other hand, allows us those features as well as the possibility of estimating travel times, getting street view images, etc. The downside is it isn't as easy to render shapes as in p5.  </p>
+
+    <p> Let's head to <a href = 'https://developers.google.com/maps/'> the API documentation</a> and select JavaScript Web API. You should get an API key and paste it as a comment in your code. Well documented APIs may also have good tutorials. This <a href='https://developers.google.com/maps/documentation/javascript/adding-a-google-map'>tutorial</a> does a great job of getting us started with Google Maps, so let's just head there and follow along. We can also test the final result on <a href='https://jsfiddle.net/api/post/library/pure/' >JSFiddle</a>.</p>
+
+    <h3> Map Style </h3>
+    <p> Google stores map styles as, you guessed it, an array of objects. Personally, I think the default styles of Google Maps are not very attractive. We can change that by creating a variable called mapStyle, setting it to the array of objects below, and call that by adding <code> styles: mapStyle </code> to our initMap() function. Create your own with the <a href='https://mapstyle.withgoogle.com/'>styling wizard</a>.</p>
+
+<code> 
+const mapStyle = [ { "elementType": "geometry", "stylers": [ { "color": "#212121" } ] }, { "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "elementType": "labels.icon", "stylers": [ { "visibility": "off" } ] }, { "elementType": "labels.text.fill", "stylers": [ { "color": "#757575" } ] }, { "elementType": "labels.text.stroke", "stylers": [ { "color": "#212121" } ] }, { "featureType": "administrative", "elementType": "geometry", "stylers": [ { "color": "#757575" } ] }, { "featureType": "administrative.country", "elementType": "labels.text.fill", "stylers": [ { "color": "#9e9e9e" } ] }, { "featureType": "administrative.land_parcel", "stylers": [ { "visibility": "off" } ] }, { "featureType": "administrative.locality", "elementType": "labels.text.fill", "stylers": [ { "color": "#bdbdbd" } ] }, { "featureType": "administrative.neighborhood", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi", "elementType": "labels.text.fill", "stylers": [ { "color": "#757575" } ] }, { "featureType": "poi.business", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [ { "color": "#181818" } ] }, { "featureType": "poi.park", "elementType": "labels.text", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi.park", "elementType": "labels.text.fill", "stylers": [ { "color": "#616161" } ] }, { "featureType": "poi.park", "elementType": "labels.text.stroke", "stylers": [ { "color": "#1b1b1b" } ] }, { "featureType": "road", "elementType": "geometry.fill", "stylers": [ { "color": "#2c2c2c" } ] }, { "featureType": "road", "elementType": "labels.text.fill", "stylers": [ { "color": "#8a8a8a" } ] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [ { "color": "#373737" } ] }, { "featureType": "road.highway", "elementType": "geometry", "stylers": [ { "color": "#3c3c3c" } ] }, { "featureType": "road.highway.controlled_access", "elementType": "geometry", "stylers": [ { "color": "#4e4e4e" } ] }, { "featureType": "road.local", "elementType": "labels.text.fill", "stylers": [ { "color": "#616161" } ] }, { "featureType": "transit", "elementType": "labels.text.fill", "stylers": [ { "color": "#757575" } ] }, { "featureType": "water", "elementType": "geometry", "stylers": [ { "color": "#000000" } ] }, { "featureType": "water", "elementType": "labels.text.fill", "stylers": [ { "color": "#3d3d3d" } ] } ];</code> <br>
+
+
+        <h3> Loading Data </h3>
+        <p> Suppose we want to create a visualization of earthquakes around the world. Google provides a <a href = 'https://developers.google.com/maps/documentation/javascript/earthquakes' >tutorial</a> for this. This tutorial requests JSONP directly from the USGS servers by appending a script tag to the head of the document (this is to bypass the CORS errors we keep talking about). Let's start with the following code in an html file running on your local server: </p>
+
+<pre><code class="JavaScript">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;style&gt;
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="map">&lt;/div&gt;
+    &lt;script&gt;
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: new google.maps.LatLng(2.8,-187.3),
+          mapTypeId: 'terrain'
+        });
+
+        var script = document.createElement('script');
+        script.src = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp';
+        document.getElementsByTagName('head')[0].appendChild(script);
+      }
+
+      // Loop through the results array and place a marker for each
+      // set of coordinates.
+      window.eqfeed_callback = function(results) {
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
+      }
+    &lt;/script&gt;
+    &lt;script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOiqChKPknzUJILfcJ9STnElnJ4A_SRjY&callback=initMap"&gt;
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+
+            <h3> Customizing Markers </h3>
+            <p>(From Google Maps) Here are some options to customize the basic marker:
+                <ul> <li>
+                        Using circle size: <br>
+                        You can draw circles (or any other shape) with sizes that are relative to the magnitude of an earthquake by using symbols. In this way, powerful earthquakes are represented as the largest circles on the map.</li>
+                    <li>        
+                        Using heatmaps: <br>
+                        The Heatmap Layer in the visualization library offers a simple yet powerful way of displaying the distribution of earthquakes. Heatmaps use colors to represent the density of points, making it easier to pick out areas of high activity. Heatmaps can also use WeightedLocations so that, for example, bigger earthquakes are displayed more prominently in the heatmap. </li> 
+                </ul>
+            </p>
+
+
+            <h3> Heatmaps </h3>
+            <p> The following code is a minimal example for rendering the heatmaps based on point distribution: </p>
+
+<pre><code class="JavaScript">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;style&gt;
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="map">&lt;/div&gt;
+    &lt;script&gt;
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: new google.maps.LatLng(2.8,-187.3),
+          mapTypeId: 'terrain'
+        });
+
+        var script = document.createElement('script');
+        script.src = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp';
+        document.getElementsByTagName('head')[0].appendChild(script);
+      }
+
+      function eqfeed_callback(results) {
+        var heatmapData = [];
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1], coords[0]);
+          heatmapData.push(latLng);
+        }
+        var heatmap = new google.maps.visualization.HeatmapLayer({
+          data: heatmapData,
+          dissipating: false,
+          map: map
+        });
+      }
+    &lt;/script&gt;
+    &lt;script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOiqChKPknzUJILfcJ9STnElnJ4A_SRjY&callback=initMap"&gt;
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+        <p> We can extend this to apply the heatmap according to magnitude instead of just distribution: </p>
+
+<pre><code class="JavaScript">
+function eqfeed_callback(results) {
+    var heatmapData = [];
+    for (var i = 0; i < results.features.length; i++) {
+      var coords = results.features[i].geometry.coordinates;
+      var magnitude = results.features[i].properties.mag;
+      var item = {location: new google.maps.LatLng(coords[1], coords[0]), weight: magnitude};
+      heatmapData.push(item);
+    }
+    var heatmap = new google.maps.visualization.HeatmapLayer({
+      data: heatmapData,
+      dissipating: false,
+      map: map
+    });
+}
+</code> </pre>
+
+        <h3> Rendering Polygons </h3>
+        <p> This is a <a href = ''> great tutorial </a>on combining data sources and rendering polygons with Google Maps. </p>
+
+        <h3> Fusion Tables </h3>
+        <p> Google Fusion Tables is an experimental app with corresponding API. It allows for SQL based searches, and streamlines how databases are connected to maps. Let's learn how to use Fusion Tables with this <a href='https://support.google.com/fusiontables/answer/2527132?hl=en&topic=2573107&ctx=topic'> short tutorial</a>. </p> 
+
+        <p> Fusion Tables is already useful without having to code anything. But let's look at how we can modify our table (database) through code. We'll want to check out the <a href = 'https://developers.google.com/fusiontables/docs/v2/getting_started'> Fusion Tables docs</a>. </p>
+
+        <p> The below example is quite long, but shows the basic functionality of Fusion Tables with Google Maps. </p>
+
+<pre><code class="JavaScript">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;style&gt;
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="map">&lt;/div&gt;
+    &lt;script&gt;
+        var map;
+        var tableID = '1LGMkQcfKBkEZZBF_FtvYvuaXInIk6K_tj6km_38f';
+        var apiKey = 'AIzaSyDOiqChKPknzUJILfcJ9STnElnJ4A_SRjY';
+        var locationColumn = 'Address';
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: {lat: 42.3398, lng: -71.0892},
+          mapTypeId: 'terrain'
+        });
+
+        var layer = new google.maps.FusionTablesLayer({
+          query: {
+            select: locationColumn,
+            from: tableID,
+            where: "rating > 4"
+          }
+        });
+
+        layer.setMap(map);
+
+        fetchData();
+
+      }
+
+          
+    function fetchData() {
+
+      var query = 'SELECT '
+                   + 'Price_sq_ft' + ','
+                  + ' geometry_pos ' + ' FROM '
+                  + tableID + ' WHERE ' + "Price_sq_ft >= 0";
+
+      var encodedQuery = encodeURIComponent(query);
+
+      // Construct the URL
+      var url = ['https://www.googleapis.com/fusiontables/v2/query'];
+          url.push('?sql=' + encodedQuery);
+          url.push('&key=' + apiKey);
+          url.push('&callback=?');
+
+      // Send the JSONP request using jQuery
+        $.ajax({
+          url: url.join(''),
+          dataType: 'jsonp',
+          success: onDataFetched
+        });
+    }
+
+    function onDataFetched(data) {
+        var rows = data['rows'];
+        var coordinate;
+
+        for (var i in rows) {
+          coordinate = new google.maps.LatLng(rows[i][1].geometry.coordinates[1],rows[i][1].geometry.coordinates[0]);
+          createMarker(coordinate);
+        }
+    }
+
+    function createMarker (coordinate) {
+      var fc = 'rgb(0, 0, 0)'; 
+      var marker = new google.maps.Marker({
+        map: map,
+        position: coordinate,
+        icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 4,
+                strokeWeight: 0,
+                fillOpacity: 1,
+                fillColor: fc
+              }
+      });
+
+      markers.push(marker);
+    };
+
+    &lt;/script&gt;
+    &lt;script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOiqChKPknzUJILfcJ9STnElnJ4A_SRjY&libraries=visualization&callback=initMap"&gt;
+    &lt;/script&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">&lt;/script&gt;
+    &lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code> </pre>
+
+	</div >
+</div>
+
+
+
+<div id="footer"></div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/htdaa.js"></script>
+
+
+</body>
+</html>

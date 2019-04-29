@@ -1,0 +1,66 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Open Sans', sans-serif;
+  font-size:20px;
+  color: #444;
+  background-color: #191919;
+}
+canvas {
+  vertical-align: top;
+}
+h1 {
+  position: relative;
+  text-align: center;
+  top: 30px;
+  font-size: 40px;
+  color: #999999;
+}
+h2 {
+  position: relative;
+  left: 120px;
+  top: 150px;
+  font-size:45px;
+  color: #999999;
+}
+p {
+  position: relative;
+  left: 120px;
+  top: 220px;
+  font-size:25px;
+  color: #999999;
+}
+a {
+  color: white;
+}
+a:hover {
+  color: #333333;
+  text-decoration: none;
+}
+footer {
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
+  color: #999999;
+  right: 0;
+  left: 0;
+  bottom: 15px;
+  border-top: 1px solid #999999;
+  padding-top: 10px;
+}
+#bgCanvas {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -2;
+}
+#about {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+}
+#work {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}

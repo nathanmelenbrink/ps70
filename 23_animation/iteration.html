@@ -1,0 +1,112 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>ARTG2260: Programming Basics</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script> 
+	$(function(){
+	  $("#header").load("../header.html"); 
+	  $("#footer").load("../footer.html"); 
+	});
+</script>
+
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+<script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
+<script src="../js/p5.min.js"></script>
+
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<!-- FIRST ROW -->
+<div class="row">
+	<div class="large-3  columns">
+		<h3> Iteration</h3>
+	</div >
+
+	<div class="small-12 medium-12 large-9  columns">
+
+		<h3> Resources: </h3>
+		<p> 
+			<a href='https://www.youtube.com/watch?v=cnRD9o6odjk&index=15&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA' >Shiffman - 4.1 while and for Loops - p5.js</a> <br>
+			<a href='https://www.youtube.com/watch?v=1c1_TMdf8b8&index=16&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA' >Shiffman - 4.2 Nested Loops - p5.js</a> <br>
+			<a href="https://p5js.org/examples/control-iteration.html">p5 Examples: Iteration</a><br>
+			<a href="https://p5js.org/examples/control-embedded-iteration.html">p5 Examples: Embedded Iteration</a><br>
+		</p>
+
+		<h3> for Loops </h3>
+		<p> The <code>for</code> structure performs repetitive calculations and is structured like this:<br>
+			<code>
+			for (init; test; update) {<br>
+			&nbsp; &nbsp; &nbsp;    statements <br>
+			}</code>
+		</p>
+
+		<p> For example, this loop draws vertical lines: </p>
+
+<script type="text/p5" data-height="240" data-preview-width="220">
+function setup() {
+	createCanvas(200, 200);
+	for (var i = 20; i < 200; i = i+20){
+		line(i, 20, i, 180);
+	}
+}
+</script>
+
+		<p> Write a for() loop that prints the following sequence of numbers to the console: 7, 10, 13, 16, 19, 22 </p>
+<script type="text/p5" data-height="220" data-preview-width="220">
+function setup() {
+	
+	
+}
+</script>
+
+		<p>Write a for() loop with a nested conditional statement that draws some lines on the left side of the canvas and some rectangles on the right side of the canvas. </p>
+
+<script type="text/p5" data-height="300" data-preview-width="220">
+function setup() {
+	createCanvas(200, 200);
+	
+}
+</script>
+
+		<p>Use a nested for() loop to create a 2D array of ellipses that change size along the y axis, and change color along the x axis. </p>
+
+<script type="text/p5" data-height="300" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	
+
+}
+</script>
+
+
+
+	</div>
+</div>
+
+
+
+<div id="footer"></div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/htdaa.js"></script>
+
+
+</body>
+</html>

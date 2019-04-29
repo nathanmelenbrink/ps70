@@ -1,0 +1,262 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>ARTG2260: Programming Basics</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script> 
+	$(function(){
+	  $("#header").load("../header.html"); 
+	  $("#footer").load("../footer.html"); 
+	});
+</script>
+
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+<script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
+<script src="../js/p5.min.js"></script>
+
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<!-- FIRST ROW -->
+<div class="row">
+	<div class="large-3  columns">
+		<h3> Functions</h3>
+	</div >
+
+	<div class="small-12 medium-12 large-9  columns">
+
+		<h3> Resources: </h3>
+		<p> 
+			<a href='https://www.youtube.com/watch?v=wRHAitGzBrg&index=17&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA' >Shiffman - 5.1 Function Basics - p5.js</a> <br>
+			<a href='https://www.youtube.com/watch?v=zkc417YapfE&index=18&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA' >Shiffman - 5.2 Function Parameters and Arguments - p5.js</a> <br>
+			<a href='https://www.youtube.com/watch?v=qRnUBiTJ66Y&index=19&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA' >Shiffman - 5.3 Functions and Return - p5.js</a> <br><!-- 
+			<a href="https://p5js.org/examples/control-conditionals-2.html">p5 Examples: If/else Statements</a><br>
+			<a href="https://p5js.org/examples/control-logical-operators.html">p5 Examples: Logical Operators</a><br>	 -->
+		</p>
+
+		<h3>Functions</h3>
+		<P> In the terminology of software, the word abstraction refers to hiding details in order to focus on the result. </P>
+
+		<p>The interface of the wheel and pedals in a car allows the driver to ignore details of the car’s operation such as firing pistons and the flow of gasoline. The only understanding required by the person driving is that the steering wheel turns the vehicle left and right, the accelerator speeds it up, and the brake slows it down.</p>
+
+		<p>The idea of abstraction is essential to writing software. In p5, drawing functions such as line(), ellipse(), and fill() obscure the complexity of their actions so that the author can focus on results rather than implementation. </p>
+
+		<img src = 'function.png' alt='functions'>
+
+		<p>Encapsulating code in a function makes it both more modular, and easier to reuse. Code that is modular is easier to organize and debug. Functions are also reusable-- you might include functions that you wrote in one assignment to start the next. </p>
+
+		<p>When you create functions, you can call them, sometimes passing parameters, and they return values (or void), just like p5 native functions like fill() or ellipse(). So of course, we can’t use function names that are already taken. </p>
+
+		<p> When we write <code>rect(x, y, w, h);</code> in our code, that's a <i> function call</i>. In that case, the function that's being called is one of p5's native functions. However, we can also call functions that we create ourselves. We've technically already done this -- setup() and draw() are special functions that p5 looks for, as our the interrupt functions like mouseClicked() that we used. But in addition to that, we can invent our own functions and call them whenever we like. </p>
+
+		<p>Identify each function call in the code snippets below. </p>
+
+		<p>Some functions may only perform a drawing operation and might not return a value, but many functions do. For each function below, identify the return value. 
+		</p>
+
+<script type="text/p5" data-height="280" data-preview-width="200">
+function setup(){
+	var f = average(12.0, 6.0); // Assign 9.0 to f
+	text ('The average is ' + f, 0, height/2);
+}
+
+function average (num1, num2){
+	var avg = (num1 + num2) /2;
+	return avg;
+}
+</script>		
+
+
+<script type="text/p5" data-height="280" data-preview-width="200">
+function setup(){
+	var c = fahrenheitToCelsius(451); // Assign 232.777779 to C
+	text ('The temp is ' + c, 0, height/2);
+}
+
+function fahrenheitToCelsius (t){
+	var f = (t - 32.0) * (5.0/9.0);
+	return f;
+}
+</script>	
+
+
+		<h3> Screen Saver </h3>
+		<p> Taking what we've learned about abstracting complexity with functions, let's return to our screen saver example and break up our draw() function into 3 parts. This will require us to first create 3 new functions, then move the relevant lines of code out of draw() and into our custom functions. Next, we need to make sure to call those functions from within draw(). p5's special functions like setup(), draw(), preload() and mousClicked() all have special rules for when they are called. But since p5 doesn't know anything about our new custom functions, we need to call them ourselves (or else nothing happens!). </p>
+
+<script type="text/p5" data-height="400" data-preview-width="320">		  
+var xPos, yPos, xSpeed, ySpeed, img;                                  
+var imgWidth = 40;           
+var imgHeight = 30;  
+
+function preload() {
+  img = loadImage('assets/myImg.png');
+}
+
+function setup() {
+	createCanvas(300,300);
+	xPos = width/2;                
+	yPos = height/2;              
+	xSpeed = random(1,10);       
+	ySpeed = random(1,10);        
+}
+
+function draw() {
+	background(0);             
+	// we can abstract the contents of the draw() function to 3 new functions:
+    // move(), bounce(), and display()
+	image(img, xPos, yPos, imgWidth, imgHeight); 
+	xPos += xSpeed;               
+	yPos += ySpeed;                
+
+	if (xPos+imgWidth >= width || xPos <= 0){       
+		xSpeed *= -1;                               
+	}
+
+	if (yPos+imgHeight >= height || yPos <= 0){     
+		ySpeed *= -1;                                
+	}
+}
+</script>
+
+		<p> Solution: Notice that the background() function call passes an argument (a '0' in this case), while our custom function calls do not. That's because the functions we defined expect no arguments. Next, we'll talk more about function arguments and how we can reuse functions with diffferent arguments to get different results. For now, try commenting out your 3 new functions independently to see how their behaviors work.  </p>
+
+<script type="text/p5" data-height="400" data-preview-width="320">
+var xPos, yPos, xSpeed, ySpeed, img;                                  
+var imgWidth = 40;           
+var imgHeight = 30;  
+
+function preload() {
+    img = loadImage('assets/myImg.png');
+}
+
+function setup() {
+	createCanvas(300,300);
+	xPos = width/2;                
+	yPos = height/2;              
+	xSpeed = random(1,10);       
+	ySpeed = random(1,10);        
+}
+
+function draw() {
+	background(0);             
+	move();
+	bounce();
+	display();
+}
+
+function move(){
+	xPos += xSpeed;               
+	yPos += ySpeed;
+}
+
+function bounce(){
+	if (xPos+imgWidth >= width || xPos <= 0){       
+		xSpeed *= -1;                               
+	}
+	if (yPos+imgHeight >= height || yPos <= 0){     
+		ySpeed *= -1;                                
+	}
+}
+
+function display(){
+	image(img, xPos, yPos, imgWidth, imgHeight); 
+}
+</script>
+
+		<p> Here's another great reason for using functions. For making similar shapes, coding each one individually gets tedious. 
+		</p>
+			
+<script type="text/p5" data-height="420" data-preview-width="200">
+function setup(){
+	// Right shape
+	fill(255);
+	ellipse(65, 44, 60, 60);
+	fill(0);
+	ellipse(75, 44, 30, 30);
+	fill(255);
+	ellipse(81, 39, 6, 6);
+	// Left shape
+	fill(255);
+	ellipse(20, 50, 60, 60);
+	fill(0);
+	ellipse(30, 50, 30, 30);
+	fill(255);
+	ellipse(36, 45, 6, 6);
+}
+</script>
+
+		<p> The two eyes in the above example are drawn at different positions, but otherwise they are very similar. It would be better if we could reuse parts of this code instead of drawing each shape from scratch each time. But if we just had an eye() function that did the same thing every time with absolute coordinates, that wouldn't give us two distinct eyes but rather the same shapes drawn on top of each other. Instead, we can customize the input of the eye() function to accept parameters like eye(x,y), representing the x and y coordinates of the center point of the eye. Our custom eye(x,y) function can then use relative coordinates to build the eye shape around the x,y coordinates it received. </p>
+
+		<p> Correspondingly, however, we need to make sure that our function call agrees with our function definition; in other words, since our function is expecting 2 parameters, we need to call it with 2 arguments.</p>
+
+		<p> The code below does the same as the code above, but abstracts the idea of an "eye" to its own function. It takes two parameters, the x and y coordinates of the center point.
+		</p>
+			
+<script type="text/p5" data-height="400" data-preview-width="200">
+function setup(){
+	eye(65, 44);
+	eye(20, 50);
+}
+function eye(x, y) {
+	fill(255);
+	ellipse(x, y, 60, 60);
+	fill(0);
+	ellipse(x+10, y, 30, 30);
+	fill(255);
+	ellipse(x+16, y-5, 6, 6);
+}
+</script>
+
+		<p> Try changing the function so that it expects a third parameter in the eye() function, make that parameter change the fill color of the second ellipse.
+		</p>
+
+		<p> Now, try making a for() loop that draws 10 eyes. </p>
+
+		<h3> Return Values</h3>
+		<p> Some of p5's native functions, like rect() or line() or ellipse() have no return value; their output is rendering a shape to the canvas. Other native functions, like random() or round() do have return values, in other words, they resolve to a number. That means we can use them in different ways. For example, we can write  <code>stroke(random(10))</code> which will give us a random stroke value between 0 and 10. But we can't write <code>stroke(line())</code> because the line() function does not return a value. </p>
+
+		<p>Similarly, when we write custom functions, it's up to us whether or not we want our functions to return a value.  
+		</p>
+
+<script type="text/p5" data-height="280" data-preview-width="200">
+function setup(){
+	var c = fahrenheitToCelsius(451); // Assign 232.777779 to C
+	text ('The temp is ' + c, 0, height/2);
+}
+
+function fahrenheitToCelsius (t){
+	var f = (t - 32.0) * (5.0/9.0);
+	return f;
+}
+</script>	
+
+
+	</div>
+</div>
+
+
+
+<div id="footer"></div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/htdaa.js"></script>
+
+
+</body>
+</html>

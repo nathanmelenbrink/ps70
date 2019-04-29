@@ -1,0 +1,116 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>ARTG2260: Programming Basics</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script> 
+	$(function(){
+	  $("#header").load("../header.html"); 
+	  $("#footer").load("../footer.html"); 
+	});
+</script>
+
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+<script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
+<script src="../js/p5.min.js"></script>
+
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<!-- FIRST ROW -->
+<div class="row">
+	<div class="large-3  columns">
+		<h3> JavaScript Objects</h3>
+	</div >
+
+	<div class="small-12 medium-12 large-9  columns">
+
+    <h3> Resources: </h3>
+    <p> 
+      <a href='https://www.youtube.com/watch?v=-e5h4IGKZRY&index=8&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA' >Shiffman - 2.3 JavaScript Objects - p5.js</a><br><!-- 
+      <a href="https://p5js.org/reference/#/p5/image">p5 Reference: image()</a><br>
+      <a href="https://p5js.org/examples/image-pointillism.html">p5 Examples: Pointilism</a><br>
+      <a href="https://p5js.org/examples/image-transparency.html">p5 Examples: Transparency</a><br> -->
+    </p>
+
+		<h3> Objects </h3>
+		<p>  We'll talk more about object next week, but it's good to get a bit of an introduction. 
+		</p>
+
+  <p> The following code draws a falling ellipse without using objects. Notice how the three variables that we declare and assign up top are the three ingredients that we need to define the ellipse. They go together in a sense. It might not seem important since this is a short sketch, but what if we had multiple ellipses, or other shapes that we wanted to draw? It could get to be a mes keeping all those variables straight. </p>
+    
+<script type="text/p5" data-height="320" data-preview-width="200">
+var x = 33;
+var y = 100;
+var diameter = 30;
+
+function draw() {
+  background(0);
+  ellipse(x, y, diameter, diameter);
+  y--;
+}
+</script>
+
+    <p> Even if we might be able to keep track of these variables in our heads, the computer doesn't know that they belong together. However, there's a way that we can group them, by creating a custom object. An object will act as a container, into which we can place whatever kind of data we wish. The following code stores the same three variables as an object.</p>
+    
+<script type="text/p5" data-height="320" data-preview-width="200">
+var spot = {
+  x: 33,
+  y: 100,
+  diameter: 30
+};
+</script>
+
+    <p> This uses new syntax, but it's important and we'll use it often. Instead of independent variables floating around in our program, we've now combined these variables inside a container called spot, using what is known as <i>key: value</i> pairs. This is the basis for how JavaScript objects are stored and is known as the JavaScript Object Notation (JSON) format. </p>
+
+    <p> Objects are fundamental building blocks of JavaScript. We'll use them lots to do all kinds of things. If we want to retrieve information from some online database, that information will come in the form of an object. Social media companies store their users as objects, etc. </p>
+
+    <p> We can use our new object and get rid of the three independent variables. However, we need to fix the draw() function. Since x is no longer its own variable in the global scope, we have to access it using <i>dot syntax</i>, like <code>spot.x</code>. </p>
+
+<script type="text/p5" data-height="320" data-preview-width="200">
+var spot = {
+  x: 33,
+  y: 100,
+  diameter: 30
+};
+
+function draw() {
+  background(0);
+  ellipse(x, y, diameter, diameter);
+  y--;
+}
+</script>
+
+    <p> So you should end up with something like the following. So what was the point of all that? It will help us keep our code organized as it gets a bit more complex. Also, next week we'll look at how objects can also have functions and well as variables, which makes lots of things possible. You might want to use custom objects to describe characters in a game, birds in a flock, or user interface elements.  </p>
+
+
+
+	</div>
+</div>
+
+
+
+<div id="footer"></div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/htdaa.js"></script>
+
+
+</body>
+</html>

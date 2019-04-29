@@ -1,0 +1,195 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>ARTG2260: Programming Basics</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script> 
+	$(function(){
+	  $("#header").load("../header.html"); 
+	  $("#footer").load("../footer.html"); 
+	});
+</script>
+
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+<script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
+<script src="../js/p5.min.js"></script>
+
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<!-- FIRST ROW -->
+<div class="row">
+	<div class=" large-3  columns">
+		<h3> Arithmetic</h3>
+	</div >
+
+	<div class="small-12 medium-12 large-9  columns">
+
+		<h3> Resources: </h3>
+		<p> <!-- <a href="https://p5js.org/get-started/">Getting Started</a>: How to use p5, and create your first sketch<br> 
+			<a href="https://p5js.org/reference/">Reference</a>: The complete dictionary of all the functions you can use in p5
+			<a href="https://p5js.org/learn/">Examples</a>: These are short demonstrations of various p5.js topics. <br>
+			<a href="https://p5js.org/learn/">Learn</a>: These tutorials provide more in-depth or step-by-step overviews of particular topics. <br>
+			<a href='https://www.youtube.com/watch?v=8j0UDiN7my4&t=7s' >Shiffman - 1.1 Introduction - p5.js</a> Note that in these videos, he uses an IDE called p5 Editor, which we will not be using in this class. Instead, we'll mostly be working in Sublime Text (or other editor). Not to worry, it's the exact same code. <br> -->
+		</p>
+
+		<h3> Arithmetic</h3>
+		<p> Syntax Introduced:
+			<ul>
+				<li> + (add), - (subtract), * (multiply), / (divide), </li>
+				<li> % (modulus) </li>
+				<li>() (parentheses) </li>
+				<li> ++ (increment), -- (decrement), += (add assign), -= (subtract assign)</li>
+				<li>*= (multiply assign), /= (divide assign), - (negation)</li>
+				<li>ceil(), floor(), round(), min(), max()</li>
+			</ul>
+		</p>
+	
+		<p>
+			The expression to the right of the = symbol is evaluated before the value is assigned to the variable on the left. Therefore, the statement a=5+4 first adds 5 and 4 to yield 9 and then assigns the value 9 to the variable a. <br><br>
+			Parentheses are used to enforce order of operations:
+		</p>
+
+<script type="text/p5" data-height="200" data-preview-width="0">
+var x = 3 + 4 * 5;  // Declare var x and assign a value of 23
+var y = (3 + 4) * 5;  // Declare var y and assign a value of 35
+print("x = " + x);
+print("y = " + y);
+</script>
+
+		<p>
+			The following exampl shows how to use variables in the arguments (parameters) of functions. Note that a calculation can be sent as an argument as well. Try modifying the example to draw horizontal lines. 
+		</p>
+
+<script type="text/p5" data-height="300" data-preview-width="200">
+function setup(){
+	createCanvas(100,100);
+	var a = 30;
+	line(a, 0, a, height);
+	a = a + 40; 	// Assign 70 to a
+	strokeWeight(4);
+	line(a, 0, a, height);
+
+	/*
+	var b = 40;
+	line(b, 0, b, height);
+	*/
+
+	/*
+	a = 30;
+	// A calculation can be used as an input to a function
+	stroke(255,0,0);
+	line(b+a, 0, b+a, height);
+	*/
+}
+</script>
+		
+		<h3> The Modulus Operator</h3>
+		<p> The modulus operator (%) in the format A % B, returns the remainder from dividing A by B. It's useful for creating patterns or cyclical events. 
+			<table>
+			  <tr>
+			    <th>Expression</th>
+			    <th>Result</th>
+			    <th>Explanation</th>
+			  </tr>
+			  <tr>
+			    <td>9 % 3</td>
+			    <td>0</td>
+			    <td>3 goes into 9 three times, with no remainder </td>
+			  </tr>
+			  <tr>
+			    <td>9 % 2</td>
+			    <td>1</td>
+			    <td>2 goes into 9 four times, with 1 as the remainder </td>
+			  </tr>
+			  <tr>
+			    <td>35 % 4</td>
+			    <td>3</td>
+			    <td>4 goes into 35 eight times, with 3 as the remainder</td>
+			  </tr>
+			  
+			</table>
+		</p>
+
+
+		<h3> <a href="https://p5js.org/examples/math-increment-decrement.html">Arithmetic Shortcuts</a></h3>
+		<p> The ++ operator increments a variable by 1: </p>
+<script type="text/p5" data-height="220" data-preview-width="0">
+function setup(){
+	var x = 1;
+	print(x); // prints 1 to the console
+	x++;      // equivalent to x = x + 1
+	print(x); // prints 2 to the console
+}
+</script>
+
+		<p> The -- operator decrements a variable by 1: </p>
+<script type="text/p5" data-height="220" data-preview-width="0">
+function setup(){
+	var y = 1;
+	print(y); // prints 1 to the console
+	y--;      // equivalent to y = y - 1
+	print(y); // prints 0 to the console
+}
+</script>
+
+		<p> The += operator increments a variable by another number: </p>
+<script type="text/p5" data-height="220" data-preview-width="0">
+function setup(){
+	var x = 1;
+	print(x); // prints 1 to the console
+	x += 5;   // equivalent to x = x + 5
+	print(x); // prints 6 to the console
+}
+</script>
+
+		<p> The -= operator decrements a variable by another number: </p>
+<script type="text/p5" data-height="220" data-preview-width="0">
+function setup(){
+	var y = 1;
+	print(y); // prints 1 to the console
+	y -= 5;   // equivalent to y = y - 5
+	print(y); // prints -4 to the console
+}
+</script>
+
+		<h3> Arithmetic Rounding</h3>
+		<p> <a href= "https://p5js.org/reference/#/p5/round">round()</a><br>
+			<a href= "https://p5js.org/reference/#/p5/ceil">ceil()</a><br>
+			<a href= "https://p5js.org/reference/#/p5/floor">floor()</a><br>
+			<a href= "https://p5js.org/reference/#/p5/min">min()</a><br>
+			<a href= "https://p5js.org/reference/#/p5/max">max()</a><br>
+		</p>
+
+
+
+
+	</div>
+</div>
+
+
+
+<div id="footer"></div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/htdaa.js"></script>
+
+
+</body>
+</html>
