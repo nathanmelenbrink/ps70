@@ -736,8 +736,9 @@ p {
 /* Default Link Styles */
 /* line 152, ../bower_components/foundation/scss/foundation/components/_type.scss */
 a {
-  /*color: #333d41;*/
-  color: #ed225d;
+  color: #38BFC3;
+  /*color: #ed225d;*/
+  /*color: #4286f4;*/
   text-decoration: none;
   line-height: inherit;
   border: none !important;
