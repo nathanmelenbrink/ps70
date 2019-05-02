@@ -60,7 +60,8 @@ li a, .thumbnail-caption a {
 
 /* line 84, ../scss/_custom.scss */
 li a:hover, .thumbnail-caption a:hover {
-  color: #5b8aa0;
+  /*color: #5b8aa0;*/  
+  color: #af320c;
   /*border-bottom: 1px solid #5b8aa0 !important;*/
   border: none !important;
 }
@@ -743,7 +744,7 @@ a {
 }
 /* line 158, ../bower_components/foundation/scss/foundation/components/_type.scss */
 a:hover, a:focus {
-  color: #5b8aa0;
+  color: #af320c;
   border: none !important;
 }
 /* line 160, ../bower_components/foundation/scss/foundation/components/_type.scss */
