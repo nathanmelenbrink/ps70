@@ -1,0 +1,426 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>PHYS-S12: Introduction to Digital Fabrication</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script> 
+	$(function(){
+	  $("#header").load("../header.html"); 
+	  $("#footer").load("../footer.html"); 
+	});
+</script>
+
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+
+
+</head>
+<body>
+
+<div id="header"></div>
+
+
+<!-- NEW SECTION -->
+<div class="row">
+
+	<!-- ROW TITLE -->
+	<div class="small-3 medium-3 large-3  columns">
+		<h3> HTML </h3>
+	</div >
+
+	<!-- LIST OF LINKS -->
+	<div class="small-9 medium-9 large-9  columns">
+
+
+	<h3> <a href="https://www.w3schools.com/html/html_intro.asp">HyperText Markup Language</a> </h3>
+	<p>(From W3 Schools) HTML is the standard markup language for creating Web pages.</p>
+
+	<ul>
+		<li>HTML stands for Hyper Text Markup Language</li>
+		<li>HTML describes the structure of Web pages using markup</li>
+		<li>HTML elements are the building blocks of HTML pages</li>
+		<li>HTML elements are represented by tags</li>
+		<li>HTML tags label pieces of content such as &quot;heading&quot;, &quot;paragraph&quot;, &quot;table&quot;, and so on</li>
+		<li>Browsers do not display the HTML tags, but use them to render the content of the page</li>
+	</ul>
+
+
+
+	<pre><code class="html">
+	&lt!DOCTYPE html&gt
+	&lthtml&gt
+	&lthead&gt
+		&lttitle&gtPage Title&lt/title&gt
+	&lt/head&gt
+	&ltbody&gt
+		&lth1&gtThis is a Heading&lt/h1&gt
+		&ltp&gtThis is a paragraph.&lt/p&gt
+
+	&lt/body&gt
+	&lt/html&gt
+	</code> </pre>
+
+	<p>Example explained:</p>
+
+	<ul>
+		<li>The <code>&lt;!DOCTYPE html&gt;</code> declaration defines this document to be HTML5</li>
+		<li>The <code>&lt;html&gt;</code> element is the root element of an HTML 
+		page</li>
+		<li>The <code>&lt;head&gt;</code> element contains meta information about the document</li>
+		<li>The <code>&lt;title&gt;</code> element specifies a title for the document</li>
+		<li>The <code>&lt;body&gt;</code> element contains the visible page content</li>
+		<li>The <code>&lt;h1&gt;</code> element defines a large heading</li>
+		<li>The <code>&lt;p&gt;</code> element defines a paragraph</li>
+	</ul>
+
+
+	<h3> HTML Tags</h3>
+
+	<p> 
+		HTML tags are element names surrounded by angle brackets
+		HTML tags normally come in pairs like &ltp&gt and &lt/p&gt
+		The first tag in a pair is the start tag, the second tag is the end tag
+		The end tag is written like the start tag, but with a forward slash inserted before the tag name
+
+		Only the content inside the &ltbody&gt section (the white area in the image below) is displayed in a browser.
+
+	</p>
+
+	<!-- <img src="./coordinates.png" alt="Coordinates"> -->
+	<h3>HTML Page Structure</h3>
+	<p>Below is a visualization of an HTML page structure:</p>
+	<div style="width:99%;border:1px solid grey;padding:3px;margin:0;background-color:#ddd">&lt;html&gt;
+	<div style="width:90%;border:1px solid grey;padding:3px;margin:20px">&lt;head&gt;
+	<div style="width:90%;border:1px solid grey;padding:5px;margin:20px">&lt;title&gt;Page title&lt;/title&gt;
+	</div>
+	&lt;/head&gt;
+	</div>
+	<div style="width:90%;border:1px solid grey;padding:3px;margin:20px;background-color:#ddd">&lt;body&gt;
+	<div style="width:90%;border:1px solid grey;padding:3px;margin:20px;background-color:#fff">
+	<div style="width:90%;border:1px solid grey;padding:5px;margin:20px">&lt;h1&gt;This is a heading&lt;/h1&gt;</div>
+	<div style="width:90%;border:1px solid grey;padding:5px;margin:20px">&lt;p&gt;This is a paragraph.&lt;/p&gt;</div>
+	<div style="width:90%;border:1px solid grey;padding:5px;margin:20px">&lt;p&gt;This is another paragraph.&lt;/p&gt;</div>
+	</div>
+	&lt;/body&gt;
+	</div>
+	&lt;/html&gt;
+	</div>
+	<br><br>
+
+	<h3> <a href="https://www.w3schools.com/html/html_links.asp">HTML Elements</a></h3>
+
+	<p>An HTML element usually consists of a <strong>start</strong> tag and <strong>end</strong> tag, 
+	with the content inserted in between:</p>
+	<pre><code class="html">
+	&lt;tagname&gt;Content goes here...&lt;/tagname&gt;
+	</code> </pre>
+
+	<p>The HTML <strong>element</strong> is everything from the start tag to the end tag:</p>
+	<pre><code class="html">
+	&lt;p&gt;My first paragraph.&lt;/p&gt;
+	</code> </pre>
+
+
+	<table>
+		<tr>
+		<th style="width:33%">Start tag</th>
+		<th style="width:33%">Element content</th>
+		<th>End tag</th>
+		</tr>
+		<tr>
+		<td>&lt;h1&gt;</td>
+		<td>My First Heading</td>
+		<td>&lt;/h1&gt;</td>
+		</tr>
+		<tr>
+		<td>&lt;p&gt;</td>
+		<td>My first paragraph.</td>
+		<td>&lt;/p&gt;</td>
+		</tr>
+		<tr>
+		<td>&lt;br&gt;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		</tr>
+	</table>
+
+	<p>HTML elements with no content are called empty elements. Empty elements do not have an end tag, such as the &lt;br&gt; element (which indicates a line break).</p>
+
+	<p> HTML elements can be nested (elements can contain elements). All HTML documents consist of nested HTML elements. </p>
+
+	<h3> <a href="https://www.w3schools.com/html/html_attributes.asp">HTML Attributes</a></h3><ul>
+		<li>All HTML elements can have <b>attributes</b></li>
+		<li>Attributes provide <b>additional information</b> about an element</li>
+		<li>Attributes are always specified in <b>the start tag</b></li>
+		<li>Attributes usually come in name/value pairs like: <b>name=&quot;value&quot;</b></li>
+	</ul>
+
+	<table>
+		<tr>
+		<th style="width:15%">Attribute</th>
+		<th>Description</th>
+		</tr>
+		<tr>
+		<td>alt</td>
+		<td>Specifies an alternative text for an image, when the image cannot be 
+		displayed</td>
+		</tr>
+		<tr>
+		<td>disabled</td>
+		<td>Specifies that an input element should be disabled</td>
+		</tr>
+		<tr>
+		<td>href</td>
+		<td>Specifies the URL (web address) for a link</td>
+		</tr>
+		<tr>
+		<td>id</td>
+		<td>Specifies a unique id for an element</td>
+		</tr>
+		<tr>
+		<td>src</td>
+		<td>Specifies the URL (web address) for an image</td>
+		</tr>
+		<tr>
+		<td>style</td>
+		<td>Specifies an inline CSS style for an element</td>
+		</tr>
+		<tr>
+		<td>title</td>
+		<td>Specifies extra information about an element (displayed as a tool tip)</td>
+		</tr>
+	</table>
+	<p>A complete list of all attributes for each HTML element, is listed in:
+	<a href="/tags/ref_attributes.asp">HTML Attribute Reference</a>.</p>
+
+
+	<h3> <a href="https://www.w3schools.com/html/html_formatting.asp">HTML Formatting</a></h3>
+
+	<p>HTML also defines special <strong>elements</strong> for defining text with a special <strong>meaning</strong>.<br>
+	HTML uses elements like &lt;b&gt; and &lt;i&gt; for formatting output, like <b>bold</b> or <i>italic</i> text.</p>
+
+	<pre><code class="html">
+	&lt;b>This text is bold.&lt;/b&gt; &lt;i&gt This text is italic.&lt;/i&gt; &lt;br&gt; 
+	This is &lt;sub&gt;subscript&lt;/sub&gt; and &lt;sup>superscript&lt;/sup&gt;
+	</code> </pre>
+
+	<p><b>This text is bold. </b> <i> This text is italic. <br>
+	</i> This is<sub> subscript</sub> and <sup>superscript</sup></p>
+
+
+	<table >
+		<tr>
+		<th style="width:20%">Tag</th>
+		<th>Description</th>
+		</tr>
+		<tr>
+		<td><a href="https://www.w3schools.com/tags/tag_b.asp">&lt;b&gt;</a></td>
+		<td>Defines bold text</td>
+		</tr>
+		<tr>
+		<td><a href="https://www.w3schools.com/tags/tag_em.asp">&lt;em&gt;</a></td>
+		<td>Defines emphasized text&nbsp;</td>
+		</tr>
+		<tr>
+		<td><a href="https://www.w3schools.com/tags/tag_i.asp">&lt;i&gt;</a></td>
+		<td>Defines italic text</td>
+		</tr>
+		<tr>
+		<td><a href="https://www.w3schools.com/tags/tag_small.asp">&lt;small&gt;</a></td>
+		<td>Defines smaller text</td>
+		</tr>
+		<tr>
+		<td><a href="https://www.w3schools.com/tags/tag_strong.asp">&lt;strong&gt;</a></td>
+		<td>Defines important text</td>
+		</tr>
+		<tr>
+		<td><a href="https://www.w3schools.com/tags/tag_sub.asp">&lt;sub&gt;</a></td>
+		<td>Defines subscripted text</td>
+		</tr>
+		<tr>
+		<td><a href="https://www.w3schools.com/tags/tag_sup.asp">&lt;sup&gt;</a></td>
+		<td>Defines superscripted text</td>
+		</tr>
+		<tr>
+		<td><a href="https://www.w3schools.com/tags/tag_ins.asp">&lt;ins&gt;</a></td>
+		<td>Defines inserted text</td>
+		</tr>
+		<tr>
+		<td><a href="https://www.w3schools.com/tags/tag_del.asp">&lt;del&gt;</a></td>
+		<td>Defines deleted text</td>
+		</tr>
+		<tr>
+		<td><a href="https://www.w3schools.com/tags/tag_mark.asp">&lt;mark&gt;</a></td>
+		<td>Defines marked/highlighted text</td>
+		</tr>
+	</table>
+
+
+	<h3> <a href="https://www.w3schools.com/html/html_links.asp">HTML Links</a></h3>
+
+	<p> 
+	<!-- Syntax introduced: &lt;a&gt; <br> -->
+	HTML links are defined with the &lt;a&gt; tag
+	The link's destination is specified in the href attribute. Destinations can be local or web-based (absolute URL)
+	Attributes are used to provide additional information about HTML elements.
+	</p>
+
+	<pre><code class="html">
+	&lt;a href="https://w3schools.com"&gt;This is a link&lt;a&gt;
+	</code> </pre>
+
+	<h3> <a href="https://www.w3schools.com/html/html_images.asp">HTML Images</a></h3>
+
+	<p> 
+	<!-- Syntax introduced: &lt;img&gt; <br> -->
+	HTML images are defined with the &lt;img&gt; tag
+	The source file (src), alternative text (alt), width, and height are provided as attributes
+	The &lt;img&gt; tag is empty, it contains attributes only, and does not have a closing tag.
+	</p>
+
+	<pre><code class="html">
+	&lt;img src="img_girl.jpg" alt="Girl in a jacket"&lt;a&gt;
+	</code> </pre>
+
+	<h3> Other useful HTML tags</h3>
+	<p> <a href="https://www.w3schools.com/html/html_headings.asp">HTML Headings</a> <br>
+	<a href="https://www.w3schools.com/html/html_paragraphs.asp">HTML Paragraphs</a> <br>
+	<a href="https://www.w3schools.com/html/html_tables.asp">HTML Tables</a> <br>
+	<a href="https://www.w3schools.com/html/html_lists.asp">HTML Lists</a> <br>
+	<a href="https://www.w3schools.com/html/html_iframe.asp">HTML Iframes</a> <br>
+	<a href="https://www.w3schools.com/html/html_entities.asp">HTML Entities</a> <br>
+	</p>
+
+	</div >
+</div>	<!-- END SECTION -->
+
+<!-- NEW SECTION -->
+<div class="row">
+
+	<!-- ROW TITLE -->
+	<div class="small-3 medium-3 large-3  columns">
+		<h3> <a href="https://www.w3schools.com/css/default.asp">CSS</a> </h3>
+	</div >
+
+	<!-- LIST OF LINKS -->
+	<div class="small-9 medium-9 large-9  columns">
+		<h3> <a href="https://www.w3schools.com/css/css_intro.asp">Intro to CSS</a></h3>
+		<p>CSS describes how HTML elements are to be displayed on screen, paper, or in other media. CSS saves a lot of work. It can control the layout of multiple web pages all at once. CSS can be added to HTML elements in  <a href="https://www.w3schools.com/css/css_syntax.asp">3 ways</a>: <br> 
+		Inline - by using the style attribute in HTML elements <br> 
+		Internal - by using a &lt;style&gt; element in the &lt;head&gt; section <br>
+		External - by using an external CSS file <br>
+		</p>
+
+		<h3> <a href="https://www.w3schools.com/css/css_syntax.asp">CSS Syntax</a></h3>
+		<h3> <a href="https://www.w3schools.com/css/css_colors.asp">CSS Colors</a></h3>
+		<h3> <a href="https://www.w3schools.com/css/css_border.asp">CSS Borders</a></h3>
+		<h3> <a href="https://www.w3schools.com/css/css_margin.asp">CSS Margins</a></h3>
+		<h3> <a href="https://www.w3schools.com/css/css_padding.asp">CSS Padding</a></h3>
+		<h3> <a href="https://www.w3schools.com/css/css_font.asp">CSS Fonts</a></h3>
+
+
+	</div>
+</div>
+
+
+
+<!-- NEW SECTION -->
+<div class="row">
+
+	<!-- ROW TITLE -->
+	<div class="small-3 medium-3 large-3  columns">
+		<h3> <a href="https://www.w3schools.com/bootstrap/">Bootstrap</a> </h3>
+	</div >
+
+	<!-- LIST OF LINKS -->
+	<div class="small-9 medium-9 large-9  columns">
+
+		<h3> <a href="https://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp">Bootstrap Grid System</a></h3>
+		<p>Bootstrap's grid system allows up to 12 columns across the page.</p>
+		<p>If you do not want to use all 12 columns individually, you can group the 
+		columns together to create wider columns:</p>
+		<div class="table-responsive">
+		<table class="table grid">
+		<tr>
+		  <td>span 1</td>
+		  <td>span 1</td>  
+		  <td>span 1</td>
+		  <td>span 1</td>
+		  <td>span 1</td>  
+		  <td>span 1</td>
+		  <td>span 1</td>
+		  <td>span 1</td>  
+		  <td>span 1</td>
+		  <td>span 1</td>
+		  <td>span 1</td>  
+		  <td>span 1</td>
+		</tr>
+		<tr>
+		  <td colspan="4">&nbsp;span 4</td>
+		  <td colspan="4">&nbsp;span 4</td>  
+		  <td colspan="4">&nbsp;span 4</td>
+		</tr>
+		<tr>
+		  <td colspan="4">span 4</td>
+		  <td colspan="8">span 8</td>  
+		</tr>
+		<tr>
+		  <td colspan="6">span 6</td>
+		  <td colspan="6">span 6</td>  
+		</tr>
+		<tr>
+		  <td colspan="12">span 12</td>
+		</tr>
+		</table>
+		</div>
+		<p>Bootstrap's grid system is responsive, and the columns will re-arrange automatically depending on the screen size.</p>
+
+		<h3>Grid Classes</h3>
+		<p>The Bootstrap grid system has four classes:</p>
+		<ul>
+		  <li><code class="w3-codespan">xs</code> (for phones - screens less than 768px wide)</li>
+		  <li><code class="w3-codespan">sm</code> (for tablets - screens equal to or greater than 768px wide)</li>
+		  <li><code class="w3-codespan">md</code> (for small laptops - screens equal to or greater than 992px wide)</li>
+		  <li><code class="w3-codespan">lg</code> (for laptops and desktops - screens equal to or greater than 1200px wide)</li>
+		</ul>
+		<p>The classes above can be combined to create more dynamic and flexible layouts.</p>
+
+		<h3>Basic Structure of a Bootstrap Grid</h3>
+		<p>The following is a basic structure of a Bootstrap grid:</p>
+		<div class="w3-example">
+		 <div class="w3-code notranslate htmlHigh">
+		  &lt;div class=&quot;row&quot;&gt;<br>&nbsp; &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;<br>&nbsp; 
+		   &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;div class=&quot;row&quot;&gt;<br>&nbsp; &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;<br>&nbsp; &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;<br>&nbsp; &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;div class=&quot;row&quot;&gt;<br>&nbsp; ...<br>&lt;/div&gt;</div>
+		</div>
+		<p>First; create a row (<code class="w3-codespan">&lt;div 
+		class="row"&gt;</code>). Then, add the desired number of columns (tags with appropriate 
+		<code class="w3-codespan">.col-*-*</code> classes). Note that numbers in <code class="w3-codespan">.col-*-*</code> should always add up to 12 for each row.</p>
+		
+		<h3> <a href="https://www.w3schools.com/bootstrap/bootstrap_grid_system.asp">More About Bootstrap Grid System</a></h3>
+		<h3> <a href="https://www.w3schools.com/bootstrap/bootstrap_templates.asp">Bootstrap Templates</a></h3>
+
+	</div>
+</div>
+
+
+
+<div id="footer"></div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/htdaa.js"></script>
+
+
+</body>
+</html>
