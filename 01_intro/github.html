@@ -55,11 +55,10 @@
 		<li> Download <a href ="https://desktop.github.com/">GitHub Desktop</a>, open it, and link it to your account. </li>
 	</ul>
 
-	<h3> Step 1: Download Jekyll Template Repository </h3>
+	<h3> Step 1: Create a New Repository </h3>
 
 	<ul>
 		
-
 		<li> Open GitHub Desktop. Click the + in the top left corner and clike "Create" to make a new repository. Name the directory something descriptive like "PHYS-S-12-Assignments" and make sure it's saving to the GitHub folder on your computer (for Windows usually "C:\Users\your-name\Documents\GitHub\"). Click "Create Repository".</li>
 
 		<img src="./github0.png" alt="github0"> 
@@ -68,61 +67,18 @@
 
 		<li> Congrats, you've created your first GitHub repository! You can check the "remote origin" at https://github.com/your-username/PHYS-S-12-assignments. But there's nothing yet in the repo, so let's add our template content. </li>
 
+	</ul>
+
+	<h3> Step 2: Add Content to the Repository </h3>
+	<ul>
 		<li> Head to <a href='https://github.com/nathanmelenbrink/Jekyll-demo'>Jekyll-demo repository</a>, click "Clone or download" and select "Download ZIP". </li>
 
 		<li> Unzip/extract the file to your /Downloads folder or wherever else, and copy the entire extracted contents into your newly created empty repository. </li> 
 
 		<img src="./github1.png" alt="github1"> 
 
-		<li> Back in GitHub Desktop, clicking the "Changes" tab should show you that a bunch of new files have shown up in your repo. Write a summary like "added files from template".  </li> 
+		<li> Back in GitHub Desktop, clicking the "Changes" tab should show you that a bunch of new files have shown up in your repo. </li> 
 
-		<img src="./github2.png" alt="github2"> 
-
-		<li> Click "Commit to Master". This stores your changes locally. Next click "Sync" in the top right corner. This will push your changes to your remote repository (the version stored on GitHub's website). </li>
-
-		<li> Check https://github.com/your-username/PHYS-S-12-assignments again, and you should see all of those files in the directory. </li> 
-
-		<!-- <li>From github.com, click the green "Create New Repository" button. </li>
-
-		<li>In the following screen, name your repository "artg2260-assignments". Give it a description like "Weekly assignments for ARTG2260: Programming Basics". Choose "Public" and select "Initialize this repository with a README." No need to add .gitignore or a license. Click "Create repository"</li>
-
-		<img src="./github.png" alt="github">
-
-		<li>You should be automatically redirected to the home page for the repository you just created. Click the green "Clone or download" button, then select "Open in Desktop". </li>
-
-		<li>This should open the GitHub Desktop application. You should see a dialog box called "Clone a Repository". </li>
-		
-		<img src="./github2.png" alt="github2">
-
-		<li>The first field should have auto-filled out the name of your repository as well as a suggested Local Path. The Local Path is the directory on your hard drive that will sync to your website, so make sure it's a place that's easy to find and where you won't have to move it. </li>
-
-		<li>Click "Clone". This clones (downloads + syncs) your online repository to your local hard drive. You should now see the GitHub Desktop interface showing you an empty change log: </li>
-
-		<img src="./github3.png" alt="github3"> -->
-	</ul>
-
-	<h3> Step 2: Add Content to the Repository </h3>
-	<ul>
-
-		<li>Click "open this repository" or navigate to the repo folder in Finder. Open Sublime Text (or another similar text editor). Drag and drop the "artg2260-assignments" folder into the Sublime Text editor. You should see the directory appear in the left sidebar. </li>
-
-		<li>Go to File >>  New File. Paste the following code in the new file:
-	<pre><code class="html">
-	&lt!DOCTYPE html&gt
-	&lthtml&gt
-	&lthead&gt
-		&lttitle&gtARTG2260 Assignments&lt/title&gt
-	&lt/head&gt
-	&ltbody&gt
-		&lth1&gtThis is a Heading&lt/h1&gt
-		&ltp&gtThis is a paragraph.&lt/p&gt
-
-	&lt/body&gt
-	&lt/html&gt
-	</code> </pre>
-		</li>
-
-		<li> Save the file as "index.html" in the "artg-assignments" folder. In Finder, open the new index.html file with the Chrome browser. You should see the text you wrote rendered in the browser. Congratulations! You've made a website. </li>
 	</ul>
 
 
@@ -130,11 +86,11 @@
 
 	<ul>
 
-		<li> Now, go back to GitHub Desktop. You'll notice that the changes we made are reflected in the "Changes" tab. We ultimately want to "push" these changes to the online repository. But first, we need to "commit" those changes -- in other words, create a log of what we changed. This is a required step, and it's really useful when we're working collaboratively, or in case we ever need to go back to a particular commit. Give the commit a name and a description, and click "Commit to master".
+		<li> Now, go back to GitHub Desktop. You'll notice that the changes we made are reflected in the "Changes" tab. We ultimately want to "push" these changes to the online repository. But first, we need to "commit" those changes -- in other words, create a log of what we changed. This is a required step, and it's really useful when we're working collaboratively, or in case we ever need to go back to a particular commit. Give the commit a summary like "added files from template", and click "Commit to master".
 		</li>
-		<img src="./github4.png" alt="github4">
+		<img src="./github2.png" alt="github2"> 
 
-		<li> We've logged the changes, but we haven't yet published them to the master branch of the repository. This step is called "pushing". Click "Push to origin". This will update the working copy of the master branch of the repository with the changes you made. If you go to the repo home page (github.com/yourname/artg2260-assignments) you should see your newly created index.html file! </li> 
+		<li> We've logged the changes, but we haven't yet published them to the master branch of the repository. This step is called "pushing". Next click "Sync" in the top right corner. This will push your changes to your remote repository (the version stored on GitHub's website). If you go to the repo home page (https://github.com/your-username/PHYS-S-12-assignments) you should see all of those files in the directory. </li> 
 	</ul>
 
 	<p>
