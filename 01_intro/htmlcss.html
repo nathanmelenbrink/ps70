@@ -42,6 +42,30 @@
 	<!-- LIST OF LINKS -->
 	<div class="small-9 medium-9 large-9  columns">
 
+	<h3> Customizing Jekyll </h3>
+	<p> The template we are using by default is called <a href='https://github.com/jekyll/minima'>Minima</a>. Take a look at the folders in the directory. Next, we'll follow the <a href='https://help.github.com/en/articles/customizing-css-and-html-in-your-jekyll-theme'> documentation</a> on how to customize HTML and CSS with Jekyll. Let's first customize the layout by making a <code>default.html</code> file in a new <code>_layouts</code> folder. We can copy the contents of the <code>default.html</code> file from the <a href='https://github.com/jekyll/minima/blob/master/_layouts/default.html'>original template</a>. Then, delete the line that imports a header <code>{%- include head.html -%}</code>, and replace that with the header code below. This will tell the template to look for our custom CSS. </p>
+
+	<pre><code class="html">
+	&lthead&gt
+	    &ltmeta charset="utf-8"&gt
+	    &lttitle>{{ page.title }}&lt/title&gt
+	    &ltlink rel="stylesheet" href="{{ "/assets/css/style.css" | prepend: site.baseurl }}"&gt
+  	&lt/head&gt
+  	</code> </pre>
+
+  	<p> Now if we add custom CSS to the <code>/assets/css/style.scss</code> file, it should apply to all of our site. For example, let's try making all the headings red (we'll talk more about CSS techniques later if time allows):</p>
+
+  	<pre><code class="html">
+	---
+	---
+
+	@import "{{ site.theme }}";
+
+	h1{
+		color: red;
+	}
+  	</code> </pre>
+
 
 	<h3> <a href="https://www.w3schools.com/html/html_intro.asp">HyperText Markup Language</a> </h3>
 	<p>(From W3 Schools) HTML is the standard markup language for creating Web pages.</p>
@@ -333,85 +357,6 @@
 	</div>
 </div>
 
-
-
-<!-- NEW SECTION -->
-<div class="row">
-
-	<!-- ROW TITLE -->
-	<div class="small-3 medium-3 large-3  columns">
-		<h3> <a href="https://www.w3schools.com/bootstrap/">Bootstrap</a> </h3>
-	</div >
-
-	<!-- LIST OF LINKS -->
-	<div class="small-9 medium-9 large-9  columns">
-
-		<h3> <a href="https://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp">Bootstrap Grid System</a></h3>
-		<p>Bootstrap's grid system allows up to 12 columns across the page.</p>
-		<p>If you do not want to use all 12 columns individually, you can group the 
-		columns together to create wider columns:</p>
-		<div class="table-responsive">
-		<table class="table grid">
-		<tr>
-		  <td>span 1</td>
-		  <td>span 1</td>  
-		  <td>span 1</td>
-		  <td>span 1</td>
-		  <td>span 1</td>  
-		  <td>span 1</td>
-		  <td>span 1</td>
-		  <td>span 1</td>  
-		  <td>span 1</td>
-		  <td>span 1</td>
-		  <td>span 1</td>  
-		  <td>span 1</td>
-		</tr>
-		<tr>
-		  <td colspan="4">&nbsp;span 4</td>
-		  <td colspan="4">&nbsp;span 4</td>  
-		  <td colspan="4">&nbsp;span 4</td>
-		</tr>
-		<tr>
-		  <td colspan="4">span 4</td>
-		  <td colspan="8">span 8</td>  
-		</tr>
-		<tr>
-		  <td colspan="6">span 6</td>
-		  <td colspan="6">span 6</td>  
-		</tr>
-		<tr>
-		  <td colspan="12">span 12</td>
-		</tr>
-		</table>
-		</div>
-		<p>Bootstrap's grid system is responsive, and the columns will re-arrange automatically depending on the screen size.</p>
-
-		<h3>Grid Classes</h3>
-		<p>The Bootstrap grid system has four classes:</p>
-		<ul>
-		  <li><code class="w3-codespan">xs</code> (for phones - screens less than 768px wide)</li>
-		  <li><code class="w3-codespan">sm</code> (for tablets - screens equal to or greater than 768px wide)</li>
-		  <li><code class="w3-codespan">md</code> (for small laptops - screens equal to or greater than 992px wide)</li>
-		  <li><code class="w3-codespan">lg</code> (for laptops and desktops - screens equal to or greater than 1200px wide)</li>
-		</ul>
-		<p>The classes above can be combined to create more dynamic and flexible layouts.</p>
-
-		<h3>Basic Structure of a Bootstrap Grid</h3>
-		<p>The following is a basic structure of a Bootstrap grid:</p>
-		<div class="w3-example">
-		 <div class="w3-code notranslate htmlHigh">
-		  &lt;div class=&quot;row&quot;&gt;<br>&nbsp; &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;<br>&nbsp; 
-		   &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;div class=&quot;row&quot;&gt;<br>&nbsp; &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;<br>&nbsp; &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;<br>&nbsp; &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;div class=&quot;row&quot;&gt;<br>&nbsp; ...<br>&lt;/div&gt;</div>
-		</div>
-		<p>First; create a row (<code class="w3-codespan">&lt;div 
-		class="row"&gt;</code>). Then, add the desired number of columns (tags with appropriate 
-		<code class="w3-codespan">.col-*-*</code> classes). Note that numbers in <code class="w3-codespan">.col-*-*</code> should always add up to 12 for each row.</p>
-		
-		<h3> <a href="https://www.w3schools.com/bootstrap/bootstrap_grid_system.asp">More About Bootstrap Grid System</a></h3>
-		<h3> <a href="https://www.w3schools.com/bootstrap/bootstrap_templates.asp">Bootstrap Templates</a></h3>
-
-	</div>
-</div>
 
 
 
