@@ -1,0 +1,99 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>PHYS-S12: Introduction to Digital Fabrication</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script> 
+	$(function(){
+	  $("#header").load("../header.html"); 
+	  $("#footer").load("../footer.html"); 
+	});
+</script>
+
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+
+
+</head>
+<body>
+
+<div id="header"></div>
+
+
+<!-- NEW SECTION -->
+<div class="row">
+
+	<!-- ROW TITLE -->
+	<div class="small-3 medium-3 large-3  columns">
+		<h3> Introduction to Microcontrollers </h3>
+	</div >
+
+	<!-- LIST OF LINKS -->
+	<div class="small-9 medium-9 large-9  columns">
+
+	<h3> Microcontrollers </h3>
+	<p> (From <a href='https://openlabpro.com/guide/basics-of-microcontroller/'> OpenLabPro </a>). In a broader sense, the components which constitute a microcontroller are the memory, peripherals and most crucially a processor. Microcontrollers are present in devices where the user has to exert a degree of control. They are designed and implemented to execute a specific function such as displaying integers or characters on an LCD display module of a home appliance. Application of microcontrollers is myriad. In simpler terms, any gadget or equipment which has to deal with the functions such as measuring, controlling, displaying and calculating the values consist of a microcontroller chip inside it. They are present in almost all the present day home appliances, toys, traffic lights, office instruments and various day-to-day appliances.	
+
+	The most important part of a microcontroller is a central processing unit with a word length ranging from 4-bit to 64-bit and in some modern microcontrollers the word length goes even beyond the limit of 64-bit. A timer is one other constituent of a microcontroller. There is a watchdog timer. Memory spaces such as RAM, ROM, EEPROM, EPROM are there to store data and programs. For data storage, volatile memory RAM is used while for the program and operating parameter storage ROM and other memory spaces are used.
+
+CPU: Being regarded as the brain of the microcontroller, central processing unit fetches, decodes and executes the instructions. It coordinates various activities taking place in the microcontroller.
+
+I/O ports: There are several parallel input/output ports in a microcontroller. They are used to interface various peripherals such as printers, external memories, LEDs and LCDs to the microcontroller. Apart from parallel ports, there are serial ports to interface serially connected peripherals with the microcontroller.
+
+Memory: As in the case of a microprocessor, a microcontroller has spaces for memories such as RAM, ROM including EEROM and EPROM. It also allocates a certain amount of flash memory to store program source code.
+
+Timers and counters: These are the fascinating constituent parts of a microcontroller. Timers and counters are used in operations which include modulation, clock functions, frequency generation and measuring and pulse generation.
+
+Analog to digital converters (ADCs): Such converters are useful while converting the output of a sensor which would be in analog form.
+
+Digital to analog converter (DAC): The working of a DAC is just the reverse of an analog to digital converter. As it is obvious, the output will be an analog signal which can be used to control the analog peripherals such a motor.
+
+	</p>
+<!-- 
+http://www.nipne.ro/dpp/Collab/LHCb/upgrade/outreach/Introduction%20to%20Microcontroller%20Arduino%20tutorial.pdf -->
+
+	<h3> What is Arduino? </h3>
+	<p> (From <a href='https://www.arduino.cc/en/Guide/Introduction'> Arduino.cc </a>). Arduino is an open-source electronics platform based on easy-to-use hardware and software. Arduino boards are able to read inputs - light on a sensor, a finger on a button, or a Twitter message - and turn it into an output - activating a motor, turning on an LED, publishing something online. You can tell your board what to do by sending a set of instructions to the microcontroller on the board. To do so you use the Arduino programming language (based on Wiring), and the Arduino Software (IDE), based on Processing.
+
+Over the years Arduino has been the brain of thousands of projects, from everyday objects to complex scientific instruments. A worldwide community of makers - students, hobbyists, artists, programmers, and professionals - has gathered around this open-source platform, their contributions have added up to an incredible amount of accessible knowledge that can be of great help to novices and experts alike.
+
+Arduino was born at the Ivrea Interaction Design Institute as an easy tool for fast prototyping, aimed at students without a background in electronics and programming. As soon as it reached a wider community, the Arduino board started changing to adapt to new needs and challenges, differentiating its offer from simple 8-bit boards to products for IoT applications, wearable, 3D printing, and embedded environments. All Arduino boards are completely open-source, empowering users to build them independently and eventually adapt them to their particular needs. The software, too, is open-source, and it is growing through the contributions of users worldwide.
+
+Why Arduino?
+Thanks to its simple and accessible user experience, Arduino has been used in thousands of different projects and applications. The Arduino software is easy-to-use for beginners, yet flexible enough for advanced users. It runs on Mac, Windows, and Linux. Teachers and students use it to build low cost scientific instruments, to prove chemistry and physics principles, or to get started with programming and robotics. Designers and architects build interactive prototypes, musicians and artists use it for installations and to experiment with new musical instruments. Makers, of course, use it to build many of the projects exhibited at the Maker Faire, for example. Arduino is a key tool to learn new things. Anyone - children, hobbyists, artists, programmers - can start tinkering just following the step by step instructions of a kit, or sharing ideas online with other members of the Arduino community.
+
+There are many other microcontrollers and microcontroller platforms available for physical computing. Parallax Basic Stamp, Netmedia's BX-24, Phidgets, MIT's Handyboard, and many others offer similar functionality. All of these tools take the messy details of microcontroller programming and wrap it up in an easy-to-use package. Arduino also simplifies the process of working with microcontrollers, but it offers some advantage for teachers, students, and interested amateurs over other systems:
+
+Inexpensive - Arduino boards are relatively inexpensive compared to other microcontroller platforms. The least expensive version of the Arduino module can be assembled by hand, and even the pre-assembled Arduino modules cost less than $50
+Cross-platform - The Arduino Software (IDE) runs on Windows, Macintosh OSX, and Linux operating systems. Most microcontroller systems are limited to Windows.
+Simple, clear programming environment - The Arduino Software (IDE) is easy-to-use for beginners, yet flexible enough for advanced users to take advantage of as well. For teachers, it's conveniently based on the Processing programming environment, so students learning to program in that environment will be familiar with how the Arduino IDE works.
+Open source and extensible software - The Arduino software is published as open source tools, available for extension by experienced programmers. The language can be expanded through C++ libraries, and people wanting to understand the technical details can make the leap from Arduino to the AVR C programming language on which it's based. Similarly, you can add AVR-C code directly into your Arduino programs if you want to.
+Open source and extensible hardware - The plans of the Arduino boards are published under a Creative Commons license, so experienced circuit designers can make their own version of the module, extending it and improving it. Even relatively inexperienced users can build the breadboard version of the module in order to understand how it works and save money.
+</p>
+
+	</div>
+</div>
+
+
+
+
+<div id="footer"></div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/htdaa.js"></script>
+
+
+</body>
+</html>
