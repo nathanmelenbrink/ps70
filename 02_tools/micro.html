@@ -101,7 +101,10 @@
 http://www.nipne.ro/dpp/Collab/LHCb/upgrade/outreach/Introduction%20to%20Microcontroller%20Arduino%20tutorial.pdf -->
 
 	<h3> Power and Logic </h3>
-	<p>Pulse Width Modulation (or PWM) is a technique for controlling power.  We also use it here to control the brightness of each of the LEDs. The diagram below shows the signal from one of the PWM pins on the Arduino.</p>
+	<p> Digital vs. Analog: Most microcontrollers (including Arduino) can input and output analog signals as well as digital signals. </p>
+	<p> An analog signal is one that can take on any number of values, unlike a digital signal which has only two values: HIGH and LOW. To measure the value of analog signals, the Arduino has a built-in analog-to-digital converter (ADC). The ADC turns the analog voltage into a digital value. The function that you use to obtain the value of an analog signal is analogRead(pin). This function converts the value of the voltage on an analog input pin and returns a digital value from 0 to 1023, relative to the reference value. The default reference voltage is 5 V (for 5 V Arduino boards) or 3.3 V (for 3.3 V Arduino boards). It has one parameter which is the pin number. </p> 
+
+	<p>Pulse Width Modulation (or PWM) is a technique for controlling power.  We can use it to control the speed of a motor or the brightness of LEDs. The diagram below shows the signal from one of the PWM pins on the Arduino.</p>
 
 	<img src="./pwm.jpg" alt="pwm"> <br><br>
 
@@ -119,21 +122,27 @@ ROM: Stands for read-only memory. The microprocessor can read from ROM, but it c
 
 Flash memory: A special type of memory that works like both RAM and ROM. You can write information to flash memory, like you can with RAM, but that information isn’t erased when the power is off, like it is with ROM. Sadly, flash memory isn’t as fast as RAM, so don’t expect it to replace standard computer memory any time soon.
  -->
-Flash memory:
-Remembers data after power is turned off.
-Slow read/write speeds compared to RAM/ROM
-Can be manufactured in higher storage capacity than RAM/ROM
-Used for SSDs, USB drives
-RAM (Random Access Memory)
-Loses data when powered off.
-Fast read/write speeds
-Relatively expensive to manufacture
-Used for storing program memory while computer is running
-ROM (Read Only Memory)
-Does not lose data when powered off
-Hard to write to
-Speeds vary from very fast to flash memory speed
-Usually used for storing the software to boot a computer/device nowadays.
+	<p>Flash memory:</p>
+	<ul>
+		<li>Remembers data after power is turned off.</li>
+		<li>Slow read/write speeds compared to RAM/ROM</li>
+		<li>Can be manufactured in higher storage capacity than RAM/ROM</li>
+		<li>Used for SSDs, USB drives</li>
+	</ul>
+	<p>RAM (Random Access Memory)</p>
+	<ul>
+		<li>Loses data when powered off.</li>
+		<li>Fast read/write speeds</li>
+		<li>Relatively expensive to manufacture</li>
+		<li>Used for storing program memory while computer is running</li>
+	</ul>
+	<p>ROM (Read Only Memory)</p>
+	<ul>
+		<li>Does not lose data when powered off</li>
+		<li>Hard to write to</li>
+		<li>Speeds vary from very fast to flash memory speed</li>
+		<li>Usually used for storing the software to boot a computer/device nowadays.</li>
+	</ul>
 
 
 	<h3> What is Arduino? </h3>
