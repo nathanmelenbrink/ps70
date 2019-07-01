@@ -42,7 +42,7 @@
 		</p>
 
 		<h3> Sketching in Fusion 360 </h3>
-		<p> Open Fusion. Start by making a new folder called something like "Press-fit". In your modeling window, click the "Sketch" tab and select the XY plane such that your sketch is visible from the Top view. Expand the Document Settings menu and make sure you're working in mm units. Go ahead and save the file to your new folder as "Component 1". 
+		<p> Open Fusion. Start by making a new folder called something like "Press-fit". In your modeling window, click the "Sketch" tab and select the XY plane such that your sketch is visible from the Top view. Expand the Document Settings menu and make sure you're working in mm units. Go ahead and save the file to your new folder as something like "First Object". 
 		</p>
 
 		<p>Find "Rectangle" in the Sketch tab, and draw an outline for your component. 40mm by 40mm is a good size to start (you can change it later by double-clicking on the sketch dimension). Now we need to make notches in the component. Press "O" to offset the rectangle boundary to the inside of the shape. Try offsetting by -10mm. This will give us a uniform notch depth. 
@@ -55,12 +55,25 @@
 
 		<img src="./fusion2.jpg" alt="fusion2"> <br><br>
 
-		<p> Next, under the Sketch tab, select the "Mirror" command, and mirror the offset line around the original midline. Offset and mirror the vertical line as well. This is all of the construction geometry we need for the sketch. Try clicknig dimensions and editing them. 
+		<p> Next, under the Sketch tab, select the "Mirror" command, and mirror the offset line around the original midline. Offset and mirror the vertical line as well. This is all of the construction geometry we need for the sketch. Try clicking dimensions and editing them. Click "Stop Sketch".
 		</p>
 
 		<img src="./fusion3.jpg" alt="fusion3"> <br><br>
 
-		<h3> Filets and Chamfers </h3>
+		<p> Once you're happy with your sketch, let's extrude it to make a 3D representation. Click the "Home" icon in the top right navigation gizmo to go into perspective view. eType "E" to extrude, and click all of the boundary areas you want to include in the extruded shape. Type in the thickness of the material and click OK. 
+		</p>
+
+		<img src="./fusion4.jpg" alt="fusion4"> <br><br>
+
+		<h3> Fillets and Chamfers </h3>
+		<p> A common technique in 3D design and fabrication is to fillet or chamfer edges of your design. Fillets refer to rounded corners/edges while chamfers refer to angled corners/edges. Sometimes this is done to reduce stress or get rid of sharp angles. In our case, we'll use fillets to make it easier to align our pieces and press them together. It's possible to apply fillets in the Fusion Sketch mode, but it's fewer steps in 3D. Type "F" for fillet and select the 8 outer corners of the notches. Try a radius of about 3mm. Click OK and save your file.
+		</p>
+
+		<h3> Assembly in 3D </h3>
+		<p> We won't really get into 3D until later weeks, but it can be useful to make a test assembly of our components in 3D before we cut them out. Create a new file called "Assembly" and drag and drop your "First Object" into it. You'll see it enter your hierarchy as a linked component. Try copying and pasting a few components and move/rotate them so that they intersect with each other. Does it match your expectations? By doing this I realized that my notches are too deep, and should be modified before I cut. If I edit and save my original "First Object" file, I'll get a "caution" icon next to each referenced component, which invites me to update the reference. 
+		</p>
+		<img src="./fusion5.jpg" alt="fusion5"> <br><br>
+
 		<p> This is just one of many ways to complete this assignment. You are strongly encouraged to look throguh forums and other tutorials to learn new tehcniques and methods. 
 		</p>
 
