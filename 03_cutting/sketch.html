@@ -38,7 +38,7 @@
 		</p>
 
 		<h3> Press-Fit Assembly Kit </h3>
-		<p> For our first exercise in Fusion 360, we'll be designing and laser cutting a press-fit assembly kit -- a collection of one or more types of components which can be reconfigured to form different shapes. Some examples include <a href='http://fab.cba.mit.edu/classes/863.16/section.Harvard/people/Akker/week2.html'>stacking resistor boxes</a>, <a href='http://fab.cba.mit.edu/classes/863.17/CBA/people/oscarrosello/index.html'>cellular outlines</a>, and <a href='https://mitadmissions.org/blogs/entry/how-to-make-almost-anything/'>a truncated icosahedron</a>. 
+		<p> For our first exercise in Fusion 360, we'll be designing and laser cutting a press-fit assembly kit -- a collection of one or more types of components which can be reconfigured to form different shapes. Some examples include <a href='http://fab.cba.mit.edu/classes/863.16/section.Harvard/people/Akker/week2.html'>stacking resistor boxes</a>, <a href='http://archive.fabacademy.org/fabacademy2017/fablabriidl/students/117/assignment3.html'>Connecting disks</a><br>, and <a href='https://mitadmissions.org/blogs/entry/how-to-make-almost-anything/'>a truncated icosahedron</a>. 
 		</p>
 
 		<h3> Sketching in Fusion 360 </h3>
@@ -57,7 +57,10 @@
 
 		<p> Next, under the Sketch tab, select the "Mirror" command, and mirror the offset line around the original mid-line. Offset and mirror the vertical line as well. This is all of the construction geometry we need for the sketch. Try clicking dimensions and editing them. Click "Stop Sketch".
 		</p>
-		<!-- sketch dimensions -->
+
+		<p> One consideration that we've overlooked so far is the kerf, or the width of the material that is removed as the laser burns through it. Typically this is a few tenths of a millimeter, so it may seem negligible. However, if we want our notches to fit tightly, it's important to include this. We can set user parameters (Modify -> Change Parameters) and set a material thickness parameter as well as a kerf parameter. Then we can set our notch width to be (thickness - kerf). </p>
+		<!-- sketch dimensions 
+		-->
 
 		<img src="./fusion3.jpg" alt="fusion3"> <br><br>
 
