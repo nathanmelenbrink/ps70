@@ -16,10 +16,14 @@
 
 
 <link href="../css/style.css" rel="stylesheet">
-<link href="../css/font-awesome.min.css" rel="stylesheet">
+<link href="../css/arduino-light.css" rel="stylesheet">
 <script src="../js/vendor/modernizr.js"></script>
-<script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
-<script src="../js/p5.min.js"></script>
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 </head>
 <body>
 
@@ -28,36 +32,206 @@
 <!-- FIRST ROW -->
 <div class="row">
 	<div class="large-3  columns">
-		<h3> Class 05: Programmable Electronics  </h3>
+		<h3> Programming with Arduino  </h3>
 	</div >
 
 	<div class="small-12 medium-12 large-9  columns">
 
-		<h3> Agenda: </h3>
-		<p>
-			Weekly Overview <br>
-			Assignment Review <br>
-			<a href='./index.html'>Topic 1</a><br>
-			<a href='https://roberthart56.github.io/SCFAB/SC_lab/Projects/Quick_prototypes/'>Using a button as input.</a><br>
-			Lab Demo
+	<h3> <code>for()</code> Loops </h3>
+		<p> The <code>for()</code> structure performs repetitive calculations and is structured like this:<br>
+			<code>
+			for (init; test; update) {<br>
+			&nbsp; &nbsp; &nbsp;    statements <br>
+			}</code>
 		</p>
 
-		<h3> Assignment: </h3>
-		<p>
-		Program a microcontroller to produce an output using at least one button for input.  Include a conditional statement and a for loop.<br><br>
-			<a href='' >Example 1</a><br>
-			<a href='' >Example 2</a><br>
-			<a href='' >Example 3</a><br>
+<pre><code class="language-arduino" >
+// Dim an LED using a PWM pin
+int PWMpin = 10;  // LED in series with 470 ohm resistor on pin 10
+
+void setup() {
+  // no setup needed
+}
+
+void loop() {
+  for (int i = 0; i <= 255; i++) {
+    analogWrite(PWMpin, i);
+    delay(10);
+  }
+}
+</code></pre>
+
+		<p> The same result can be generated with fewer lines of code using a <code>for</code> loop:</p>
+
+<!-- <script type="text/p5" data-height="280" data-preview-width="220">
+function setup() {
+	createCanvas(200, 200);
+	for (var i = 20; i < 200; i = i+20){
+		line(i, 20, i, 180);
+	}
+}
+</script>
+
+<script type="text/p5" data-height="220" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	for (var y = 0; y < 80; y += 5){
+		line(20, y, 80, y+20);
+	}
+}
+</script>
+
+<script type="text/p5" data-height="220" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	for (var x = 20; x < 80; x += 5){
+		line(x+20, 20, x, 80);
+	}
+}
+</script>
+		
+		<p>The "update" value of the loop can be incremented using the arithmetic shortcuts we just learned:</p>
+
+<script type="text/p5" data-height="220" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	for (var x = 20; x < 80; x *= 1.2){
+		line(x, 20, x, 80);
+	}
+}
+</script>
+
+		<p>The statements inside the loop can include conditional statements. Try modifying the conditions to get different results:</p>
+
+<script type="text/p5" data-height="300" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	for (var x = 20; x <= 85; x += 5){
+		if (x <= 50){
+			line(x, 20, x, 60);
+		} else {
+			line(x, 40, x, 80);
+		}
+	}
+}
+</script>
+
+	<p>The modulus operator is often used within loops to create cycles:</p>
+
+<script type="text/p5" data-height="300" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	for (var x = 20; x <= 80; x += 5){
+		if ((x % 10) == 0){
+			line(x, 20, x, 50);
+		} else {
+			line(x, 50, x, 80);
+		}
+	}
+}
+</script>
+
+
+		<h3> Nested Iteration </h3>
+		<p> The <code>for</code> structure produces repetitions in one dimension (or parameter). Nesting one of these structures into another compounds their effect, creating iteration in two dimensions.
 		</p>
 
-		<h3> Resources: </h3>
-		<p>
-			<a href='https://roberthart56.github.io/SCFAB/SC_lab/Arduino_code_and_circuit_examples/Code_examples.html' >Sample Arduino Sketches.</a> <br>
-			<a href="https://www.arduino.cc/reference/en/"> Arduino Reference</a> <br>
-			<a href='' >Resource 3</a> <br>
-			<br>
+		<p> The following code creates a one-dimensional array of points along the x dimension: </p>
 
+<script type="text/p5" data-height="220" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	for (var x = 10; x < 100; x += 10){
+		point(x, 10);
+	}
+}
+</script>
+
+		<p> This code creates a one-dimensional array of points along the y dimension: </p>
+
+<script type="text/p5" data-height="220" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	for (var y = 10; y < 100; y += 10){
+		point(10, y);
+	}
+}
+</script>
+
+		<p> We can combine the above x and y loops into a nested loop. Instead of drawing 9 points and then drawing another 9 points, they combine to create 81 points; for each point drawn in the outer structure, 9 points are drawn in the inner structure. </p>
+		
+		<p> The inner structure runs through a complete cycle for each single iteration of the outer structure. In the following examples, the two dimensions are translated into x-coordinates and y-coordinates: </p>
+
+<script type="text/p5" data-height="260" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	for (var y = 10; y < 100; y += 10){
+		for (var x = 10; x < 100; x += 10){
+			point(x, y);
+		}
+	}
+}
+</script>
+
+<script type="text/p5" data-height="260" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	for (var y = 20; y <= 80; y += 3){
+		for (var x = 20; x <= 80; x += 10){
+			point(x, y);
+		}
+	}
+}
+</script>
+
+<script type="text/p5" data-height="260" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	for (var y = 20; y <= 80; y += 10){
+		for (var x = 20; x <= y; x += 5){
+			line(x, y, x-3, y-3);
+		}
+	}
+}
+</script>
+
+<script type="text/p5" data-height="260" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	for (var y = 20; y <= 80; y += 5){
+		for (var x = 20; x <= y; x += 5){
+			if((x % 10) == 0){
+				line(x, y, x+3, y-3);
+			} else{
+				line(x, y, x+3, y+3);
+			}
+		}
+	}
+}
+</script>
+
+
+<script type="text/p5" data-height="260" data-preview-width="220">
+function setup() {
+	createCanvas(100, 100);
+	for (var y = 0; y < 100; y += 10){
+		for (var x = 0; x < 100; x += 10){
+			fill((x+y) * 1.4);
+			rect(x, y, 10, 10);
+		}
+	}
+}
+</script>
+
+		<h3> Exercise 2.0: Nested Iteration </h3>
+		<p> Create a new directory (folder) in your local repository called "exercise_2". Inside that folder, create an index.html and a script.js file. Within this file, use nested <code>for</code> loops to create a two-dimensional array of geometry. Use GitHub Desktop to commit and push your changes, and verify that they published to the web. This can be the basis for your Assignment 2.0: Tiles. 
 		</p>
+ -->
+
+	</div>
+</div>
+
+
 
 	</div >
 </div>
