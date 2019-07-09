@@ -97,7 +97,7 @@ void loop() {
 				<li>They make it easier to reuse code in other programs by making it more modular, and as a nice side effect, using functions also often makes the code more readable.</li>
 			</ul>
 			
-			<p>There are two required functions in an Arduino sketch, setup() and loop(). Other functions must be created outside the brackets of those two functions. As an example, we will create a simple function to multiply two numbers. 
+			<p>There are two required functions in an Arduino sketch, <code>setup()</code> and <code>loop()</code>. Other functions must be created outside the brackets of those two functions. As an example, we will create a simple function to multiply two numbers. 
 			
 		</p>
 
@@ -115,7 +115,7 @@ void loop(){
 }
 </code></pre>
 
-		<p>Our function needs to be declared outside any other function, so "myMultiplyFunction()" can go either above or below the "loop()" function. The entire sketch would then look like this:</p>
+		<p>Our function needs to be declared outside any other function, so <code>myMultiplyFunction()</code> can go either above or below the <code>loop()</code> function. The entire sketch would then look like this:</p>
 
 <pre><code class="language-arduino">
 void setup(){
@@ -146,40 +146,16 @@ int myMultiplyFunction(int x, int y){
 			Parentheses are used to enforce order of operations:
 		</p>
 
-<script type="text/p5" data-height="200" data-preview-width="0">
-var x = 3 + 4 * 5;  // Declare var x and assign a value of 23
-var y = (3 + 4) * 5;  // Declare var y and assign a value of 35
-print("x = " + x);
-print("y = " + y);
-</script>
-
-		<p>
-			The following exampl shows how to use variables in the arguments (parameters) of functions. Note that a calculation can be sent as an argument as well. Try modifying the example to draw horizontal lines. 
-		</p>
-
-<script type="text/p5" data-height="300" data-preview-width="200">
-function setup(){
-	createCanvas(100,100);
-	var a = 30;
-	line(a, 0, a, height);
-	a = a + 40; 	// Assign 70 to a
-	strokeWeight(4);
-	line(a, 0, a, height);
-
-	/*
-	var b = 40;
-	line(b, 0, b, height);
-	*/
-
-	/*
-	a = 30;
-	// A calculation can be used as an input to a function
-	stroke(255,0,0);
-	line(b+a, 0, b+a, height);
-	*/
+<pre><code class="language-arduino">
+void setup(){
+  Serial.begin(9600);
+  int x = 3 + 4 * 5;  // Declare var x and assign a value of 23
+  int y = (3 + 4) * 5;  // Declare var y and assign a value of 35
+  Serial.println("x = " + x);
+  Serial.println("y = " + y);
 }
-</script>
-		
+</code></pre>
+
 		<h3> The Modulus Operator</h3>
 		<p> The modulus operator (%) in the format A % B, returns the remainder from dividing A by B. It's useful for creating patterns or cyclical events. 
 			<table>
@@ -209,45 +185,32 @@ function setup(){
 
 
 		<h3>Arithmetic Shortcuts</h3>
-		<p> The ++ operator increments a variable by 1: </p>
-<script type="text/p5" data-height="220" data-preview-width="0">
-function setup(){
-	var x = 1;
-	print(x); // prints 1 to the console
-	x++;      // equivalent to x = x + 1
-	print(x); // prints 2 to the console
-}
-</script>
-
-		<p> The -- operator decrements a variable by 1: </p>
-<script type="text/p5" data-height="220" data-preview-width="0">
-function setup(){
-	var y = 1;
-	print(y); // prints 1 to the console
-	y--;      // equivalent to y = y - 1
-	print(y); // prints 0 to the console
-}
-</script>
 
 		<p> The += operator increments a variable by another number: </p>
-<script type="text/p5" data-height="220" data-preview-width="0">
-function setup(){
-	var x = 1;
-	print(x); // prints 1 to the console
-	x += 5;   // equivalent to x = x + 5
-	print(x); // prints 6 to the console
-}
-</script>
+<pre><code class="language-arduino">
+	int x = 1;
+	x+=5;      // equivalent to x = x + 5
+</code></pre>
 
 		<p> The -= operator decrements a variable by another number: </p>
-<script type="text/p5" data-height="220" data-preview-width="0">
-function setup(){
-	var y = 1;
-	print(y); // prints 1 to the console
-	y -= 5;   // equivalent to y = y - 5
-	print(y); // prints -4 to the console
-}
-</script>
+<pre><code class="language-arduino">
+	int x = 1;
+	x-=5;      // equivalent to x = x - 5
+</code></pre>
+
+		<p> The ++ operator increments a variable by 1: </p>
+<pre><code class="language-arduino">
+	int x = 1;
+	x++;      // equivalent to x = x + 1
+</code></pre>
+
+		<p> The -- operator decrements a variable by 1: </p>
+<pre><code class="language-arduino">
+	int x = 1;
+	x--;      // equivalent to x = x - 1
+</code></pre>
+
+		<p> These shortcuts also work with multiplication and division. </p>
 
 <!-- 		<h3> Arithmetic Rounding</h3>
 		<p> <a href= "https://p5js.org/reference/#/p5/round">round()</a><br>
