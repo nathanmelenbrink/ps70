@@ -37,6 +37,13 @@
 
 	<div class="small-12 medium-12 large-9  columns">
 
+		<h3> Resources </h3>
+		<p><a href='https://www.arduino.cc/en/Tutorial/Foundations'>Arduino Foundations:</a> <br>
+			<a href='https://www.arduino.cc/reference/en/'>Language Reference:</a> Discover the what each term of the Arduino code language means. <br>
+			<a href='https://www.arduino.cc/en/Tutorial/Variables'>Variables:</a> Understand how to define and use variables in a Sketch. <br>
+			<a href='https://www.arduino.cc/en/Reference/FunctionDeclaration'>Functions:</a> Learn how to define and use functions in a Sketch. <br>
+			<a href='https://www.arduino.cc/reference/en/language/variables/constants/constants/'>Constants:</a> TRUE, FALSE HIGH, LOW and INPUT, OUTPUT, INPUT_PULLUP <br>
+		</p>
 
 		<h3> Data Types </h3>
 		<p>
@@ -76,11 +83,182 @@ void loop() {
 }
 </code></pre>
 
+		<h3><a href='https://www.arduino.cc/en/Reference/FunctionDeclaration'>Functions</a> </h3>
+
+		<p> Segmenting code into functions allows a programmer to create modular pieces of code that perform a defined task and then return to the area of code from which the function was "called". The typical case for creating a function is when one needs to perform the same action multiple times in a program.</p>
+
+		<p>Standardizing code fragments into functions has several advantages:</p>
+			<ul>
+
+				<li>Functions help the programmer stay organized. Often this helps to conceptualize the program.</li>
+				<li>Functions codify one action in one place so that the function only has to be thought out and debugged once.</li>
+				<li>This also reduces chances for errors in modification, if the code needs to be changed.</li>
+				<li>Functions make the whole sketch smaller and more compact because sections of code are reused many times.</li>
+				<li>They make it easier to reuse code in other programs by making it more modular, and as a nice side effect, using functions also often makes the code more readable.</li>
+			</ul>
+			
+			<p>There are two required functions in an Arduino sketch, setup() and loop(). Other functions must be created outside the brackets of those two functions. As an example, we will create a simple function to multiply two numbers. 
+			
+		</p>
+
+		<img src='https://www.arduino.cc/en/uploads/Reference/FuncAnatomy.png' alt='FuncAnatomy'>
+
+		<p> To "call" our simple multiply function, we pass it parameters of the datatype that it is expecting:</p>
+
+<pre><code class="language-arduino">
+void loop(){
+  int i = 2;
+  int j = 3;
+  int k;
+
+  k = myMultiplyFunction(i, j); // k now contains 6
+}
+</code></pre>
+
+		<p>Our function needs to be declared outside any other function, so "myMultiplyFunction()" can go either above or below the "loop()" function. The entire sketch would then look like this:</p>
+
+<pre><code class="language-arduino">
+void setup(){
+  Serial.begin(9600);
+}
+
+void loop() {
+  int i = 2;
+  int j = 3;
+  int k;
+
+  k = myMultiplyFunction(i, j); // k now contains 6
+  Serial.println(k);
+  delay(500);
+}
+
+int myMultiplyFunction(int x, int y){
+  int result;
+  result = x * y;
+  return result;
+}
+</code></pre>
 
 
-	</div>
-</div>
+		<h3> Arithmetic</h3>	
+		<p>
+			The expression to the right of the = symbol is evaluated before the value is assigned to the variable on the left. Therefore, the statement a=5+4 first adds 5 and 4 to yield 9 and then assigns the value 9 to the variable a. <br><br>
+			Parentheses are used to enforce order of operations:
+		</p>
 
+<script type="text/p5" data-height="200" data-preview-width="0">
+var x = 3 + 4 * 5;  // Declare var x and assign a value of 23
+var y = (3 + 4) * 5;  // Declare var y and assign a value of 35
+print("x = " + x);
+print("y = " + y);
+</script>
+
+		<p>
+			The following exampl shows how to use variables in the arguments (parameters) of functions. Note that a calculation can be sent as an argument as well. Try modifying the example to draw horizontal lines. 
+		</p>
+
+<script type="text/p5" data-height="300" data-preview-width="200">
+function setup(){
+	createCanvas(100,100);
+	var a = 30;
+	line(a, 0, a, height);
+	a = a + 40; 	// Assign 70 to a
+	strokeWeight(4);
+	line(a, 0, a, height);
+
+	/*
+	var b = 40;
+	line(b, 0, b, height);
+	*/
+
+	/*
+	a = 30;
+	// A calculation can be used as an input to a function
+	stroke(255,0,0);
+	line(b+a, 0, b+a, height);
+	*/
+}
+</script>
+		
+		<h3> The Modulus Operator</h3>
+		<p> The modulus operator (%) in the format A % B, returns the remainder from dividing A by B. It's useful for creating patterns or cyclical events. 
+			<table>
+			  <tr>
+			    <th>Expression</th>
+			    <th>Result</th>
+			    <th>Explanation</th>
+			  </tr>
+			  <tr>
+			    <td>9 % 3</td>
+			    <td>0</td>
+			    <td>3 goes into 9 three times, with no remainder </td>
+			  </tr>
+			  <tr>
+			    <td>9 % 2</td>
+			    <td>1</td>
+			    <td>2 goes into 9 four times, with 1 as the remainder </td>
+			  </tr>
+			  <tr>
+			    <td>35 % 4</td>
+			    <td>3</td>
+			    <td>4 goes into 35 eight times, with 3 as the remainder</td>
+			  </tr>
+			  
+			</table>
+		</p>
+
+
+		<h3>Arithmetic Shortcuts</h3>
+		<p> The ++ operator increments a variable by 1: </p>
+<script type="text/p5" data-height="220" data-preview-width="0">
+function setup(){
+	var x = 1;
+	print(x); // prints 1 to the console
+	x++;      // equivalent to x = x + 1
+	print(x); // prints 2 to the console
+}
+</script>
+
+		<p> The -- operator decrements a variable by 1: </p>
+<script type="text/p5" data-height="220" data-preview-width="0">
+function setup(){
+	var y = 1;
+	print(y); // prints 1 to the console
+	y--;      // equivalent to y = y - 1
+	print(y); // prints 0 to the console
+}
+</script>
+
+		<p> The += operator increments a variable by another number: </p>
+<script type="text/p5" data-height="220" data-preview-width="0">
+function setup(){
+	var x = 1;
+	print(x); // prints 1 to the console
+	x += 5;   // equivalent to x = x + 5
+	print(x); // prints 6 to the console
+}
+</script>
+
+		<p> The -= operator decrements a variable by another number: </p>
+<script type="text/p5" data-height="220" data-preview-width="0">
+function setup(){
+	var y = 1;
+	print(y); // prints 1 to the console
+	y -= 5;   // equivalent to y = y - 5
+	print(y); // prints -4 to the console
+}
+</script>
+
+<!-- 		<h3> Arithmetic Rounding</h3>
+		<p> <a href= "https://p5js.org/reference/#/p5/round">round()</a><br>
+			<a href= "https://p5js.org/reference/#/p5/ceil">ceil()</a><br>
+			<a href= "https://p5js.org/reference/#/p5/floor">floor()</a><br>
+			<a href= "https://p5js.org/reference/#/p5/min">min()</a><br>
+			<a href= "https://p5js.org/reference/#/p5/max">max()</a><br>
+		</p> -->
+
+		<h3> Constants</h3>
+		<p> Make sure to review <a href='https://www.arduino.cc/reference/en/language/variables/constants/constants/'>Constants:</a> TRUE, FALSE HIGH, LOW and INPUT, OUTPUT, INPUT_PULLUP. The <a href=''>Input Pullup Serial</a> tutorial is great for explaining pullup resistors. </p>
 
 
 	</div >
