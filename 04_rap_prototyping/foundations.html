@@ -1,0 +1,99 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>PHYS-S12: Introduction to Digital Fabrication</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script>
+	$(function(){
+	  $("#header").load("../header.html");
+	  $("#footer").load("../footer.html");
+	});
+</script>
+
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/arduino-light.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<!-- FIRST ROW -->
+<div class="row">
+	<div class="large-3  columns">
+		<h3> Arduino Foundations </h3>
+	</div >
+
+	<div class="small-12 medium-12 large-9  columns">
+
+
+		<h3> Data Types </h3>
+		<p>
+			What is data? What does it look like to us? How about to computers? A variable is a container for storing data. Variables consist of a name and a value (and often a <i>type</i>). 
+		</p>
+		<p> 
+			Many programming languages require using <i>data types</i> to create a variable. These indicators, like <i>int, float, or boolean</i> tell us what kind of data is being stored in that variable. Some examples of data types are below:			
+		</p>
+		<img src="./DataTypes.jpg" alt="data types">
+		
+		
+
+		<h3> <a href= "https://www.arduino.cc/en/Tutorial/Variables">Variables</a></h3>
+		<p>
+			Variables must be declared before they’re used, though this can be done in the same line. <br>
+			Variables can be reassigned many times, but only declared once! <br>
+			Variables should have names that describe their content. <br>
+		</p>
+		
+		<p> Especially as our code gets more complex and includes more functions, we'll need to pay attention to <a href= "https://www.arduino.cc/reference/en/language/variables/variable-scope--qualifiers/scope/">variable scope</a>. Variables can have a global or function "scope". For example, variables declared within either the <code>setup()</code> or <code>loop()</code> functions may be only used in these functions. Global variables, variables declared outside of <code>setup()</code> or <code>loop()</code>, may be used anywhere within the program. If a function variable is declared with the same name as a global variable, the program will use the function variable to make its calculations within the current scope.</p>
+
+<pre><code class="language-arduino">
+int gPWMval;  // any function will see this variable
+
+void setup() {
+  // ...
+}
+
+void loop() {
+  int i;    // "i" is only "visible" inside of "loop"
+  float f;  // "f" is only "visible" inside of "loop"
+  // ...
+
+  for (int j = 0; j < 100; j++) {
+    // variable j can only be accessed inside the for-loop brackets
+  }
+}
+</code></pre>
+
+
+
+	</div>
+</div>
+
+
+
+	</div >
+</div>
+
+
+
+<div id="footer"></div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/htdaa.js"></script>
+
+
+</body>
+</html>

@@ -19,8 +19,8 @@
 <link href="../css/arduino-light.css" rel="stylesheet">
 <script src="../js/vendor/modernizr.js"></script>
 
-<link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -37,13 +37,69 @@
 
 	<div class="small-12 medium-12 large-9  columns">
 
+
+<!-- https://www.arduino.cc/reference/en/language/variables/constants/constants/		
+https://www.arduino.cc/en/Tutorial/InputPullupSerial -->
+
+<!-- 
+////////////////// for loops ////////////////////
+ -->
+
 	<h3> <code>for()</code> Loops </h3>
 		<p> The <code>for()</code> structure performs repetitive calculations and is structured like this:<br>
-			<code>
-			for (init; test; update) {<br>
-			&nbsp; &nbsp; &nbsp;    statements <br>
-			}</code>
+<pre><code class="language-arduino" >
+for (init; test; update) {
+  statements 
+}</code></pre>
 		</p>
+
+		<p> Let's say you want to incrementally brighten an LED. You might do that with repetitive calculations:</p>
+
+<pre><code class="language-arduino" >
+// Dim an LED using a PWM pin
+int PWMpin = 10;  // LED in series with 470 ohm resistor on pin 10
+
+void setup() {
+  // no setup needed
+}
+
+void loop() {
+    analogWrite(PWMpin, 0);
+    delay(100);
+    analogWrite(PWMpin, 50);
+    delay(100);
+    analogWrite(PWMpin, 100);
+    delay(100);
+    analogWrite(PWMpin, 150);
+    delay(100);
+    analogWrite(PWMpin, 200);
+    delay(100);
+    analogWrite(PWMpin, 250);
+    delay(100);
+  }
+}
+</code></pre>
+
+		<p> However, the same result can be generated with fewer lines of code using a <code>for</code> loop:</p>
+
+<pre><code class="language-arduino" >
+// Dim an LED using a PWM pin
+int PWMpin = 10;  // LED in series with 470 ohm resistor on pin 10
+
+void setup() {
+  // no setup needed
+}
+
+void loop() {
+  for (int i = 0; i <= 255; i=i+50) {
+    analogWrite(PWMpin, i);
+    delay(100);
+  }
+}
+</code></pre>
+
+		
+		<p> This flexible pattern allows you to easily change the resolution of the fade:</p>
 
 <pre><code class="language-arduino" >
 // Dim an LED using a PWM pin
@@ -61,49 +117,9 @@ void loop() {
 }
 </code></pre>
 
-		<p> The same result can be generated with fewer lines of code using a <code>for</code> loop:</p>
+		<!-- <p>The statements inside the loop can include conditional statements. Try modifying the conditions to get different results:</p>
 
-<!-- <script type="text/p5" data-height="280" data-preview-width="220">
-function setup() {
-	createCanvas(200, 200);
-	for (var i = 20; i < 200; i = i+20){
-		line(i, 20, i, 180);
-	}
-}
-</script>
-
-<script type="text/p5" data-height="220" data-preview-width="220">
-function setup() {
-	createCanvas(100, 100);
-	for (var y = 0; y < 80; y += 5){
-		line(20, y, 80, y+20);
-	}
-}
-</script>
-
-<script type="text/p5" data-height="220" data-preview-width="220">
-function setup() {
-	createCanvas(100, 100);
-	for (var x = 20; x < 80; x += 5){
-		line(x+20, 20, x, 80);
-	}
-}
-</script>
-		
-		<p>The "update" value of the loop can be incremented using the arithmetic shortcuts we just learned:</p>
-
-<script type="text/p5" data-height="220" data-preview-width="220">
-function setup() {
-	createCanvas(100, 100);
-	for (var x = 20; x < 80; x *= 1.2){
-		line(x, 20, x, 80);
-	}
-}
-</script>
-
-		<p>The statements inside the loop can include conditional statements. Try modifying the conditions to get different results:</p>
-
-<script type="text/p5" data-height="300" data-preview-width="220">
+<pre><code class="language-arduino" >
 function setup() {
 	createCanvas(100, 100);
 	for (var x = 20; x <= 85; x += 5){
@@ -118,7 +134,7 @@ function setup() {
 
 	<p>The modulus operator is often used within loops to create cycles:</p>
 
-<script type="text/p5" data-height="300" data-preview-width="220">
+<pre><code class="language-arduino" >
 function setup() {
 	createCanvas(100, 100);
 	for (var x = 20; x <= 80; x += 5){
