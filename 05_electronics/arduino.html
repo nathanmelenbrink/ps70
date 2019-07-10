@@ -39,31 +39,46 @@
 
 
 <!-- https://www.arduino.cc/reference/en/language/variables/constants/constants/		
-https://www.arduino.cc/en/Tutorial/InputPullupSerial -->
+https://www.arduino.cc/en/Tutorial/InputPullupSerial 
+
+-->
+		
+		<h3> Arduino Workshop </h3>
+		<p> For this workshop, please collect the following: 
+			<ul> 
+				<li>Arduino (Uno or Nano) </li>
+				<li>protoboard</li>
+				<li>hookup wires </li>
+				<li>button  </li>
+				<li>MOSFET </li>
+				<li>LED </li>
+				<li>potentiometer </li>
+				<li>DC motor</li>
+				<li>10K resistor</li>
+			</ul>
+		</p> 
 
 		<h3> Conditional Statements </h3>
-		<p> Conditionals allow a program to make decisions about which lines of code run and which do not. They let actions take place only when a specific condition is met.</p>
+
+		<p> Let's start with the Button example (File > Examples > Digital > Button). We'll modify this using both pullup and pulldown resistors, then use Arduino's internal <a href='https://www.arduino.cc/en/Tutorial/InputPullupSerial'>INPUT_PULLUP</a></p> 
+
+		<p> Conditional statements allow a program to make decisions about which lines of code run and which do not. They let actions take place only when a specific condition is met.</p>
 
 		<p>The test must be an expression that resolves to true or false. When the test expression evaluates to true, the code inside the { (left brace) and } (right brace) is run. If the expression is false, the code is ignored. Code inside a set of braces is called a block.</p>
 
 		<p>Conditionals can be embedded to include more than one test to control which lines of code will run.</p>
 
-		<p>In the following example, the text expressions are "x > 100" and "x < 100". Because x is 150, the code inside the first block runs and the ellipse is drawn, but the code in the second block is not run and the rectangle is not drawn. Try changing the value of x to a number lower than 100. What happens when x = 100?</p>
+		<p> The Button example uses this simple conditional statement: </p>
 
-<script type="text/p5" data-height="320" data-preview-width="200">
-function setup(){
-    createCanvas(100,100);
-	var x = 150;
-	if (x > 100) { // If x is greater than 100,
-	  ellipse(50, 50, 36, 36); // draw this ellipse
-	}
-	if (x < 100) { // If x is less than 100
-	  rect(35, 35, 30, 30); // draw this rectangle
-	}
-	line(20, 20, 80, 80);
-}
-</script>
-		<p> Find another example of conditionals <a href="https://p5js.org/examples/control-conditionals-1.html">here</a>.
+<pre><code class="language-arduino">
+  if (buttonState == HIGH) {
+    // turn LED on:
+    digitalWrite(ledPin, HIGH);
+  } else {
+    // turn LED off:
+    digitalWrite(ledPin, LOW);
+  }
+</code></pre>
 
 
 
@@ -190,8 +205,6 @@ function setup(){
 </script>
 
 
-		<p> Find another example of logical operators <a href="https://p5js.org/examples/control-logical-operators.html">here</a>.
-
 
 
 <!-- 
@@ -200,7 +213,7 @@ function setup(){
 
 	<h3> <code>for()</code> Loops </h3>
 		<p> The <code>for()</code> structure performs repetitive calculations and is structured like this:<br>
-<pre><code class="language-arduino" >
+<pre><code class="language-arduino">
 for (init; test; update) {
   statements 
 }</code></pre>
@@ -208,7 +221,7 @@ for (init; test; update) {
 
 		<p> Let's say you want to incrementally brighten an LED. You might do that with repetitive calculations:</p>
 
-<pre><code class="language-arduino" >
+<pre><code class="language-arduino">
 // Dim an LED using a PWM pin
 int PWMpin = 10;  // LED in series with 470 ohm resistor on pin 10
 
@@ -396,11 +409,6 @@ function setup() {
 		<p> Create a new directory (folder) in your local repository called "exercise_2". Inside that folder, create an index.html and a script.js file. Within this file, use nested <code>for</code> loops to create a two-dimensional array of geometry. Use GitHub Desktop to commit and push your changes, and verify that they published to the web. This can be the basis for your Assignment 2.0: Tiles. 
 		</p>
  -->
-
-	</div>
-</div>
-
-
 
 	</div >
 </div>
