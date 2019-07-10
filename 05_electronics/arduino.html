@@ -80,47 +80,37 @@ https://www.arduino.cc/en/Tutorial/InputPullupSerial
   }
 </code></pre>
 
-
-
 		<h3> Nested Conditional Statements </h3>
 
-		<p>In the following example, if x is greater than 100 and less than 300, the ellipse is drawn. If x is greater than or equal to 300, the line will be drawn. If x is not greater than 100, the rectangle is drawn. Because x is 420, only the line is drawn.</p>
+		<p> We can put conditional statement inside one another in order to see if multiple conditions have been met. A great tool in Arduino is the <code>millis()</code> function, which returns the number of milliseconds since the program began. We can make a simple time-based conditional statement: 
+		</p>
 
-<script type="text/p5" data-height="360" data-preview-width="200">
-function setup(){
-    createCanvas(100,100);
-	var x = 420;
-	if (x > 100) { // First test to draw ellipse or line
-	  if (x < 300) { // Second test determines which to draw
-	    ellipse(50, 50, 36, 36);
-	  } else {
-	    line(50, 0, 50, 100);
-	  }
-	} else {
-	  rect(33, 33, 34, 34);
-	}
-}
-</script>
+<pre><code class="language-arduino">
+  digitalWrite(ledPin, LOW);
 
-		<h3> If/Else Statements </h3>
+  if (millis() > 3000) {
+    // turn LED on:
+    digitalWrite(ledPin, HIGH);
+  } 
+</code></pre>
 
-		<p>In the following example, if x is less than or equal to 100, then the rectangle is drawn. Otherwise, if x is greater than or equal to 300, the line is drawn. If x is between 100 and 300, the ellipse is drawn. Because x is 101, only the ellipse is drawn.</p>
+		<p> Now, we can nest that inside of our previous conditional statement: 
+		</p>
 
-<script type="text/p5" data-height="320" data-preview-width="200">
-function setup(){
-    createCanvas(100,100);
-	var x = 101;
-	if (x <= 100) {
-	  rect(33, 33, 34, 34);
-	} else if (x >= 300) {
-	  line(50, 0, 50, 100);
-	} else {
-	  ellipse(50, 50, 36, 36);
-	}
-}
-</script>
+<pre><code class="language-arduino">
+  digitalWrite(ledPin, LOW);
 
-		<p> Find another example of if/else conditionals <a href="https://p5js.org/examples/control-conditionals-2.html">here</a>.
+  if (buttonState == HIGH) {
+    if (millis() > 3000) {
+      // turn LED on:
+      digitalWrite(ledPin, HIGH);
+    } 
+  } 
+</code></pre>
+
+<!-- 		<h3> If/Else Statements </h3>
+
+		<p></p> -->
 
 		<h3> Logical Operators </h3>
 
@@ -176,35 +166,53 @@ function setup(){
 		</ul>
 
 		
-		<p>In the following example, the expression "a > 5" must be true OR "b < 30" must be true. Since they are both true, the code in the block will run.</p>
-
-<script type="text/p5" data-height="280" data-preview-width="200">
-function setup(){
-    createCanvas(100,100);
-	var a = 10;
-	var b = 20;
-
-	if ((a > 5) || (b < 30)) {
-    	line(20, 50, 80, 50);
-	}
-}
-</script>
-
 		<p>In this example, the expression "a > 15" is false, but "b < 30" is true. Because the OR operator requires only one part to be true in the entire expression, the code in the block will run. Try changing the code to logical AND instead of OR</p>
 
-<script type="text/p5" data-height="280" data-preview-width="200">
-function setup(){
-    createCanvas(100,100);
-	var a = 10;
-	var b = 20;
+<pre><code class="language-arduino">
+void setup(){
+	pinMode(LED_BUILTIN, OUTPUT);
+	int a = 10;
+	int b = 20;
+
+	digitalWrite(LED_BUILTIN, LOW);
 
 	if ((a > 15) || (b < 30)) {
-		ellipse(50, 50, 36, 36);
+		digitalWrite(LED_BUILTIN, HIGH);
 	}
 }
 </script>
 
+		<p>We can modify our previous Button example such that both conditions are written in the same line. </p>
 
+<pre><code class="language-arduino">
+const int buttonPin = 2;     // the number of the pushbutton pin
+const int ledPin =  13;      // the number of the LED pin
+
+// variables will change:
+int buttonState = 0;         // variable for reading the pushbutton status
+
+void setup() {
+  // initialize the LED pin as an output:
+  pinMode(ledPin, OUTPUT);
+  // initialize the pushbutton pin as an input:
+  pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+  // read the state of the pushbutton value:
+  buttonState = digitalRead(buttonPin);
+
+  digitalWrite(ledPin, LOW);
+  
+  // check if the pushbutton is pressed AND more than 3 seconds have passed.
+  // If both are tue, the buttonState is HIGH:
+  if (buttonState == HIGH && millis() > 3000) {
+      // turn LED on:
+      digitalWrite(ledPin, HIGH);
+    } 
+  } 
+}
+</code></pre>
 
 
 <!-- 
