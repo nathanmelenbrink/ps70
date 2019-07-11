@@ -53,7 +53,7 @@ https://www.arduino.cc/en/Tutorial/InputPullupSerial
 				<li>MOSFET </li>
 				<li>LED </li>
 				<li>potentiometer </li>
-				<li>DC motor</li>
+				<!-- <li>DC motor</li> -->
 				<li>10K resistor</li>
 				<li>470 Ohm resistor</li>
 			</ul>
@@ -325,33 +325,55 @@ void loop() {
 	<p>The modulus operator could even replace the <code>for()</code> loop as a timer, which would produce a more precise cycle based on clock time instead of delays. </p>
 
 		<h3> Nested Iteration </h3>
-		<p> The <code>for</code> structure allows us to cycle through the range of one parameter. Nesting this structure allows us to create more complex cycles. In this example, instead of always fading to the maximum analog value (255), we start by fading from 0-0, then 0-1, etc. until we fade from 0-255. Our new "max" variable is incremented in the outside loop.   
+		<p> The <code>for</code> structure allows us to cycle through the range of one parameter. Nesting this structure allows us to create more complex cycles. In this example, instead of always fading to the maximum analog value (255), we start by fading from 0-0, then 0-1, etc. until we fade from 0-255. Our new "maximum" variable is incremented in the outside loop.   
 		</p>
 
 <pre><code class="language-arduino" >
 void loop() {
-  for (int max = 0; max <= 255; max++) {
-    for (int j = 0; j < max; j++) {
-      analogWrite(PWMpin, j);
+  for (int maximum = 0; maximum <= 255; maximum++) {
+    for (int i = 0; i < maximum; i++) {
+      analogWrite(PWMpin, i);
       delay(1);
     }
   }
 }
 </code></pre>
 
-		<p> Now let's connect a potentiometer to A0, and open the AnalogInput example (File > Examples > Analog > AnalogInput) </p>
+		<p> Now let's connect a potentiometer to A0, and open the AnalogInput example (File > Examples > Analog > AnalogInput). This example uses the potentiometer to  control the blink frequency. See if you can modify that example so that the potentiometer controls the "maximum" variable in the <code>for()</code> loop we used before: </p>
 		
 <pre><code class="language-arduino" >
 void loop() {
-  for (int max = 0; max <= 255; max++) {
-    for (int j = 0; j < max; j++) {
-      analogWrite(PWMpin, j);
+	// set maximum equal to the incoming value  
+    for (int i = 0; i < maximum; i++) {
+      analogWrite(PWMpin, i);
       delay(1);
     }
+}
+</code></pre>
+
+	<p> You may notice that that sensor values range from 0-1023 while the analogWrite() function wants values between 0-255. Try using the map() function to convert one range to another. Your final code may look something like this:</p>
+
+<pre><code class="language-arduino" >
+int PWMpin = 10;  // LED in series with 470 ohm resistor on pin 10
+int potpin = A0;  // select the input pin for the potentiometer
+int potValue = 0;  // variable to store the value coming from the sensor
+int maximum;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  maximum = map(analogRead(potpin), 0, 1023, 0, 255);
+  Serial.println(maximum);
+  for (int j = 0; j < maximum; j++) {
+    analogWrite(PWMpin, j);
+    delay(1);
   }
 }
 </code></pre>
 
+	<p> This is just the beginning! Please check out Arduino's default examples as well as additional examples <a href='https://roberthart56.github.io/SCFAB/SC_lab/Arduino_code_and_circuit_examples/Code_examples.html'>here</a>. 
 
 	</div >
 </div>
