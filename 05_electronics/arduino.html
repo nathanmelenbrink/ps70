@@ -55,7 +55,7 @@ https://www.arduino.cc/en/Tutorial/InputPullupSerial
 				<li>potentiometer </li>
 				<li>DC motor</li>
 				<li>10K resistor</li>
-				<li>220 Ohm resistor</li>
+				<li>470 Ohm resistor</li>
 			</ul>
 		</p> 
 
@@ -87,25 +87,26 @@ https://www.arduino.cc/en/Tutorial/InputPullupSerial
 		</p>
 
 <pre><code class="language-arduino">
-  digitalWrite(ledPin, LOW);
-
   if (millis() > 3000) {
     // turn LED on:
     digitalWrite(ledPin, HIGH);
-  } 
+  } else {
+    // turn LED off:
+    digitalWrite(ledPin, LOW);
+  }
 </code></pre>
 
-		<p> Now, we can nest that inside of our previous conditional statement: 
-		</p>
+		<p> Now, we can nest that inside of our previous conditional statement: </p>
 
 <pre><code class="language-arduino">
-  digitalWrite(ledPin, LOW);
-
   if (buttonState == HIGH) {
     if (millis() > 3000) {
       // turn LED on:
       digitalWrite(ledPin, HIGH);
-    } 
+    } else {
+      // turn LED off:
+      digitalWrite(ledPin, LOW);
+    }
   } 
 </code></pre>
 
@@ -171,17 +172,17 @@ https://www.arduino.cc/en/Tutorial/InputPullupSerial
 
 <pre><code class="language-arduino">
 void setup(){
-	pinMode(LED_BUILTIN, OUTPUT);
-	int a = 10;
-	int b = 20;
+  pinMode(LED_BUILTIN, OUTPUT);
+  int a = 10;
+  int b = 20;
 
-	digitalWrite(LED_BUILTIN, LOW);
-
-	if ((a > 15) || (b < 30)) {
-		digitalWrite(LED_BUILTIN, HIGH);
-	}
+  if ((a > 15) || (b < 30)) { 
+    digitalWrite(LED_BUILTIN, HIGH);
+  } else {
+    digitalWrite(LED_BUILTIN, LOW);
+  }
 }
-</script>
+</code></pre>
 
 		<p>We can modify our previous Button example such that both conditions are written in the same line. </p>
 
@@ -202,16 +203,16 @@ void setup() {
 void loop() {
   // read the state of the pushbutton value:
   buttonState = digitalRead(buttonPin);
-
-  digitalWrite(ledPin, LOW);
   
   // check if the pushbutton is pressed AND more than 3 seconds have passed.
-  // If both are tue, the buttonState is HIGH:
+  // If both are true, the buttonState is HIGH:
   if (buttonState == HIGH && millis() > 3000) {
       // turn LED on:
       digitalWrite(ledPin, HIGH);
     } 
-  } 
+  } else {
+      digitalWrite(ledPin, LOW);
+  }
 }
 </code></pre>
 
@@ -228,12 +229,11 @@ for (init; test; update) {
 }</code></pre>
 		</p>
 
-		<p> For this exercise, let's connect an LED to pin 10 with a 220 Ohm resistor in series. </p>
+		<p> For this exercise, let's connect an LED to pin 10 with a 470 ohm resistor in series. </p>
 
-		<p> Let's say you want to incrementally brighten an LED. You might do that with repetitive calculations:</p>
+		<p> Let's say you want to incrementally brighten an LED. You might do that with repetitive commands:</p>
 
 <pre><code class="language-arduino">
-// Dim an LED using a PWM pin
 int PWMpin = 10;  // LED in series with 470 ohm resistor on pin 10
 
 void setup() {
@@ -260,7 +260,6 @@ void loop() {
 		<p> However, the same result can be generated with fewer lines of code using a <code>for</code> loop:</p>
 
 <pre><code class="language-arduino" >
-// Dim an LED using a PWM pin
 int PWMpin = 10;  // LED in series with 470 ohm resistor on pin 10
 
 void setup() {
@@ -279,7 +278,6 @@ void loop() {
 		<p> This flexible pattern allows you to easily change the resolution of the fade:</p>
 
 <pre><code class="language-arduino" >
-// Dim an LED using a PWM pin
 int PWMpin = 10;  // LED in series with 470 ohm resistor on pin 10
 
 void setup() {
@@ -294,132 +292,57 @@ void loop() {
 }
 </code></pre>
 
-		<!-- <p>The statements inside the loop can include conditional statements. Try modifying the conditions to get different results:</p>
+		<p>The statements inside the loop can include conditional statements, and vice versa. Try modifying the conditions to get different results:</p>
 
 <pre><code class="language-arduino" >
-function setup() {
-	createCanvas(100, 100);
-	for (var x = 20; x <= 85; x += 5){
-		if (x <= 50){
-			line(x, 20, x, 60);
-		} else {
-			line(x, 40, x, 80);
-		}
-	}
+void loop() {
+  for (int i = 0; i <= 255; i++) {
+    if (millis() >= 2000) {
+      analogWrite(PWMpin, i);
+    } else {
+      analogWrite(PWMpin, 0);
+    }
+    delay(10);
+  }
 }
-</script>
+</code></pre>
 
 	<p>The modulus operator is often used within loops to create cycles:</p>
 
 <pre><code class="language-arduino" >
-function setup() {
-	createCanvas(100, 100);
-	for (var x = 20; x <= 80; x += 5){
-		if ((x % 10) == 0){
-			line(x, 20, x, 50);
-		} else {
-			line(x, 50, x, 80);
-		}
-	}
+void loop() {
+  for (int i = 0; i <= 255; i++) {
+    if (millis()%500 > 100) {
+      analogWrite(PWMpin, i);
+    } else {
+      analogWrite(PWMpin, 0);
+    }
+    delay(10);
+  }
 }
-</script>
+</code></pre>
 
+	<p>The modulus operator could even replace the <code>for()</code> loop as a timer, which would produce a more precise cycle based on clock time instead of delays. </p>
 
 		<h3> Nested Iteration </h3>
 		<p> The <code>for</code> structure produces repetitions in one dimension (or parameter). Nesting one of these structures into another compounds their effect, creating iteration in two dimensions.
 		</p>
 
-		<p> The following code creates a one-dimensional array of points along the x dimension: </p>
-
-<script type="text/p5" data-height="220" data-preview-width="220">
-function setup() {
-	createCanvas(100, 100);
-	for (var x = 10; x < 100; x += 10){
-		point(x, 10);
-	}
+<pre><code class="language-arduino" >
+void loop() {
+  for (int i = 0; i <= 255; i++) {
+    if (millis()%500 > 100) {
+      analogWrite(PWMpin, i);
+    } else {
+      analogWrite(PWMpin, 0);
+    }
+    delay(10);
+  }
 }
-</script>
+</code></pre>
 
-		<p> This code creates a one-dimensional array of points along the y dimension: </p>
-
-<script type="text/p5" data-height="220" data-preview-width="220">
-function setup() {
-	createCanvas(100, 100);
-	for (var y = 10; y < 100; y += 10){
-		point(10, y);
-	}
-}
-</script>
-
-		<p> We can combine the above x and y loops into a nested loop. Instead of drawing 9 points and then drawing another 9 points, they combine to create 81 points; for each point drawn in the outer structure, 9 points are drawn in the inner structure. </p>
 		
-		<p> The inner structure runs through a complete cycle for each single iteration of the outer structure. In the following examples, the two dimensions are translated into x-coordinates and y-coordinates: </p>
 
-<script type="text/p5" data-height="260" data-preview-width="220">
-function setup() {
-	createCanvas(100, 100);
-	for (var y = 10; y < 100; y += 10){
-		for (var x = 10; x < 100; x += 10){
-			point(x, y);
-		}
-	}
-}
-</script>
-
-<script type="text/p5" data-height="260" data-preview-width="220">
-function setup() {
-	createCanvas(100, 100);
-	for (var y = 20; y <= 80; y += 3){
-		for (var x = 20; x <= 80; x += 10){
-			point(x, y);
-		}
-	}
-}
-</script>
-
-<script type="text/p5" data-height="260" data-preview-width="220">
-function setup() {
-	createCanvas(100, 100);
-	for (var y = 20; y <= 80; y += 10){
-		for (var x = 20; x <= y; x += 5){
-			line(x, y, x-3, y-3);
-		}
-	}
-}
-</script>
-
-<script type="text/p5" data-height="260" data-preview-width="220">
-function setup() {
-	createCanvas(100, 100);
-	for (var y = 20; y <= 80; y += 5){
-		for (var x = 20; x <= y; x += 5){
-			if((x % 10) == 0){
-				line(x, y, x+3, y-3);
-			} else{
-				line(x, y, x+3, y+3);
-			}
-		}
-	}
-}
-</script>
-
-
-<script type="text/p5" data-height="260" data-preview-width="220">
-function setup() {
-	createCanvas(100, 100);
-	for (var y = 0; y < 100; y += 10){
-		for (var x = 0; x < 100; x += 10){
-			fill((x+y) * 1.4);
-			rect(x, y, 10, 10);
-		}
-	}
-}
-</script>
-
-		<h3> Exercise 2.0: Nested Iteration </h3>
-		<p> Create a new directory (folder) in your local repository called "exercise_2". Inside that folder, create an index.html and a script.js file. Within this file, use nested <code>for</code> loops to create a two-dimensional array of geometry. Use GitHub Desktop to commit and push your changes, and verify that they published to the web. This can be the basis for your Assignment 2.0: Tiles. 
-		</p>
- -->
 
 	</div >
 </div>
