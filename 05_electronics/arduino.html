@@ -325,23 +325,32 @@ void loop() {
 	<p>The modulus operator could even replace the <code>for()</code> loop as a timer, which would produce a more precise cycle based on clock time instead of delays. </p>
 
 		<h3> Nested Iteration </h3>
-		<p> The <code>for</code> structure produces repetitions in one dimension (or parameter). Nesting one of these structures into another compounds their effect, creating iteration in two dimensions.
+		<p> The <code>for</code> structure allows us to cycle through the range of one parameter. Nesting this structure allows us to create more complex cycles. In this example, instead of always fading to the maximum analog value (255), we start by fading from 0-0, then 0-1, etc. until we fade from 0-255. Our new "max" variable is incremented in the outside loop.   
 		</p>
 
 <pre><code class="language-arduino" >
 void loop() {
-  for (int i = 0; i <= 255; i++) {
-    if (millis()%500 > 100) {
-      analogWrite(PWMpin, i);
-    } else {
-      analogWrite(PWMpin, 0);
+  for (int max = 0; max <= 255; max++) {
+    for (int j = 0; j < max; j++) {
+      analogWrite(PWMpin, j);
+      delay(1);
     }
-    delay(10);
   }
 }
 </code></pre>
 
+		<p> Now let's connect a potentiometer to A0, and open the AnalogInput example (File > Examples > Analog > AnalogInput) </p>
 		
+<pre><code class="language-arduino" >
+void loop() {
+  for (int max = 0; max <= 255; max++) {
+    for (int j = 0; j < max; j++) {
+      analogWrite(PWMpin, j);
+      delay(1);
+    }
+  }
+}
+</code></pre>
 
 
 	</div >
