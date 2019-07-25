@@ -93,6 +93,16 @@ void loop() {
 		</ul>
 		</p>
 
+		<p> For more information on sound generation with the Arduino, see this guide: 
+		<ul> 
+			<li> <a href='https://www.elektormagazine.com/files/attachment/331'>Arduino 8-bit Sound Generation</a></li>
+		</ul>
+		</p>
+
+
+
+
+
 		<h3> LED Strips </h3>
 
 		<p> LED strips give us a good excuse to use external libraries. We've previously looked at lighting and dimming a single LED of a single color. RGB LEDs are a bit more complex; they require <a href='https://learn.adafruit.com/adafruit-arduino-lesson-3-rgb-leds/arduino-sketch'>PWM-ing 3 separate color channels</a>, but we don't really need an extra library for this. However, if we want to use many RGB LEDS, the number of wires and <code>analogWrites()</code> commands quickly add up to something intractable. Luckily, a number of libraries exist that make controlling these LED strips much easier. For this tutorial, we'll be using the <a href='https://learn.adafruit.com/adafruit-neopixel-uberguide?embeds=allow'>Adafruit NeoPixel</a> library, though we could have instead used an alternative like <a href='https://github.com/pololu/pololu-led-strip-arduino'>Pololu</a> or <a href='http://fastled.io/'>FastLED</a>. You can see all of the functions contained in the library on Adafruit's <a herf='https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.cpp'>GitHub page</a>.</p>
