@@ -43,24 +43,55 @@
 				<li>Arduino (Uno or Nano) </li>
 				<li>protoboard</li>
 				<li>LED Strip with soldered wires  </li>
-				<li>470 Ohm resistor</li>
+				<li>300-500 Ohm resistor</li>
 				<li>Buzzer</li>
 			</ul>
 		</p> 
 
 		<h3> LED Strips </h3>
 
-		<p> LED strips give us a good excuse to use external libraries. </p>
+		<p> LED strips give us a good excuse to use external libraries. We've previously looked at lighting and dimming a single LED of a single color. RGB LEDs are a bit more complex; they require <a href='https://learn.adafruit.com/adafruit-arduino-lesson-3-rgb-leds/arduino-sketch'>PWM-ing 3 separate color channels</a>, but we don't really need an extra library for this. However, if we want to use many RGB LEDS, the number of wires and <code>analogWrites()</code> commands quickly add up to something intractable. Luckily, a number of libraries exist that make controlling these LED strips much easier. For this tutorial, we'll be using the <a href='https://learn.adafruit.com/adafruit-neopixel-uberguide?embeds=allow'>Adafruit NeoPixel</a> library, though we could have instead used an alternative like <a href='https://github.com/pololu/pololu-led-strip-arduino'>Pololu</a> or <a href='http://fastled.io/'>FastLED</a>. You can see all of the functions contained in the library on Adafruit's <a herf='https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.cpp'>GitHub page</a>.</p>
+
+		<p>First, we'll want to <a href='https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-installation'>install the NeoPixel library</a> with the Library Manager.</p>
+
+		<p>Then we'll want to wire up our RGB LED strip with a resistor between pin 6 of the Arduino and the DIN pad on the LED strip.</p>
+
+		<p> Finally, let's look at <a href='https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-use'>Adafruit's page on using their library</a>. We'll walk through the strandtest example, but first let's take a look at a minimal program to do something useful with this library:
+		</p>
 
 
 <pre><code class="language-arduino">
-  if (buttonState == HIGH) {
-    // turn LED on:
-    digitalWrite(ledPin, HIGH);
-  } else {
-    // turn LED off:
-    digitalWrite(ledPin, LOW);
+
+#include <Adafruit_NeoPixel.h>
+
+#define PIN        6 
+#define NUMPIXELS 10 
+#define DELAYVAL 500 // Time (in milliseconds) to pause between pixels
+
+Adafruit_NeoPixel strip(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  strip.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
+  strip.show();            // Turn OFF all pixels ASAP
+  strip.setBrightness(10); // Set BRIGHTNESS low to reduce draw (max = 255)
+}
+
+void loop() {
+  strip.clear(); // Set all pixel colors to 'off'
+
+  // The first NeoPixel in a strand is #0, second is 1, all the way up
+  // to the count of pixels minus one.
+  for(int i=0; i<NUMPIXELS; i++) { // For each pixel...
+
+    // strip.Color() takes RGB values, from 0,0,0 up to 255,255,255
+    // Here we're using a moderately bright green color:
+    strip.setPixelColor(i, strip.Color(0, 150, 0));
+
+    strip.show();   // Send the updated pixel colors to the hardware.
+
+    delay(DELAYVAL); // Pause before next pass through loop
   }
+}
 </code></pre>
 
 		
