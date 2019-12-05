@@ -54,7 +54,7 @@ li a, .thumbnail-caption a {
   -webkit-transition: color 0.2s ease-out;
   -moz-transition: color 0.2s ease-out;
   transition: color 0.2s ease-out;
-  border-bottom: 1px solid #91b7c7;
+  border-bottom: 1px solid #e33434;
   padding-bottom: 1px;
 }
 
@@ -190,8 +190,8 @@ div div header h2 a:hover, header h2 a:focus {
 
 /* line 291, ../scss/_custom.scss */
 nav {
-  border-top: 0px solid #91b7c7;
-  border-bottom: 0px solid #91b7c7;
+  border-top: 0px solid #e33434;
+  border-bottom: 0px solid #e33434;
   margin-bottom: 3em;
   background-color: white;
 }
