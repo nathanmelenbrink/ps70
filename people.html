@@ -1,0 +1,128 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>PHYSCI 70: Introduction to Digital Fabrication</title>
+<meta name="description" content="Index Page">
+
+<script src="js/vendor/jquery.min.js"></script>
+<script> 
+	$(function(){
+	  $("#header").load("root_header.html"); 
+	  $("#footer").load("root_footer.html"); 
+	});
+</script>
+
+
+<link href="css/style.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<script src="js/vendor/modernizr.js"></script>
+
+<script type="text/javascript">
+var pages = new Array(
+	// ["https://adwoaasare.github.io/PHYS-S-12-Assignments/","Adwoa Asare"],
+	// ["https://tahafarhan1.github.io/PHY-S-12-DOCUMENTATION/","Taha Chawla"],
+	// ["https://juliaodavis.github.io/PHYS-S12-Assigments/","Julia Davis"],
+	// ["https://FahrenazHatami.github.io/PHYS-S-12-Assignments/","Fahrenaz Hatami"],
+	// ["https://fadikidess.github.io/PHYS-S-12-Digital-Fabrication/","Fadi Kidess"],
+	// ["https://kem406.github.io/PHYS-S12/","Ken Michalek"],
+	// ["https://kosinw.github.io/PHYS-S-12/","Kosi Nwabueze"],
+	// ["https://plazaemiliano.github.io/PHYS-S-12-Assignments/","Emiliano Plaza"],
+	// ["https://carmeloqin.github.io/CarmeloAssignments-for-PHYS-S-12/","Zezhong Qin"],
+	// ["https://JonjonR13.github.io/PHYS-12-assignments/","Jonathan Rodgers"],
+	// ["https://karansantuka.github.io/PHYS-S-12-assignments/","Karan Santuka"],
+	// ["https://lanawagner.github.io/PHYS-S-12-Assignments/","Lana Wagner"],
+	// ["https://jenny-15.github.io/PHYS-S-12-Assignments/","Jenny Xu"],
+	// ["https://smells-fishy.github.io/intro-digital-fab/","Tony Yu"],
+)
+
+var indices = []
+for (var i = 0; i < pages.length; ++i) indices.push(i)
+function get_time() {
+   if (window.performance != undefined)
+      if (window.performance.now != undefined) {
+         timer = "performance.now"
+         return performance.now()
+         }
+   timer = "Date.now"
+   return Date.now()
+   }
+var t0 = get_time()
+function random_page() {
+   var t = get_time()
+   var seconds = (t-t0)/1000.0
+   var ms = seconds-Math.floor(seconds)
+   index = Math.floor(indices.length * ms)
+   value = indices[index]
+   indices.splice(index,1)
+   if (indices.length == 0) {
+      indices = []
+      for (var i = 0; i < pages.length; ++i) indices.push(i)
+      }
+   //alert(pages[value][0]+" "+ms.toFixed(3)+" "+(value+1)+"/"+pages.length)
+   alert(pages[value][1])
+   window.open(pages[value][0])
+   }
+</script>
+
+</head>
+
+
+
+<body>
+
+<div id="header"></div>
+
+<div class="row">
+	<div class="large-12 columns">
+		
+
+		<p> <b>Students</b> </p>
+
+		<div style="margin-left:2.5%">
+			<p> <a href="javascript:random_page()">random page</a><br>
+			<br>
+			<script type="text/javascript">
+			for (i = 0; i < pages.length; ++i) {
+			   document.write("<a href="+pages[i][0]+">"+pages[i][1]+"</a><br>")
+			   }
+			</script>
+			</p>
+		</div>
+		
+
+		<p> <b>Teaching Staff</b> </p>
+
+		<div style="margin-left:2.5%">
+			<p>	
+				<a href="https://roberthart56.github.io/SCFAB/SC_lab/"> Rob Hart</a><br>
+				<a href="http://nathanmelenbrink.com/"> Nathan Melenbrink</a><br>
+				<a href="http://fab.cba.mit.edu/classes/863.18/Harvard/people/victoria/index.html"> Victoria Shen</a><br>
+			</p>
+		</div>
+
+		<p> <b>Additional Support</b> </p>
+
+		<div style="margin-left:2.5%">
+		<p>	
+			Daniel Rosenberg <br> 
+			Jim MacArthur <br>
+
+            
+			</p>
+		</div>
+
+
+</div>
+
+<div id="footer"></div>
+
+<script src="js/vendor/jquery.min.js"></script>
+<script src="js/foundation.min.js"></script>
+<script src="js/htdaa.js"></script>
+
+
+</body>
+</html>

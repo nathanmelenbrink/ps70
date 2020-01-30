@@ -1,0 +1,226 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+<title>PHYS-S12: Introduction to Digital Fabrication</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script>
+	$(function(){
+	  $("#header").load("../header.html");
+	  $("#footer").load("../footer.html");
+	});
+</script>
+
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/arduino-light.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+<script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
+<script src="../js/p5.min.js"></script>
+
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<!-- FIRST ROW -->
+<div class="row">
+	<div class=" large-3  columns">
+		<h3> p5 and Processing </h3>
+	</div >
+
+	<div class="small-12 medium-12 large-9  columns">
+
+		<h3> Resources: </h3>
+		<p> <a href="https://p5js.org/get-started/">Getting Started</a>: How to use p5, and create your first sketch<br> 
+			<a href="https://p5js.org/reference/">Reference</a>: The complete dictionary of all the functions you can use in p5<br>
+			<a href="https://p5js.org/learn/">Examples</a>: These are short demonstrations of various p5.js topics. <br>
+			<a href="https://p5js.org/learn/">Learn</a>: These tutorials provide more in-depth or step-by-step overviews of particular topics. <br>
+			<!-- <a href='https://www.youtube.com/watch?v=8j0UDiN7my4&t=7s' >Shiffman - 1.1 Introduction - p5.js</a> Note that in these videos, he uses an IDE called p5 Editor, which we will not be using in this class. Instead, we'll mostly be working in Sublime Text (or other editor). Not to worry, it's the exact same code. <br> -->
+		</p>
+
+		<h3> What is Processing? </h3>
+		<p>Processing is a flexible software sketchbook and a language for learning how to code within the context of the visual arts. Since 2001, Processing has promoted software literacy within the visual arts and visual literacy within technology. There are tens of thousands of students, artists, designers, researchers, and hobbyists who use Processing for learning and prototyping (from <a href="https://processing.org/">https://processing.org/</a>). Processing is free to download and open source. It allows you to write interactive programs with 2D, 3D or PDF output. It's well <a href="https://processing.org/reference/">documented</a> , with many <a href="https://processing.org/books/">books</a> available. Processing is a great tool, but it doesn't directly allow you to publish to the web. That's why the Processing Foundation created p5, a set of JavaScript functions that allow us to emulate Processing in the browser. Rather than learning both Processing and p5, we're going to jump straight into p5. 
+		</p>
+
+		<h3> What is p5? </h3>
+		<p>p5 is a set of wrappers around JavaScript that allow us to use JS in a way that’s more similar to Processing. It makes building interactive websites easier than if we were to use native JavaScript. Ultimately, this takes us ever closer to our goal of creative expression through programming! </p>
+
+		<p>p5.js is developed by Lauren McCarthy and supported by the Processing Foundation and by NYU ITP. People use it for art, data visualization, web interaction, you name it! Check out some examples on <a href='https://www.openprocessing.org/' >Open Processing</a>! </p>
+
+		<h3> Getting Started With p5 </h3>
+		<p>Make your way to <a href="https://p5js.org/get-started/">https://p5js.org/get-started/</a>. You may wish to download the libraries and reference them locally (especially for larger, more complex projects), but for short examples I tend to reference the p5 libraries remotely, using a CDN. We've already covered the "Environment" section, so let's go through the "Your First Sketch" example.   
+		</p>
+
+
+		<h3> Basic Syntax </h3>
+		<p>
+		Please note that p5 and the JavaScript language is:
+			<ul> 
+				<li>Case sensitive: upper or lowercase matters.</li>
+				<li>Whitespace insensitive: it doesn’t matter how many blank spaces are there before, in between or after your statements.</li>
+				<li>Indentation insensitive: trailing indentation will not affect your code, although it will be extremely important to maintain visual structure.</li> 
+			</ul>
+		</p>
+
+
+		<h3> Trial and Error </h3>
+		<p>
+		Messing around with code you don't understand is a totally valid way to learn. Try changing values in the demo below and see how the result changes. Can you change the colors? How about the speed (velocity)? See if you can begin to understand how the routine works. 
+		</p>
+
+<script type="text/p5" data-height="500" data-preview-width="220">
+var x = 100;
+var y = 0;
+var radius = 40;
+var velocity = 3;
+
+var bgColor = 'rgb(100)';
+var topColor = 'rgb(255, 0, 0)';   
+var centerColor = 'rgb(150, 0, 150)';
+var bottomColor = 'rgb(255, 0, 255)';
+
+function setup() {
+  createCanvas(200, 400);
+  rectMode(CENTER);
+}
+
+function draw() {
+  background(bgColor);
+
+  if (y < height / 3) {
+    fill(topColor);
+  } else if (y >= height / 3 && y < 2 * height / 3) {
+    fill(centerColor);
+  } else {
+    fill(bottomColor);
+  }
+  
+  rect(x, y, radius, radius);
+  
+  y = y + velocity;
+  if (y > height || y < 0) {
+    velocity = -velocity;
+  }
+}
+</script>
+
+		<h3> Functions </h3>
+		<p>
+		The concept of functions is of paramount importance in programming. There are a number of functions used in the above code example, including createCanvas(), as well as setup() and draw(). Functions are composed of the function name, the parameters (also called <i> arguments</i>), and the statement terminator. Parameters (arguments) are wrapped in parentheses and separated by commas, and statements always end (in JavaScript) with a semicolon.
+		</p>
+
+		<p> So if we want to add a circle to the sketch below, we need to draw that circle using a function. How do we know what function to use? That's what the <a href="https://p5js.org/reference/">p5 Reference</a> is for. We might find that there's no circle() function, but there is in fact an ellipse() function, which will allow us to draw a circle. But what parameters (arguments) should we give the ellipse() function? The reference tells us it should follow the form ellipse(x-coordinate, y-coordinate, width, height);. Try adding that to the code below. Syntax is really important -- it has to be very precise! 
+		</p>
+
+
+<script type="text/p5" data-height="220" data-preview-width="220">
+function setup(){
+	// set the size of the window to 200px width, 100px height
+	createCanvas(200, 100);
+	// set the background to red    
+	background(255, 0, 0);     
+}
+</script>
+
+
+		<h3> Code Structure </h3>
+		<p>
+		p5 sketches typically consist of a setup() function and a draw() function. The code inside the setup() function runs once, while the draw() function runs continuously from top to bottom until the program is stopped.
+		</p>
+
+<script type="text/p5" data-height="500" data-preview-width="220">
+// The statements in the setup() function 
+// execute once when the program begins
+var y;
+function setup() {
+	// createCanvas must be the first statement
+  createCanvas(720, 400);  
+  stroke(255);     // Set line drawing color to white
+  frameRate(30);
+  y = height;
+}
+// The statements in draw() are executed until the 
+// program is stopped. Each statement is executed in 
+// sequence and after the last line is read, the first 
+// line is executed again.
+function draw() { 
+  background(0);   // Set the background to black
+  y = y - 1; 
+  if (y < 0) { 
+    y = height; 
+  } 
+  line(0, y, width, y);  
+} 
+</script>
+		
+		<p> p5 keeps track of important global variables called <a href="https://p5js.org/examples/structure-width-and-height.html">width and height</a>. We typically call the <a href="https://p5js.org/reference/#/p5/createCanvas">createCanvas()</a>function from within the setup() function, and pass it numbers representing 'width' and 'height' of the desired canvas. These numbers are stored as variables for the rest of the time the sketch is running.
+		</p>
+
+		<h3> Coding Environment </h3>
+		<p>	You might see p5 tutorial videos where a special p5 Editor is being used. However, for this class, we're going to cut to the chase and write our code in a text editor, and use our browser for debugging. This is the way you'll need to work for more complex, or collaborative projects. </p>
+
+		<p> An important thing to keep in mind is debugging. We'll rely on the browser's console for this (right-click and "Inspect" in Chrome). Not only will the console tell us if we've cause an error, we can also voluntarily print output from our code to the console using the <a href="https://p5js.org/reference/#/p5/print">print()</a> function. This is particularly useful if we want to visualize the output of some variable, or see when a function is being executed. Try adding a print() function to the above code snippet. </p>
+
+		<p> Other useful things related to the p5 coding environment are <a href="https://p5js.org/reference/#/p5/framerate">frameRate()</a>, which specifies the frames per second for your sketch to run, and <a href="https://p5js.org/reference/#/p5/frameCount">frameCount</a>, which counts the number of frames since the sketch started running. You can also look into <a href="https://p5js.org/reference/#/p5/windowWidth">windowWidth</a> and <a href="https://p5js.org/reference/#/p5/windowHeight">windowHeight</a> if you want a full-window sketch as opposed to a pre-specified canvas size. 
+		</p>
+
+
+		<h3> Comments </h3>
+		<p>
+		Comments are a plain-text way to write notes to yourself or others who may read your code. 
+		</p>
+
+<script type="text/p5" data-height="400" data-preview-width="220">
+// This is a single line comment.
+// Any thing after double forward slashes is a comment.
+// Comments are annotations about the code, 
+// they have no effect on the program and
+// are ignored by the compiler.
+
+/*
+  This is a multiline comment.
+  Anything enclosed by slashes and asterisks 
+  will be commented out.
+*/
+
+// Therefore, if you run this sketch,
+// no code will be executed
+</script>
+
+
+    
+
+	</div>
+</div>
+
+
+
+<div id="footer"></div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/htdaa.js"></script>
+
+
+</body>
+</html>
