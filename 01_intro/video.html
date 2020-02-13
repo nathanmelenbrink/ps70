@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>PHYSCI 70: Introduction to Digital Fabrication</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script> 
+	$(function(){
+	  $("#header").load("../header.html"); 
+	  $("#footer").load("../footer.html"); 
+	});
+</script>
+
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+
+
+</head>
+<body>
+
+<div id="header"></div>
+
+
+<!-- NEW SECTION -->
+<div class="row">
+
+	<!-- ROW TITLE -->
+	<div class="col-md-3">
+		<h3> Images and Video in HTML </h3>
+	</div >
+
+	<!-- LIST OF LINKS -->
+	<div class="col-md-9">
+
+	<h3> Taking Images and Video </h3>
+	<p> Taking clear, representative images of your work is at least as important as writing clear and representative descriptions. Some low-effort tricks to get better images include: 
+	</p>
+	<ul>
+		<li>Use a monotone background (white tables are great) free of clutter and other distractions. </li>
+		<li>Make sure you're zoomed out enough to capture the entire piece. You can decide later whether to crop, but you can't un-crop. </li>
+		<li>Hold your camera still, especially in low lighting or when taking a video. Feel free to use a tripod (there are a few in the lab) or clamp/helping hand to stabilize your camera. </li>
+	</ul>
+
+
+	<h3> Formatting Images and Video </h3>
+	<p> Images and video that you take with your phone or DSLR camera are likely of far greater resolution (and size) than is needed for use on the web. This will slow down loading time for your pages considerably. Also, GitHub will not allow you to upload files greater than 100mb. Usually images of your work don't need to be more than a few hundred Kb each. In order to reduce the size of your files, you can use: </p>
+
+	<ul>
+		<li>Online compressors like <a href='https://tinypng.com/'>TinyPNG</a> or <a href='https://tinyjpg.com/'>TinyJPG</a> (images)</li>
+		<li> Video compression at sites like <a href='https://clideo.com/compress-video'>clideo.com</a>. Mp4 seems to work best for hosting locally. </li>		
+		<li>Batch operations in Photoshop or similar (images only). </li>
+	</ul>
+
+
+	<h3> Hosting content on your page </h3>
+	<p> Images and GIFs should be small enough to save in your local repository. This is also fine for short videos. The HTML should look something like this: 
+	</p>
+
+
+
+	<pre><code class="html">
+	&lt video controls &gt
+		&lt source src="demo.mp4" type="video/mp4" &gt
+	&lt/ video &gt
+	</code> </pre>
+
+		<!-- You can also use HTML tags to include a video -->
+	<video controls>
+		<source src="demo.mp4" type="video/mp4">
+	</video>
+
+	<p> For longer videos, it often makes more sense to upload them to a streaming service like YouTube or Vimeo. Once you upload the video, you can right click and "copy embed code" to paste into your html file. It should look something like this: 
+	</p>
+
+	<pre><code class="html">
+	&lt iframe width="1019" height="573" src="https://www.youtube.com/embed/HBJMgkzkaas" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen &gt &lt/ iframe &gt
+	</code> </pre>
+
+	<p>And the result should render like this: </p>
+	<iframe width="1019" height="573" src="https://www.youtube.com/embed/HBJMgkzkaas" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+	<!-- <a href='cube.stl' download>Click to download my STL file</a> -->
+
+	</div >
+</div>	<!-- END SECTION -->
+
+
+
+
+<div id="footer"></div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/htdaa.js"></script>
+
+
+</body>
+</html>
