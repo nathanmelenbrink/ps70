@@ -69,13 +69,13 @@
 	<p> Images and GIFs should be small enough to save in your local repository. This is also fine for short videos. The HTML should look something like this: 
 	</p>
 
+<pre><code class="html">
+&ltvideo controls&gt
+	&ltsource src="demo.mp4" type="video/mp4"&gt
+&lt/video&gt
+</code> </pre>
 
-
-	<pre><code class="html">
-	&lt video controls &gt
-		&lt source src="demo.mp4" type="video/mp4" &gt
-	&lt/ video &gt
-	</code> </pre>
+	<p> And the result should render like this: </p>
 
 		<!-- You can also use HTML tags to include a video -->
 	<video controls>
@@ -85,12 +85,15 @@
 	<p> For longer videos, it often makes more sense to upload them to a streaming service like YouTube or Vimeo. Once you upload the video, you can right click and "copy embed code" to paste into your html file. It should look something like this: 
 	</p>
 
-	<pre><code class="html">
-	&lt iframe width="1019" height="573" src="https://www.youtube.com/embed/HBJMgkzkaas" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen &gt &lt/ iframe &gt
-	</code> </pre>
+<pre><code class="html">
+&ltiframe width="1019" height="573" src="https://www.youtube.com/embed/HBJMgkzkaas" frameborder="0" 
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt &lt/iframe&gt
+</code> </pre>
 
 	<p>And the result should render like this: </p>
 	<iframe width="1019" height="573" src="https://www.youtube.com/embed/HBJMgkzkaas" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+	<p> GIFs are effective ways to show short animations without taking up much space. You can convert a movie or series of images to a GIF using an online service like <a href='https://giphy.com/create/gifmaker'>Giphy</a>. GIFs can be referenced using the <code>img</code> tag, just like other images. </p>
 
 	<!-- <a href='cube.stl' download>Click to download my STL file</a> -->
 
