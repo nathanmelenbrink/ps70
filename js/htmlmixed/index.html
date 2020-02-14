@@ -1,100 +1,113 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
 
-<title>CodeMirror: HTML mixed mode</title>
-<meta charset="utf-8"/>
-<link rel=stylesheet href="../../doc/docs.css">
+<head>
+    <title>e v i c s h e n</title>
+<meta charset="utf-8" />
+<meta name=viewport content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+<script src="src/js/jquery.swipebox.js"></script>
+<style>@charset "utf-8";
 
-<link rel="stylesheet" href="../../lib/codemirror.css">
-<script src="../../lib/codemirror.js"></script>
-<script src="../../addon/selection/selection-pointer.js"></script>
-<script src="../xml/xml.js"></script>
-<script src="../javascript/javascript.js"></script>
-<script src="../css/css.js"></script>
-<script src="../vbscript/vbscript.js"></script>
-<script src="htmlmixed.js"></script>
-<style>.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
-<div id=nav>
-  <a href="http://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../../doc/logo.png"></a>
+header {margin-top: 1em;}
+header h2 { padding-left: 10px; padding-top: 20px; background-image: url(../images/flagr.png); background-repeat: no-repeat; background-position: left; min-height: 70px; background-color: black; color: white;}
+    
 
-  <ul>
-    <li><a href="../../index.html">Home</a>
-    <li><a href="../../doc/manual.html">Manual</a>
-    <li><a href="https://github.com/codemirror/codemirror">Code</a>
-  </ul>
-  <ul>
-    <li><a href="../index.html">Language modes</a>
-    <li><a class=active href="#">HTML mixed</a>
-  </ul>
-</div>
+body {
+    background-image: url(../images/trimation2.gif);
+    background-color: white;
+    background-repeat: repeat;
+    background-position: right top;
+    background-attachment: fixed;
+    color: black;
+    font-size: 10pt;
+}
 
-<article>
-<h2>HTML mixed mode</h2>
-<form><textarea id="code" name="code">
-<html style="color: green">
-  <!-- this is a comment -->
-  <head>
-    <title>Mixed HTML Example</title>
-    <style type="text/css">
-      h1 {font-family: comic sans; color: #f0f;}
-      div {background: yellow !important;}
-      body {
-        max-width: 50em;
-        margin: 1em 2em 1em 5em;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Mixed HTML Example</h1>
-    <script>
-      function jsFunc(arg1, arg2) {
-        if (arg1 && arg2) document.body.innerHTML = "achoo";
-      }
-    </script>
-  </body>
+    iframe {
+        padding-left: 30px;
+    }    
+    
+#trim{
+        color: black; background-color: white; width: 3.5em; padding-left: 30px; border-style: outset;
+    }
+#evic{
+        color: black; background-color: white; width: 6.5em;  padding-left: 30px; border-style: outset;
+    }
+    
+footer { font-size: smaller; background-color: black; color: white;}
+footer p { padding: 1em; }
+
+nav ul {list-style: none; padding: 0; background-color: dark darkslategray; color: black}
+nav ul li a {display: block;text-decoration: none; padding: 0.5em 0 0.5em 1em; border-bottom: thin solid white; color: white; background-color: black; text-align: right; padding-right: .3em;}
+nav ul li a:link {display: block;}
+nav ul li a:visited {display: block;}
+nav ul li a:hover {display: block; border-bottom: thin solid black; border-top: thin solid black; background-color: white; color: black;}
+nav ul li a:active {display: block;}
+
+    
+.gallery { background-color: white; border: thin solid black;}
+.gallery img { padding-left: 30px; padding-top: 30px}
+.gallery a:link, .gallery a:visited, .gallery a:hover, .gallery a:active
+{ text-decoration: none; background-color: inherit; color: inherit;}
+.gallery { margin-bottom: 2em; float: left; width: 768px; }
+.gallery div { margin-left: 3em; float: left; height: 200px; width: 150px; text-align: center; font-size: xx-small; }
+/* margin: 0.25in; padding: 0.25in; */
+
+
+nav ul li#iamhere a,
+nav ul li#iamhere a:link,s
+nav ul li#iamhere a:visited,
+nav ul li#iamhere a:hover { color: #ff0000; background-color: #ffffff; border: thin solid navy;}
+
+nav ul li { margin-bottom: 0; margin-top: 0; padding-top: 0; padding-bottom: 0;}
+
+
+
+</style>
+<link rel="stylesheet" href="src/css/swipebox.css" />
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"> </script>
+<script type="text/javascript" src="js/events.js"> </script>
+<script src="lib/jquery-2.0.3.js"></script>
+
+</head>
+    <body id="part2">
+        
+    <?php include("header.php"); ?>
+    <div>        
+        <div class="row">
+            <?php include("nav.php"); ?>   
+        <div class="nine columns">
+                <main>
+                    <h4 id="evic">e v i c s h e n</h4><div class="gallery">
+                    <a href="https://soundcloud.com/evicshen/" target="_blank"><img src="images/sc.png" style="width:51px;height:51px;"></a><br><br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/FSu0LlrCL9c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><br><br>
+                    <iframe width="80%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/345513175&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe><br><br><br>
+            
+                    <img src="images/PortlandStack_CorbinCorbin.jpg" style="width:560px" alt="Photo by CorbinCorbin"><br><br><br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/lKexAdvdNqw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <br><br><br><br>
+                    </div>
+                    
+                    <h4 id="trim">t r i m</h4>
+                    <div class="gallery">
+                    <a href="https://www.facebook.com/trimendust/" target="_blank"><img src="images/fb.png" style="width:50px;height:50px;"></a> &nbsp;
+                    <a href="https://soundcloud.com/trimendous/" target="_blank"><img src="images/sc.png" style="width:51px;height:51px;"></a><br><br>
+                                            <img src="images/SavageWeekend_Joseph_Mauro.jpg" style="width:560px" alt="Photo by Joseph Mauro"><br><br><br>
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Ftrimendust%2Fvideos%2F296823900660524%2F&show_text=0&width=560" width="560" height="280" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe><br><br><br>
+                    <img src="images/mwm.jpg" style="width:560px" alt="Photo by Ria Katz">
+                        <img src="images/heck.jpg" style="width:560px" alt="Photo by Luka Tobin">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/wZRGZO9B7XQ" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe><br><br><br>
+                    </div>
+                    <br><br><br><br><br><br><br><br>
+                    
+                    
+                </main>
+            </div>
+        </div>
+        </div>
+
+        
+    </body>
+
 </html>
-</textarea></form>
-    <script>
-      // Define an extended mixed-mode that understands vbscript and
-      // leaves mustache/handlebars embedded templates in html mode
-      var mixedMode = {
-        name: "htmlmixed",
-        scriptTypes: [{matches: /\/x-handlebars-template|\/x-mustache/i,
-                       mode: null},
-                      {matches: /(text|application)\/(x-)?vb(a|script)/i,
-                       mode: "vbscript"}]
-      };
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        mode: mixedMode,
-        selectionPointer: true
-      });
-    </script>
-
-    <p>The HTML mixed mode depends on the XML, JavaScript, and CSS modes.</p>
-
-    <p>It takes an optional mode configuration
-    option, <code>tags</code>, which can be used to add custom
-    behavior for specific tags. When given, it should be an object
-    mapping tag names (for example <code>script</code>) to arrays or
-    three-element arrays. Those inner arrays indicate [attributeName,
-    valueRegexp, <a href="../../doc/manual.html#option_mode">modeSpec</a>]
-    specifications. For example, you could use <code>["type", /^foo$/,
-    "foo"]</code> to map the attribute <code>type="foo"</code> to
-    the <code>foo</code> mode. When the first two fields are null
-    (<code>[null, null, "mode"]</code>), the given mode is used for
-    any such tag that doesn't match any of the previously given
-    attributes. For example:</p>
-
-    <pre>var myModeSpec = {
-  name: "htmlmixed",
-  tags: {
-    style: [["type", /^text\/(x-)?scss$/, "text/x-scss"],
-            [null, null, "css"]],
-    custom: [[null, null, "customMode"]]
-  }
-}</pre>
-
-    <p><strong>MIME types defined:</strong> <code>text/html</code>
-    (redefined, only takes effect if you load this parser after the
-    XML parser).</p>
-
-  </article>
