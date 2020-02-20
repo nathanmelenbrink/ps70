@@ -57,15 +57,15 @@ https://www.arduino.cc/en/Tutorial/InputPullupSerial
 		<p> For this workshop, please collect the following: 
 			<ul> 
 				<li>ItsyBitsy </li>
-				<li>protoboard</li>
+				<li>breadboard</li>
 				<li>hookup wires </li>
 				<li>button  </li>
-				<li>MOSFET </li>
+				<!-- <li>MOSFET </li>
 				<li>LED </li>
 				<li>potentiometer </li>
-				<li>DC motor</li>
-				<li>10K resistor</li>
-				<li>470 Ohm resistor</li>
+				<li>DC motor</li> -->
+				<li>10K resistor</li><!-- 
+				<li>470 Ohm resistor</li> -->
 			</ul>
 		</p> 
 
@@ -90,6 +90,11 @@ https://www.arduino.cc/en/Tutorial/InputPullupSerial
     digitalWrite(ledPin, LOW);
   }
 </code></pre>
+
+    <p>Build a circuit as described in the Button example (pushbutton attached to pin 2 from +3.3V and 10K resistor attached to pin 2 from ground). The 10k resistor is acting as a PULLDOWN resistor, meaning that in the absence of a connection to +3.3V, pin 2 will report it's connection to ground (LOW). Essentially we've created a "path of some resistance" to ground. When the button is unpressed, the circuit will take this path. When the button is pressed, a "path of much less resistance" is created to +3.3V, so pin 2 will report HIGH. What happens if you remove the resistor? Try moving your hand around the circuit. The results will be unpredictable (floating input). Read more about pullup and pulldown resistors on <a href='https://learn.sparkfun.com/tutorials/pull-up-resistors/all'>SparkFun</a>. 
+    </p>
+
+    <p> Luckily, many microcontrollers have built-in PULLUP resistors, which operate in the opposite way. Open the DigitalInputPullup example and rewire your circuit so that the button connects pin 2 to ground. This example also allows us to see what's going on under the hood with the Serial monitor. </p>
 
 		<h3> Nested Conditional Statements </h3>
 
@@ -234,6 +239,23 @@ void loop() {
  -->
 
 	<h3> <code>for()</code> Loops </h3>
+
+  <p> For this exercise, please collect the following: 
+      <ul> 
+        <li>ItsyBitsy </li>
+        <li>breadboard</li>
+        <li>hookup wires </li>
+        <!-- <li>button  </li>
+        <li>MOSFET </li> -->
+        <li>LED </li>
+        <li>potentiometer </li>
+        <!-- <li>DC motor</li>
+        <li>10K resistor</li> -->
+        <li>470 Ohm resistor</li>
+      </ul>
+    </p> 
+
+
 		<p> The <code>for()</code> structure performs repetitive calculations and is structured like this:<br>
 <pre><code class="language-arduino">
 for (init; test; update) {
@@ -241,7 +263,7 @@ for (init; test; update) {
 }</code></pre>
 		</p>
 
-		<p> For this exercise, let's connect an LED to pin 10 with a 470 ohm resistor in series. </p>
+		<p> Let's connect an LED to pin 10 with a 470 ohm resistor in series. </p>
 
 		<p> Let's say you want to incrementally brighten an LED. You might do that with repetitive commands:</p>
 
