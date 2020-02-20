@@ -47,8 +47,42 @@
 &lta href='./path-to-file' download &gt Download my file! &lt\a&gt
 </code> </pre>
 
-		
-<pre><code class="language-arduino">
+		<p> For short, in-line code snippets, you can use the HTML <code>&ltcode&gt</code> tags, which <code>looks something like this</code> (depending on your CSS). </p>
+
+		<p> For multi-line excerpts, wrap the <code>&ltcode&gt</code> tags in <code>&ltpre&gt</code> tags, like this: </p>
+
+<pre><code class="html">
+&ltpre&gt&ltcode&gt
+void loop(){
+  int i = 2;
+  int j = 3;
+}
+&lt/code&gt&lt/pre&gt
+</code> </pre>
+
+	<p> For even better legibility, you can use CSS libraries to style your code snippet to look like it does in the Arduino IDE. To do this, first paste these lines in the <code>head</code> section of your HTML page: </p>
+
+<pre><code class="html">
+&ltlink rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css"&gt
+&ltscript src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js">&lt/script&gt
+&ltscript src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"&gt&lt/script&gt
+&ltscript&gthljs.initHighlightingOnLoad();&lt/script&gt
+</code> </pre>
+
+	<p> Then add the <code>language-arduino</code> class to your <code>code</code> tag: </p>
+
+<pre><code class="html">
+&ltpre&gt&ltcode class="language-arduino"&gt
+void loop(){
+  int i = 2;
+  int j = 3;
+}
+&lt/code&gt&lt/pre&gt
+</code> </pre>
+
+
+
+<!-- <pre><code class="language-arduino">
 void loop(){
   int i = 2;
   int j = 3;
@@ -56,7 +90,7 @@ void loop(){
 
   k = myMultiplyFunction(i, j); // k now contains 6
 }
-</code></pre>
+</code></pre> -->
 
 	</div >
 </div>
