@@ -181,15 +181,17 @@ https://www.arduino.cc/en/Tutorial/InputPullupSerial
 		<p>In this example, the expression "a > 15" is false, but "b < 30" is true. Because the OR operator requires only one part to be true in the entire expression, the code in the block will run. Try changing the code to logical AND instead of OR</p>
 
 <pre><code class="language-arduino">
+const int ledPin =  13; 
+
 void setup(){
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(ledPin, OUTPUT);
   int a = 10;
   int b = 20;
 
   if ((a > 15) || (b < 30)) { 
-    digitalWrite(LED_BUILTIN, HIGH);
+    digitalWrite(ledPin, HIGH);
   } else {
-    digitalWrite(LED_BUILTIN, LOW);
+    digitalWrite(ledPin, LOW);
   }
 }
 </code></pre>
