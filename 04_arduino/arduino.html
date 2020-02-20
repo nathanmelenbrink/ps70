@@ -297,7 +297,6 @@ void loop() {
     delay(100);
     analogWrite(PWMpin, 250);
     delay(100);
-  }
 }
 </code></pre>
 
@@ -355,14 +354,12 @@ void loop() {
 
 <pre><code class="language-arduino" >
 void loop() {
-  for (int i = 0; i <= 255; i++) {
     if (millis()%500 > 100) {
-      analogWrite(PWMpin, i);
+      analogWrite(PWMpin, 255);
     } else {
       analogWrite(PWMpin, 0);
     }
     delay(10);
-  }
 }
 </code></pre>
 
@@ -383,7 +380,7 @@ void loop() {
 }
 </code></pre>
 
-		<p> Now let's connect a potentiometer to A0, and open the AnalogInput example (File > Examples > Analog > AnalogInput). This example uses the potentiometer to  control the blink frequency. See if you can modify that example so that the potentiometer controls the "maximum" variable in the <code>for()</code> loop we used before: </p>
+		<p> Now let's connect a potentiometer to A0, and open the AnalogInput example (File > Examples > Analog > AnalogInput). This example uses the potentiometer to control the blink frequency. See if you can modify that example so that the potentiometer controls the "maximum" variable in the <code>for()</code> loop we used before: </p>
 		
 <pre><code class="language-arduino" >
 void loop() {
