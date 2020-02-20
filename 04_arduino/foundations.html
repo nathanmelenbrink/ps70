@@ -62,10 +62,10 @@
 			Variables should have names that describe their content. <br>
 		</p>
 		
-		<p> Especially as our code gets more complex and includes more functions, we'll need to pay attention to <a href= "https://www.arduino.cc/reference/en/language/variables/variable-scope--qualifiers/scope/">variable scope</a>. Variables can have a global or function "scope". For example, variables declared within either the <code>setup()</code> or <code>loop()</code> functions may be only used in these functions. Global variables, variables declared outside of <code>setup()</code> or <code>loop()</code>, may be used anywhere within the program. If a function variable is declared with the same name as a global variable, the program will use the function variable to make its calculations within the current scope.</p>
+		<p> Especially as our code gets more complex and includes more functions, we'll need to pay attention to <a href= "https://www.arduino.cc/reference/en/language/variables/variable-scope--qualifiers/scope/">variable scope</a>. Variables can have a global or function "scope". For example, variables declared within either the <code>setup()</code> or <code>loop()</code> functions may be only used in these functions. Global variables, variables declared outside of <code>setup()</code> or <code>loop()</code>, may be used anywhere within the program. <!-- If a function variable is declared with the same name as a global variable, the program will use the function variable to make its calculations within the current scope. --></p>
 
 <pre><code class="language-arduino">
-int gPWMval;  // any function will see this variable
+int val;  // any function will see this variable
 
 void setup() {
   // ...
