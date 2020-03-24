@@ -50,7 +50,7 @@
 		<h3> Arduino Workshop </h3>
 		<p> For this workshop, please collect the following: 
 			<ul> 
-				<li>Arduino (Uno or Nano) </li>
+				<li>Microcontroller </li>
 				<li>protoboard</li>
 				<li>LED Strip with soldered wires  </li>
 				<li>300-500 Ohm resistor</li>
@@ -58,68 +58,13 @@
 			</ul>
 		</p> 
 
-		<h3> Buzzers </h3>
-
-		<p> It's super easy to use piezo buzzers with Arduino's <code>tone()</code> function. Just wire up the buzzer to pin 8 and then to GND with a resistor. The <code>tone()</code> function needs 2 arguments, but can take three: 
-		<ul> 
-			<li> Pin# </li>
-			<li> Frequency - this is in hertz (cycles per second) which determines the pitch of the noise made </li>
-			<li> Duration - how long the tone plays</li>
-		</ul>
-		Here's a simple example: </p>
-
-<pre><code class="language-arduino">
-int buzzerPin = 8;
-
-void setup() {
-
-}// not needed 
-
-void loop() {
-  tone(buzzerPin, 1000, 500);
-  delay(1000);
-}
-</code></pre>
-
-		<p> Some things to keep in mind when using buzzers: 
-		<ul> 
-			<li>The tone() function uses one of the built in timers on the Arduino’s micro-contoller. tone() works independently of the delay() function. You can start a tone and do other stuff – while the tone is playing in the background. Therefore, if you use 500 milliseconds as the third argument in tone(), and follow that by a delay of 1000 milliseconds, you will only be creating a “rest” of 500 milliseconds.</li>
-			<li> You can’t use tone() while also using analogWrite() on pins 3 or 11. If you do – you get some whacky results – neither will work like you expect. That’s because the tone() function uses the same built in timer that analogWrite() does for pins 3 and 11.</li>
-			<li> You cannot generate a tone lower than 31 HZ. You can pass values 31 and less to the tone() function, but it doesn’t mean you will get a good representation of it. </li>
-			<li> The tone() function cannot be used by two separate pins at the same time. Let’s say you have two separate piezo speakers, each on a different pin. You can’t have them both play at the same time. One has to be on, and then the other. Furthermore, before you can have the other pin use the tone() function, you must call the noTone() function and “turn off” the tone from the previous pin.</li>
-			
-		</ul>
-		</p>
-
-		<p> Being able to combine multiple example sketches into one is a very useful skill. See if you can combine the buzzer with a sketch you made for an input device like a potentiometer. </p>
-
-		<p> Getting a buzzer to make noise is simple, but composing music is not. There are plenty of <a href='http://pages.mtu.edu/~suits/notefreqs.html'>reference tables for frequencies of musical notes</a>, but timing notes is also tricky. Check out some examples of classic tunes arranged for Arduino: 
-		<ul> 
-			<li> <a href='http://repairmypc.net/2017/08/test-post/'>Fur Elise</a></li>
-			<li> <a href='https://gist.github.com/nicksort/4736535'>Star Wars Theme</a></li>
-			<li> <a href='https://www.arduino.cc/en/Tutorial/PlayMelody'>Arduino Melody</a></li>
-			<li> <a href='https://www.princetronics.com/supermariothemesong/'>Super Mario Theme</a></li>
-			
-		</ul>
-		</p>
-
-		<p> For more information on sound generation with the Arduino, see this guide: 
-		<ul> 
-			<li> <a href='https://www.elektormagazine.com/files/attachment/331'>Arduino 8-bit Sound Generation</a></li>
-		</ul>
-		</p>
-
-
-
-
-
 		<h3> LED Strips </h3>
 
 		<p> LED strips give us a good excuse to use external libraries. We've previously looked at lighting and dimming a single LED of a single color. RGB LEDs are a bit more complex; they require <a href='https://learn.adafruit.com/adafruit-arduino-lesson-3-rgb-leds/arduino-sketch'>PWM-ing 3 separate color channels</a>, but we don't really need an extra library for this. However, if we want to use many RGB LEDS, the number of wires and <code>analogWrites()</code> commands quickly add up to something intractable. Luckily, a number of libraries exist that make controlling these LED strips much easier. For this tutorial, we'll be using the <a href='https://learn.adafruit.com/adafruit-neopixel-uberguide?embeds=allow'>Adafruit NeoPixel</a> library, though we could have instead used an alternative like <a href='https://github.com/pololu/pololu-led-strip-arduino'>Pololu</a> or <a href='http://fastled.io/'>FastLED</a>. You can see all of the functions contained in the library on Adafruit's <a herf='https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.cpp'>GitHub page</a>.</p>
 
 		<p>First, we'll want to <a href='https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-installation'>install the NeoPixel library</a> with the Library Manager.</p>
 
-		<p>Then we'll want to wire up our RGB LED strip with a resistor between pin 6 of the Arduino and the DIN pad on the LED strip.</p>
+		<p>Then we'll want to wire up our RGB LED strip with a resistor between pin 9 and the DIN pad on the LED strip. Connect ground to the microcontroller's ground, and connect power to 3V. </p>
 
 		<p> Finally, let's look at <a href='https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-use'>Adafruit's page on using their library</a>. We'll walk through the strandtest example, but first let's take a look at a minimal program to do something useful with this library:
 		</p>
@@ -128,7 +73,7 @@ void loop() {
 <pre><code class="language-arduino">
 #include <Adafruit_NeoPixel.h>
 
-#define PIN        6 
+#define PIN        9 
 #define NUMPIXELS 10 
 #define DELAYVAL 500 // Time (in milliseconds) to pause between pixels
 
@@ -159,6 +104,66 @@ void loop() {
 </code></pre>
 
 	<p> See all the available <a href='https://adafruit.github.io/Adafruit_NeoPixel/html/class_adafruit___neo_pixel.html'>NeoPixel functions here</a>. 
+
+
+		<h3> Buzzers </h3>
+
+		<p> Note: there have been some issues with the <code>tone()</code> function not working properly with the ItsyBitsy. We recommend using a different microcontroller if you have one. 
+
+		<p> It's super easy to use piezo buzzers with Arduino's <code>tone()</code> function. Just wire up the buzzer to pin 8 and then to GND with a resistor. The <code>tone()</code> function needs 2 arguments, but can take three: 
+		<ul> 
+			<li> Pin# </li>
+			<li> Frequency - this is in hertz (cycles per second) which determines the pitch of the noise made </li>
+			<li> Duration - how long the tone plays</li>
+		</ul>
+		Here's a simple example: </p>
+
+<pre><code class="language-arduino">
+int buzzerPin = 8;
+
+void setup() {
+
+}// not needed 
+
+void loop() {
+  tone(buzzerPin, 1000, 500);
+  delay(1000);
+}
+</code></pre>
+
+		<p> Some things to keep in mind when using buzzers: 
+		<ul> 
+			<li>The tone() function uses one of the built in timers on the Arduino’s microcontoller. tone() works independently of the delay() function. You can start a tone and do other stuff – while the tone is playing in the background. Therefore, if you use 500 milliseconds as the third argument in tone(), and follow that by a delay of 1000 milliseconds, you will only be creating a “rest” of 500 milliseconds.</li>
+			<li> You can’t use tone() while also using analogWrite() on pins 3 or 11. If you do – you get some whacky results – neither will work like you expect. That’s because the tone() function uses the same built in timer that analogWrite() does for pins 3 and 11.</li>
+			<li> You cannot generate a tone lower than 31 HZ. You can pass values 31 and less to the tone() function, but it doesn’t mean you will get a good representation of it. </li>
+			<li> The tone() function cannot be used by two separate pins at the same time. Let’s say you have two separate piezo speakers, each on a different pin. You can’t have them both play at the same time. One has to be on, and then the other. Furthermore, before you can have the other pin use the tone() function, you must call the noTone() function and “turn off” the tone from the previous pin.</li>
+			
+		</ul>
+		</p>
+
+		<p> Being able to combine multiple example sketches into one is a very useful skill. See if you can combine the buzzer with a sketch you made for an input device like a potentiometer. </p>
+
+		<p> Getting a buzzer to make noise is simple, but composing music is not. There are plenty of <a href='http://pages.mtu.edu/~suits/notefreqs.html'>reference tables for frequencies of musical notes</a>, but timing notes is also tricky. Check out some examples of classic tunes arranged for Arduino: 
+		<ul> 
+			<li> <a href='http://repairmypc.net/2017/08/test-post/'>Fur Elise</a></li>
+			<li> <a href='https://gist.github.com/nicksort/4736535'>Star Wars Theme</a></li>
+			<li> <a href='https://www.arduino.cc/en/Tutorial/PlayMelody'>Arduino Melody</a></li>
+			<li> <a href='https://www.princetronics.com/supermariothemesong/'>Super Mario Theme</a></li>
+			
+		</ul>
+		</p>
+
+		<p> For more information on sound generation with the Arduino, see this guide: 
+		<ul> 
+			<li> <a href='https://www.elektormagazine.com/files/attachment/331'>Arduino 8-bit Sound Generation</a></li>
+		</ul>
+		</p>
+
+
+
+
+
+		
 
 		
 	</div >
