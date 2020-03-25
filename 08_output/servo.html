@@ -69,6 +69,8 @@
 		<p> Most of the actuators we'll look at are "open loop", meaning that we give them commands but don't expect any feedback. Servos are probably the easiest way to add "closed loop" actuation to your project. In industry, the word "servo" is used to describe different kinds of motors than we're using here; "servo" just means "closed loop". 
 		</p>
 
+		<p> These are the servos included in your kits. Click here to view the datasheet. </p>
+
 		<p> The easiest way to get up and running with a Servo motor is to use the Arduino Servo library. You can find examples at File &gt; Examples &gt; Servo, but minimal usage looks like this: </p>
 
 <pre><code class="language-arduino">
@@ -90,7 +92,61 @@ void loop() {
 
 		<img src='./servo.png' alt='servo circuit'>
 
-		
+		<p> This code will move your servo as fast as it can to the middle position (90 degrees out of a range of 180). </p>
+
+
+		<p>In most applications, we'll want the servo to do more than just remain at a particular position. Sometimes, we'll want to program a servo to move in a certain way on repeat. With the same wiring, try uploading the following code (from the Arduino Sweep example): </p>
+
+<pre><code class="language-arduino">
+#include &lt;Servo.h&gt;
+
+Servo myservo;  // create servo object to control a servo
+
+int pos = 0;    // variable to store the servo position
+
+void setup() {
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+}
+
+void loop() {
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+  myservo.write(0); 				 // send the servo back to 0
+  delay(2000); 						 // give it enough time to make it there
+}
+</code></pre>
+
+		<p>Now see if you can modify the above code by adding a <code>for()</code> loop that makes the servo return to position 0 at exactly half the speed. </p>
+
+		<p>Sometimes we'll want a servo to move according to some input. A common usage is having a potentiometer control the servo. Give this a shot; wiring diagram and code below (from the Arduino Knob example). </p>
+
+		<img src='./servo.png' alt='servo circuit'>
+
+<pre><code class="language-arduino">
+#include &lt;Servo.h&gt;
+
+Servo myservo;  // create servo object to control a servo
+
+int potpin = 0;  // analog pin used to connect the potentiometer
+int val;    // variable to read the value from the analog pin
+
+void setup() {
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+}
+
+void loop() {
+  val = analogRead(potpin);            // reads the value of the potentiometer (value between 0 and 1023)
+  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
+  myservo.write(val);                  // sets the servo position according to the scaled value
+  delay(15);                           // waits for the servo to get there
+}
+</code></pre>
+
+	
+
 	</div >
 </div>
 
