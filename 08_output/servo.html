@@ -68,24 +68,22 @@
 
 		<p> Servo motors  </p>
 
-		<p> It's super easy to use piezo buzzers with Arduino's <code>tone()</code> function. Just wire up the buzzer to pin 8 and then to GND with a resistor. The <code>tone()</code> function needs 2 arguments, but can take three: 
-		<ul> 
-			<li> Pin# </li>
-			<li> Frequency - this is in hertz (cycles per second) which determines the pitch of the noise made </li>
-			<li> Duration - how long the tone plays</li>
-		</ul>
-		Here's a simple example: </p>
+		<p> Most of the actuators we'll look at are "open loop", meaning that we give them commands but don't expect any feedback. Servos are probably the easiest way to add "closed loop" actuation to your project. In industry, the word "servo" is used to describe different kinds of motors than we're using here; "servo" just means "closed loop". 
+		</p>
+
+		<p> The easiest way to get up and running with a Servo motor is to use the Arduino Servo library. You can find examples at File &gt; Examples &gt; Servo, but minimal usage looks like this: </p>
 
 <pre><code class="language-arduino">
-int buzzerPin = 8;
+#include &lt;Servo.h&gt;
+
+Servo myservo;  // create servo object to control a servo
 
 void setup() {
-
-}// not needed 
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+}
 
 void loop() {
-  tone(buzzerPin, 1000, 500);
-  delay(1000);
+  myservo.write(90); // commands the servo to jump to its middle position (90 degrees)
 }
 </code></pre>
 
