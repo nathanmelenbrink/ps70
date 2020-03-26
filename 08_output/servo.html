@@ -69,7 +69,7 @@
 		<p> Most of the actuators we'll look at are "open loop", meaning that we give them commands but don't expect any feedback. Servos are probably the easiest way to add "closed loop" actuation to your project. In industry, the word "servo" is used to describe different kinds of motors than we're using here; "servo" just means "closed loop". 
 		</p>
 
-		<p> These are the servos included in your kits. Click here to view the datasheet. </p>
+		<p> The servos included in your kits are <a href='https://www.amazon.com/gp/product/B072V529YD/ref=ppx_od_dt_b_asin_title_s00?ie=UTF8&psc=1'>9g Micro Servos</a>. Take a look at <a href='https://images-na.ssl-images-amazon.com/images/I/61jUf7Q-0uL.pdf'>the data sheet </a>to learn useful specifications, like its range of motion (120 degrees, not 180), operating voltage (4.8V-6V), operating speed (60 degrees in 0.09 seconds) and running current (~500mA). </p>
 
 		<p> The easiest way to get up and running with a Servo motor is to use the Arduino Servo library. You can find examples at File &gt; Examples &gt; Servo, but minimal usage looks like this: </p>
 
@@ -95,7 +95,7 @@ void loop() {
 		<p> This code will move your servo as fast as it can to the middle position (90 degrees out of a range of 180). </p>
 
 
-		<p>In most applications, we'll want the servo to do more than just remain at a particular position. Sometimes, we'll want to program a servo to move in a certain way on repeat. With the same wiring, try uploading the following code (from the Arduino Sweep example): </p>
+		<p>In most applications, we'll want the servo to do more than just remain at a particular position. Sometimes, we'll want to program a servo to move in a certain way on repeat. With the same wiring, try uploading the following code (from the Arduino "Sweep" example): </p>
 
 <pre><code class="language-arduino">
 #include &lt;Servo.h&gt;
@@ -121,7 +121,7 @@ void loop() {
 
 		<p>Now see if you can modify the above code by adding a <code>for()</code> loop that makes the servo return to position 0 at exactly half the speed. </p>
 
-		<p>Sometimes we'll want a servo to move according to some input. A common usage is having a potentiometer control the servo. Give this a shot; wiring diagram and code below (from the Arduino Knob example). </p>
+		<p>Sometimes we'll want a servo to move according to some input. A common usage is having a potentiometer control the servo. Give this a shot; wiring diagram and code below (from the Arduino "Knob" example). </p>
 
 		<img src='./servo.png' alt='servo circuit'>
 
