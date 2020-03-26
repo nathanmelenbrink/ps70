@@ -67,6 +67,8 @@
 		</ul>
 		Here's a simple example: </p>
 
+		<img src='./buzzer.png' alt='buzzer circuit'>
+
 <pre><code class="language-arduino">
 int buzzerPin = 10;
 
@@ -96,16 +98,17 @@ void loop() {
 
 void myTone(int pin, int frequency, int duration){ 
   int startTime = millis();
-  int halfPeriod = 1000000L/frequency/2;
-  while (millis()-startTime< duration){
-    digitalWrite(pin,HIGH);
-    delayMicroseconds(halfPeriod);
-    digitalWrite(pin,LOW);
-    delayMicroseconds(halfPeriod);
+  int period = 1000000/frequency; 
+  while ((millis() - startTime) < duration){ 
+    digitalWrite(pin, HIGH);
+    delayMicroseconds(period/2);
+    digitalWrite(pin, LOW);
+    delayMicroseconds(period/2);
   }
 }
 </code></pre>
 
+		<p> The <code>myTone()</code> function calculates the period of the wave that produces the desired frequency (in Hz, or times per second). </p>
 
 		<p> Some things to keep in mind when using buzzers: 
 		<ul> 
