@@ -52,7 +52,6 @@
 			<ul> 
 				<li>Microcontroller </li>
 				<li>protoboard</li>
-				<li>300-500 Ohm resistor</li>
 				<li>Buzzer</li>
 			</ul>
 		</p> 
@@ -66,6 +65,8 @@
 			<li> Duration (optional) - how long the tone plays. If you don't use the duration argument, you should have a <code>delay()</code> function following the tone instead. </li>
 		</ul>
 		Here's a simple example: </p>
+
+		<img src='./buzzer.png' alt='buzzer circuit'>
 
 <pre><code class="language-arduino">
 int buzzerPin = 10;
@@ -90,22 +91,23 @@ void setup() {
 }
 
 void loop() {
-  myTone(buzzerPin, 1000, 500);
+  myTone(buzzerPin, 262, 500);
   delay(1000);
 }
 
 void myTone(int pin, int frequency, int duration){ 
   int startTime = millis();
-  int halfPeriod = 1000000L/frequency/2;
-  while (millis()-startTime< duration){
-    digitalWrite(pin,HIGH);
-    delayMicroseconds(halfPeriod);
-    digitalWrite(pin,LOW);
-    delayMicroseconds(halfPeriod);
+  int period = 1000000/frequency; 
+  while ((millis() - startTime) < duration){ 
+    digitalWrite(pin, HIGH);
+    delayMicroseconds(period/2);
+    digitalWrite(pin, LOW);
+    delayMicroseconds(period/2);
   }
 }
 </code></pre>
 
+		<p> The <code>myTone()</code> function calculates the period of the wave that produces the desired frequency (in Hz, or cycles per second). Middle C is about 262 Hz. If we divide 1 million (the number of microseconds in a second) over 262 cycles per second, we get a period (or cycle) of about 3,817 microseconds. We want to turn our piezo on for half that time, then off for the remaining half, thereby making a square wave. In the above code, the square wave plays for half a second, then is silent for one second during the subsequent delay. </p>
 
 		<p> Some things to keep in mind when using buzzers: 
 		<ul> 
@@ -125,7 +127,8 @@ void myTone(int pin, int frequency, int duration){
 			<li> <a href='https://gist.github.com/nicksort/4736535'>Star Wars Theme</a></li>
 			<li> <a href='https://www.arduino.cc/en/Tutorial/PlayMelody'>Arduino Melody</a></li>
 			<li> <a href='https://www.princetronics.com/supermariothemesong/'>Super Mario Theme</a></li>
-			
+			<li> <a href='https://github.com/robsoncouto/arduino-songs'>More tunes</a></li>
+
 		</ul>
 		</p>
 
