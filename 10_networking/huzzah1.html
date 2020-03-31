@@ -42,112 +42,34 @@
 <!-- FIRST ROW -->
 <div class="row">
 	<div class="large-3  columns">
-		<h3> Servo Motors </h3>
+		<h3> Huzzah </h3>
 	</div >
 
 	<div class="small-12 medium-12 large-9  columns">
 
-		<h3> Servo Workshop </h3>
+		<h3> Huzzah Workshop </h3>
 		<p> For this workshop, please collect the following: 
 			<ul> 
-				<li>Microcontroller </li>
+				<li>Huzzah board </li>
 				<li>Protoboard</li>
-				<li>Servo motor</li>
-				<li>Potentiometer</li>
+<!-- 				<li>Servo motor</li>
+				<li>Potentiometer</li> -->
 			</ul>
 		</p> 
 
-		<h3> Servo Motors </h3>
+		<p> First we need to configure our Arduino IDE to work with the Huzzah. </p>
 
-		<p> Useful links for Servo motors:
-			<ul> 
-				<li><a href='https://learn.sparkfun.com/tutorials/hobby-servo-tutorial'>Sparkfun Tutorial</a></li>
-				<li><a href='http://fab.cba.mit.edu/classes/865.18/motion/servo/index.html'>MIT MAS.865 page</a></li>
-				<li><a href='https://roberthart56.github.io/SCFAB/SC_lab/Output_Devices/Motion/servomotors.html'>Rob's example</a></li>
-			</ul>
-		</p>
+		
 
-		<p> Most of the actuators we'll look at are "open loop", meaning that we give them commands but don't expect any feedback. Servos are probably the easiest way to add "closed loop" actuation to your project. In industry, the word "servo" is used to describe different kinds of motors than we're using here; "servo" just means "closed loop". 
-		</p>
-
-		<p> The servos included in your kits are <a href='https://www.amazon.com/gp/product/B072V529YD/ref=ppx_od_dt_b_asin_title_s00?ie=UTF8&psc=1'>9g Micro Servos</a>. Take a look at <a href='https://images-na.ssl-images-amazon.com/images/I/61jUf7Q-0uL.pdf'>the data sheet </a>to learn useful specifications, like its range of motion (120 degrees, not 180), operating voltage (4.8V-6V), operating speed (60 degrees in 0.09 seconds) and running current (~500mA). </p>
-
-		<p> The easiest way to get up and running with a Servo motor is to use the Arduino Servo library. Let's start by pasting this minimal example: </p>
+		
 
 <pre><code class="language-arduino">
 #include &lt;Servo.h&gt;
 
-Servo myservo;  // create servo object to control a servo
-
-void setup() {
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
-}
-
-void loop() {
-  myservo.write(90); // commands the servo to jump to its middle position (90 degrees)
-}
 </code></pre>
 
 
-		<p> To run this example, wire up your servo like this:  </p>
-
-		<img src='./servo.png' alt='servo circuit'>
-
-		<p> This code will move your servo as fast as it can to the middle position (90 degrees out of a range of 180). (Note that your servo may only have a range of 120 degrees.) </p>
-
-		<p> As we saw in the data sheet, this servo is happiest with 4.8-6V. We can get 5V from either the Vhi or the USB pins (learn about the difference <a href='https://learn.adafruit.com/introducing-adafruit-itsybitsy-m4/pinouts'> at Adafruit</a>). You can try powering the servo with 3V instead -- it should still work, but more slowly. </p>
-
-		<p>In most applications, we'll want the servo to do more than just remain at a particular position. Sometimes, we'll want to program a servo to move in a certain way on repeat. With the same wiring, try uploading the following code (from the Arduino "Sweep" example): </p>
-
-<pre><code class="language-arduino">
-#include &lt;Servo.h&gt;
-
-Servo myservo;  // create servo object to control a servo
-
-int pos = 0;    // variable to store the servo position
-
-void setup() {
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
-}
-
-void loop() {
-  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
-    // in steps of 1 degree
-    myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
-  }
-  myservo.write(0);					// send the servo back to 0
-  delay(1000);						// give it enough time to make it there
-}
-</code></pre>
-
-		<p>Now see if you can modify the above code by adding a <code>for()</code> loop that makes the servo return to position 0 at exactly half the speed. </p>
-
-		<p>Sometimes we'll want a servo to move according to some input. A common usage is having a potentiometer control the servo. Give this a shot; wiring diagram and code below (from the Arduino "Knob" example). </p>
-
-		<img src='./knob.png' alt='servo circuit'>
-
-<pre><code class="language-arduino">
-#include &lt;Servo.h&gt;
-
-Servo myservo;  // create servo object to control a servo
-
-int potpin = 0;  // analog pin used to connect the potentiometer
-int val;    // variable to read the value from the analog pin
-
-void setup() {
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
-}
-
-void loop() {
-  val = analogRead(potpin);            // reads the value of the potentiometer (value between 0 and 1023)
-  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
-  myservo.write(val);                  // sets the servo position according to the scaled value
-  delay(15);                           // waits for the servo to get there
-}
-</code></pre>
-
-	<p> That's about all you need to know in order to operate hobby servo motors! </p> 
+		
 
 	</div >
 </div>
