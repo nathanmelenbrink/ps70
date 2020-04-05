@@ -74,6 +74,8 @@ https://www.artik.io/
 
 https://nodered.org/
 
+pubnub
+
 Adafruit  ( https://io.adafruit.com/  ) and ThingSpeek ( https://thingspeak.com/  )are simply data analytics platforms that support protocols that IOT Devices can use, they will concentrate the data and with a bit of work, present it to you in some meaningful way, they are not "The Internet of things" nor are they an IOT Device. in fact they are possibly the last part in the process and provide little control back to your sensor (IOT Edge Device) and would not be terribly quick to do so. They can have actions configured to provide some control of your solution but what if you provides have an outage or you need very quick response to certain scenarios ..........
 Things like Node-Red can provide both a way to display your data when combined with other applications like SQLite3 and perhaps MQTT to include historical data (Trending), this would provide you the most control over your solution (Home Automation for instance). There are some providers out there that can provide services like MQTT Brokers and even a Node-Red based dashboard but you can also choose to implement this locally and therefor not have issues when the Internet access is temporarily unavailable (Stuff happens). It takes nothing more than say a Raspberry PI or an IOT2020 to get this control system up and running including providing a  WEB interface and a workflow engine along with storage for historical data.
 You can even publish this data to an external service like Adafruit or Thingspeek if you like, the difference is that none of your sensors need to know about this fact and the ONLY device that publishes outside of your local network would be this PI / IOT2020 gateway / controller. but it does not have to, this is a great security feature and allows much better security to be implemented at the gateway
@@ -90,18 +92,16 @@ Hope this helps explain my previous answer, please also go watch some of the vid
 
 
 			</li> 
-			<li> Use a service like If Then Then That (IFTTT) to manage websocket connections. We'll use this service in this example.  </li> 
+			<li> Use a service like <a href='https://ifttt.com/'>If This, Then That (IFTTT)</a> to manage websocket connections. We'll use this service in this example. Like any of the services above, IFTTT can allow you to control your IoT device from anywhere in the world. However, it also features a robust app (for iOS and Android) which you can use to control your devices (over WiFi or Bluetooth), and features lots of integrations to products like <a href='https://randomnerdtutorials.com/esp32-esp8266-publish-sensor-readings-to-google-sheets/'>Google Sheets</a>, which you can use for data logging. </li> 
 
 		</ul>
-		
-
 
 
 
 		
 
 <pre><code class="language-arduino">
-#include &lt;Servo.h&gt;
+
 
 </code></pre>
 
