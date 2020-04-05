@@ -57,7 +57,44 @@
 			</ul>
 		</p> 
 
-		<p> First we need to configure Arduino IDE to work with the Huzzah. First, download and install the <a href='http://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers'> CP2104 USB Driver</a>. Next, add this to Perferences &gt; Additional Boards Manager URLs: <code>https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code>. Finally, under Tools &gt; Boards Manager, add the "esp32" boards package. Select Adafruit ESP32 Feather as your board. </p>
+		<p> The previous tutorial showed how to build a web interface to control your ESP32 over a Local Area Network. If you want to talk to your ESP32, you'll need to do a bit more work. There are many options: </p>
+
+		<ul> 
+			<li> Build a full-stack server with a Model View Controller (MVC) architecture. Useful tools for this include <a href='https://www.ibm.com/cloud-computing/bluemix/'> IBM</a> or <a href='https://aws.amazon.com/iot/'>Amazon Web Services</a>. </li> 
+			<li> Use a 3rd party platform designed to streamline the websocket connection. Examples include <a href='https://firebase.google.com/'>Google Firebase</a>,  
+<!-- 				Keen IO - Analytics for Developers
+
+https://www.carriots.com/
+
+Wia | Cloud Platform for the Internet of Things
+
+https://thethings.io/
+
+https://www.artik.io/ 
+
+https://nodered.org/
+
+Adafruit  ( https://io.adafruit.com/  ) and ThingSpeek ( https://thingspeak.com/  )are simply data analytics platforms that support protocols that IOT Devices can use, they will concentrate the data and with a bit of work, present it to you in some meaningful way, they are not "The Internet of things" nor are they an IOT Device. in fact they are possibly the last part in the process and provide little control back to your sensor (IOT Edge Device) and would not be terribly quick to do so. They can have actions configured to provide some control of your solution but what if you provides have an outage or you need very quick response to certain scenarios ..........
+Things like Node-Red can provide both a way to display your data when combined with other applications like SQLite3 and perhaps MQTT to include historical data (Trending), this would provide you the most control over your solution (Home Automation for instance). There are some providers out there that can provide services like MQTT Brokers and even a Node-Red based dashboard but you can also choose to implement this locally and therefor not have issues when the Internet access is temporarily unavailable (Stuff happens). It takes nothing more than say a Raspberry PI or an IOT2020 to get this control system up and running including providing a  WEB interface and a workflow engine along with storage for historical data.
+You can even publish this data to an external service like Adafruit or Thingspeek if you like, the difference is that none of your sensors need to know about this fact and the ONLY device that publishes outside of your local network would be this PI / IOT2020 gateway / controller. but it does not have to, this is a great security feature and allows much better security to be implemented at the gateway
+this is also very easy to implement and your are no longer bound to some cloud service that may or may not last as free... it puts you in control of your system. If you want remote access to turn on lights and change temperatures, that is easy too. If you want sme of the Data to be analyzed and displayed by a cloud service then it is the gateway that will publish it and only what you want. the rest is kept private and also only one device needs to be changed if you want to change cloud service or add another.
+In my opinion this is the prefered way to implement this and I speak from experience having worked in big organizations where distributed data and analytics have been an important part of the solution. I am talking about country level and Provincial level solutions covering thousands of mile in distance and hundreds or thousands of devices feeding data.
+Things to think about
+1. SECURITY, who ill have access to the data and how will they get to it
+2. ARCHIVE DATA, where do you want it stored and how will you access it (Trending, Graphs etc), do you want it stored in some foreign country where your data is not regarded as yours and that government can look as often as they want.
+3. WHAT DATA. sending external temperature and humidity etc out to a cloud service or other public platform can be helpful to others but not your specific address or other personal identifying information (When your heating kicks in or when to turn on / off lights in the home, it is surprising how little data can be used to find out if your at home, what your habits are and when best to break into your premises
+4. Ease of Maintenance, if every one of your sensors is configured for external transmission of data, and also to receive remote commands from say a cell phone app, then what happens when your provider changes you IP address or blocks a port for some reason, you have to go to all those devices and update them. If they all go through a local (To Them) gateway then you have only one thing to update...
+Hope this helps explain my previous answer, please also go watch some of the videos I have published on my youtube channel on IOT. there are many examples on how to implement what I am talking about ( https://www.youtube.com/thebreadboardca )
+
+-->
+
+
+			</li> 
+			<li> Use a service like If Then Then That (IFTTT) to manage websocket connections. We'll use this service in this example.  </li> 
+
+		</ul>
+		
+
 
 
 
