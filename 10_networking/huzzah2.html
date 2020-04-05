@@ -42,12 +42,12 @@
 <!-- FIRST ROW -->
 <div class="row">
 	<div class="large-3  columns">
-		<h3> Huzzah </h3>
+		<h3> Huzzah: HTTP Server </h3>
 	</div >
 
 	<div class="small-12 medium-12 large-9  columns">
 
-		<h3> Huzzah Workshop </h3>
+		<h3> Huzzah: HTTP Server </h3>
 		<p> For this workshop, please collect the following: 
 			<ul> 
 				<li><a href='https://www.adafruit.com/product/3405'>Huzzah board</a> </li>
@@ -57,19 +57,64 @@
 			</ul>
 		</p> 
 
-		<p> First we need to configure Arduino IDE to work with the Huzzah. First, download and install the <a href='http://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers'> CP2104 USB Driver</a>. Next, add this to Perferences &gt; Additional Boards Manager URLs: <code>https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code>. Finally, under Tools &gt; Boards Manager, add the "esp32" boards package. Select Adafruit ESP32 Feather as your board. </p>
+		<p> We previously looked at creating a web server on the Huzzah ESP32 board. However, you can also use the Huzzah as a web client, which can then access outside srvers. </p> 
 
-
-
-		
+		<p> SparkFun has a <a href='https://learn.sparkfun.com/tutorials/esp32-thing-plus-hookup-guide/'>tutorial for using an ESP32 to poll a remote domain</a> (http://example.com/) as a client. The following is a modification of that example to work the the National Weather Service's API. A <a href='https://techtutorialsx.com/2018/03/17/esp32-arduino-getting-weather-data-from-api/'>similar example</a> uses the OpenWeatherMap API, which requires you to register for an API key. </p>
 
 <pre><code class="language-arduino">
-#include &lt;Servo.h&gt;
+#include <WiFi.h>
+#include <HTTPClient.h>
+ 
+const char* ssid = "YOUR_SSID";
+const char* password =  "YOUR_PASSWORD";
+ 
+const String endpoint = "https://api.weather.gov/gridpoints/TOP/31,80/forecast";
+ 
+void setup() {
+ 
+  Serial.begin(115200);
+ 
+  WiFi.begin(ssid, password);
+ 
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi..");
+  }
+ 
+  Serial.println("Connected to the WiFi network");
+ 
+}
 
+void loop() {
+ 
+  if ((WiFi.status() == WL_CONNECTED)) { //Check the current connection status
+ 
+    HTTPClient http;
+ 
+    http.begin(endpoint); //Specify the URL
+    int httpCode = http.GET();  //Make the request
+ 
+    if (httpCode > 0) { //Check for the returning code
+ 
+        String payload = http.getString();
+        Serial.println(httpCode);
+        Serial.println(payload);
+      }
+ 
+    else {
+      Serial.println("Error on HTTP request");
+    }
+ 
+    http.end(); //Free the resources
+  }
+ 
+  delay(30000);
+ 
+}
 </code></pre>
 
 
-		
+		<p> You can also use similar methods to get accurate date and time information from an internet source. Here's <a href='https://randomnerdtutorials.com/esp32-date-time-ntp-client-server-arduino/'>a tutorial</a> that demonstrates that. </p>
 
 	</div >
 </div>
