@@ -47,7 +47,7 @@
 
 	<div class="small-12 medium-12 large-9  columns">
 
-		<h3> Huzzah Workshop </h3>
+		<h3> Simple WiFi Server </h3>
 		<p> For this workshop, please collect the following: 
 			<ul> 
 				<li><a href='https://www.adafruit.com/product/3405'>Huzzah board</a> </li>
@@ -59,8 +59,9 @@
 
 		<p> First we need to configure Arduino IDE to work with the Huzzah. First, download and install the <a href='http://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers'> CP2104 USB Driver</a>. Next, add this to Perferences &gt; Additional Boards Manager URLs: <code>https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code>. Finally, under Tools &gt; Boards Manager, add the "esp32" boards package. Select Adafruit ESP32 Feather as your board. </p>
 
+		<p> Note: the terms here can be confusing. <a href='https://en.wikipedia.org/wiki/ESP32'>ESP32</a> refers to a series of low-cost, low-power system-on-a-chip microcontrollers with integrated Wi-Fi and Bluetooth. Its precursor was the ESP8266 -- many tutorials will be compatible with both. <a href='https://www.adafruit.com/feather'>Feather</a> is a line of development boards from Adafruit. The <a href='https://www.adafruit.com/product/3405'>Huzzah32</a> is the specific Feather board that is built around the ESP32. </p>
 
-
+		<p> Once you have drivers and boards installed, remember to specify the board "Adafruit ESP32 Feather" and select the corresponding port. Then navigate to File &gt; Examples &gt; Examples for Adafruit ESP32 Feather &gt; WiFi &gt; SimpleWifiServer. We'll work with this code, but first we need to make some changes. </p>
 		
 
 <pre><code class="language-arduino">
