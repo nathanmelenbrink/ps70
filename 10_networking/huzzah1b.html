@@ -183,15 +183,14 @@ void loop() {
 &lt;/head&gt;
 
 &lt;body&gt;
+	&lt;button id="turn-on" name="turnon"&gt;Turn On &lt;/button&gt;
+	&lt;button id="turn-off" name="turnoff"&gt;Turn Off &lt;/button&gt;
 
-	 &lt;button id="turn-on" name="turnon"&gt;Turn On &lt;/button&gt;
-	 &lt;button id="turn-off" name="turnoff"&gt;Turn Off &lt;/button&gt;
-
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	&lt;!-- The core Firebase JS SDK is always required and must be listed first --&gt;
 	&lt;script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"&gt;&lt;/script&gt;
 
-	<!-- TODO: Add SDKs for Firebase products that you want to use
-	     https://firebase.google.com/docs/web/setup#available-libraries -->
+	&lt;!-- TODO: Add SDKs for Firebase products that you want to use
+	     https://firebase.google.com/docs/web/setup#available-libraries --&gt;
 	&lt;script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"&gt;&lt;/script&gt;
 
 	&lt;script>
@@ -205,7 +204,8 @@ void loop() {
 		messagingSenderId: "REPLACE_WITH_YOUR_OWN",
 		appId: "REPLACE_WITH_YOUR_OWN"
 	};
-		// Initialize Firebase
+	
+	// Initialize Firebase
 	firebase.initializeApp(firebaseConfig);
 
 	// Get a database reference to our blog
@@ -229,7 +229,7 @@ void loop() {
 		});
 	}	
     &lt;/script&gt;
-    
+
 &lt;/body&gt;
 </code></pre>
 
