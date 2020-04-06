@@ -40,7 +40,7 @@
 	//var admin = require("firebase-admin");
 
 	// Get a database reference to our blog
-	var db = admin.database();
+	var db = firebase.database();
 	var ref = db.ref("/");
 
 	document.getElementById('turn-on').addEventListener('click', turnOn, false);
