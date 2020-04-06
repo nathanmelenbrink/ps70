@@ -97,13 +97,15 @@ pubnub
 
 			<img src='./fb3.png' alt='database secrets'>
 
-			<p>Hover over the secret key, and select "Show". Copy this and save it somewhere to use in later steps.  </p>
+			<p>Hover over the secret key, and select "Show". Copy this and save it somewhere to use in later steps. Also make sure to write down the auto-generated URL where you can access your database (something like esp32-led-9a0ab.firebaseio.com).  </p>
 
 			<p> Set up your circuit so that there is an LED attached to pin 5. In Arduino IDE, make sure you've installed the necessary libraries for ESP32 and the Feather boards <a href='./huzzah1.html'>(see previous step if not)</a>. </p>
 
-			<p> Additionally, we need to add another library in order to talk to Firebase. Search and install the Firebase ESP32 Client by Mobizt. In order to get this library to work correctly, we need to install an extra dependency. Go to <a href='https://github.com/mobizt/HTTPClientESP32Ex'>https://github.com/mobizt/HTTPClientESP32Ex</a> and download the ZIP. In Arduino, go to Sketch &gt; Include Library &gt; Add .ZIP Library and find the zip file you just downloaded. </p> 
+			<!-- <p> Additionally, we need to add another library in order to talk to Firebase. Search and install the Firebase ESP32 Client by Mobizt. In order to get this library to work correctly, we need to install an extra dependency. Go to <a href='https://github.com/mobizt/HTTPClientESP32Ex'>https://github.com/mobizt/HTTPClientESP32Ex</a> and download the ZIP. In Arduino, go to Sketch &gt; Include Library &gt; Add .ZIP Library and find the zip file you just downloaded. </p>  -->
 
-			<p> In Arduino IDE, we can start with some of the WiFi library boilerplate code that we used in the last example (no need to start a server instance this time). Also, paste in your key from Firebase and make up a name for the event you want to trigger. </p>
+			<p> Additionally, we need to add another library in order to talk to Firebase. Go to <a href='https://github.com/ioxhop/IOXhop_FirebaseESP32'>https://github.com/ioxhop/IOXhop_FirebaseESP32</a> and download the ZIP. In Arduino, go to Sketch &gt; Include Library &gt; Add .ZIP Library and find the zip file you just downloaded. </p> 
+
+			<p> In Arduino IDE, we can start with some of the WiFi library boilerplate code that we used in the last example (no need to start a server instance this time). Also, paste in your key and URL from Firebase. </p>
 		
 
 <pre><code class="language-arduino">
