@@ -80,12 +80,15 @@ pubnub
 
 
 			</li> 
-			<li> Use a service like <a href='https://ifttt.com/'>If This, Then That (IFTTT)</a> to manage websocket connections. This service has gotten a bit more "business-oriented" than the previous examples, and doesn't allow direct or low-level control over your IoT devices (at least not without subscribing).  features lots of integrations to products like <a href='https://randomnerdtutorials.com/esp32-esp8266-publish-sensor-readings-to-google-sheets/'>Google Sheets</a>, which you can use for data logging. </li> 
+			<li> Use a service like <a href='https://ifttt.com/'>If This, Then That (IFTTT)</a> to manage websocket connections. This service has gotten a bit more "business-oriented" than the previous examples, and doesn't allow direct or low-level control over your IoT devices (at least not without subscribing). It does feature lots of integrations to applications like <a href='https://randomnerdtutorials.com/esp32-esp8266-publish-sensor-readings-to-google-sheets/'>Google Sheets</a>, which you can use for data logging. It might also be the best choice if you want to do things like send an email every time an event is triggered. </li> 
 
-			<li> Use a 3rd party platform that acts as a general-purpose database for your IoT project. We'll use <a href='https://firebase.google.com/'>Google Firebase</a> for this. Like the other 3rd party platforms, we'll be able to talk to your device from anywhere in the world. We can also talk to the Firebase real-time database from personal webpages, or build <a href='https://github.com/nathanmelenbrink/artg2260/blob/45924db6e60abae73a9ead30eaee0fd356d31b24/09_media/test.html'>a full-fledged app</a> with logins and permissions on top of it. </li>
-
+			<li> A final option is to use a 3rd party platform that acts as a general-purpose database for your IoT project. We'll use <a href='https://firebase.google.com/'>Google Firebase</a> for this. Like the other 3rd party platforms, we'll be able to talk to your device from anywhere in the world. But we can also talk to the Firebase real-time database from personal webpages, or build <a href='https://github.com/nathanmelenbrink/artg2260/blob/45924db6e60abae73a9ead30eaee0fd356d31b24/09_media/test.html'>a full-fledged app</a> with logins and permissions on top of it. </li>
 
 		</ul>
+
+			<p> The first step is to head to <a href='https://firebase.google.com/'>Firebase</a> and sign in with your Google account. Click "Get Started" and then "Add Project". Next, specify your project name (I called mine ESP32-LED), which will be used to generate a url (like https://esp32-led-9a0ab.firebaseio.com) where you can access your project database. You can opt in to Google Analytics if you wish. Click OK; you should be taken to the Firebase console page for your project  </p>
+
+
 
 
 			<p> In Arduino, we can start with some of the WiFi library boilerplate code that we used in the last example (no need to start a server instance this time). Also, paste in your key from Firebase and make up a name for the event you want to trigger. </p>
