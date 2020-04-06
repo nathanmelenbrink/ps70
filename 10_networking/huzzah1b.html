@@ -61,12 +61,11 @@
 
 		<ul> 
 			<li> Build a full-stack server with a Model View Controller (MVC) architecture. Useful tools for this include <a href='https://www.ibm.com/cloud-computing/bluemix/'> IBM</a> or <a href='https://aws.amazon.com/iot/'>Amazon Web Services</a>. </li> 
-			<li> Use a 3rd party platform designed to streamline the websocket connection. Examples include <a href='https://firebase.google.com/'>Google Firebase</a>,  
-<!-- 				Keen IO - Analytics for Developers
+			<li> Use a 3rd party platform designed to allow for a server-less IoT. Examples include <a href='https://io.adafruit.com/'>Adafruit IO</a>, <a href='https://thingspeak.com/'>ThingSpeak</a>,  
+<!-- 				
 
 https://www.carriots.com/
 
-Wia | Cloud Platform for the Internet of Things
 
 https://thethings.io/
 
@@ -76,70 +75,103 @@ https://nodered.org/
 
 pubnub
 
-Adafruit  ( https://io.adafruit.com/  ) and ThingSpeek ( https://thingspeak.com/  )are simply data analytics platforms that support protocols that IOT Devices can use, they will concentrate the data and with a bit of work, present it to you in some meaningful way, they are not "The Internet of things" nor are they an IOT Device. in fact they are possibly the last part in the process and provide little control back to your sensor (IOT Edge Device) and would not be terribly quick to do so. They can have actions configured to provide some control of your solution but what if you provides have an outage or you need very quick response to certain scenarios ..........
-Things like Node-Red can provide both a way to display your data when combined with other applications like SQLite3 and perhaps MQTT to include historical data (Trending), this would provide you the most control over your solution (Home Automation for instance). There are some providers out there that can provide services like MQTT Brokers and even a Node-Red based dashboard but you can also choose to implement this locally and therefor not have issues when the Internet access is temporarily unavailable (Stuff happens). It takes nothing more than say a Raspberry PI or an IOT2020 to get this control system up and running including providing a  WEB interface and a workflow engine along with storage for historical data.
-You can even publish this data to an external service like Adafruit or Thingspeek if you like, the difference is that none of your sensors need to know about this fact and the ONLY device that publishes outside of your local network would be this PI / IOT2020 gateway / controller. but it does not have to, this is a great security feature and allows much better security to be implemented at the gateway
-this is also very easy to implement and your are no longer bound to some cloud service that may or may not last as free... it puts you in control of your system. If you want remote access to turn on lights and change temperatures, that is easy too. If you want sme of the Data to be analyzed and displayed by a cloud service then it is the gateway that will publish it and only what you want. the rest is kept private and also only one device needs to be changed if you want to change cloud service or add another.
-In my opinion this is the prefered way to implement this and I speak from experience having worked in big organizations where distributed data and analytics have been an important part of the solution. I am talking about country level and Provincial level solutions covering thousands of mile in distance and hundreds or thousands of devices feeding data.
-Things to think about
-1. SECURITY, who ill have access to the data and how will they get to it
-2. ARCHIVE DATA, where do you want it stored and how will you access it (Trending, Graphs etc), do you want it stored in some foreign country where your data is not regarded as yours and that government can look as often as they want.
-3. WHAT DATA. sending external temperature and humidity etc out to a cloud service or other public platform can be helpful to others but not your specific address or other personal identifying information (When your heating kicks in or when to turn on / off lights in the home, it is surprising how little data can be used to find out if your at home, what your habits are and when best to break into your premises
-4. Ease of Maintenance, if every one of your sensors is configured for external transmission of data, and also to receive remote commands from say a cell phone app, then what happens when your provider changes you IP address or blocks a port for some reason, you have to go to all those devices and update them. If they all go through a local (To Them) gateway then you have only one thing to update...
-Hope this helps explain my previous answer, please also go watch some of the videos I have published on my youtube channel on IOT. there are many examples on how to implement what I am talking about ( https://www.youtube.com/thebreadboardca )
 
 -->
 
 
 			</li> 
-			<li> Use a service like <a href='https://ifttt.com/'>If This, Then That (IFTTT)</a> to manage websocket connections. We'll use this service in this example. Like any of the services above, IFTTT can allow you to control your IoT device from anywhere in the world. However, it also features a robust app (for iOS and Android) which you can use to control your devices (over WiFi or Bluetooth), and features lots of integrations to products like <a href='https://randomnerdtutorials.com/esp32-esp8266-publish-sensor-readings-to-google-sheets/'>Google Sheets</a>, which you can use for data logging. </li> 
+			<li> Use a service like <a href='https://ifttt.com/'>If This, Then That (IFTTT)</a> to manage websocket connections. This service has gotten a bit more "business-oriented" than the previous examples, and doesn't allow direct or low-level control over your IoT devices (at least not without subscribing).  features lots of integrations to products like <a href='https://randomnerdtutorials.com/esp32-esp8266-publish-sensor-readings-to-google-sheets/'>Google Sheets</a>, which you can use for data logging. </li> 
+
+			<li> Use a 3rd party platform that acts as a general-purpose database for your IoT project. We'll use <a href='https://firebase.google.com/'>Google Firebase</a> for this. Like the other 3rd party platforms, we'll be able to talk to your device from anywhere in the world. We can also talk to the Firebase real-time database from personal webpages, or build <a href='https://github.com/nathanmelenbrink/artg2260/blob/45924db6e60abae73a9ead30eaee0fd356d31b24/09_media/test.html'>a full-fledged app</a> with logins and permissions on top of it. </li>
+
 
 		</ul>
 
-			<p> First, head to <a href='https://ifttt.com/'>IFTTT</a> and create an account. Login and navigate to the <a href='https://ifttt.com/maker_webhooks'> Webhooks</a> page. Click "Documentation" and you'll see a page with your key and instructions on how to make a POST or GET request. </p>
 
-
-			<p> In Arduino, we can start with some of the WiFi library boilerplate code that we used in the last example (no need to start a server instance this time). Also, paste in your key from IFTTT and make up a name for the event you want to trigger. </p>
+			<p> In Arduino, we can start with some of the WiFi library boilerplate code that we used in the last example (no need to start a server instance this time). Also, paste in your key from Firebase and make up a name for the event you want to trigger. </p>
 		
 
 <pre><code class="language-arduino">
-#include &lt;WiFi.h&gt;
+#include &lt;WiFi.h&gt;                                        // esp32 library
 
-const char* ssid = "YOUR_SSID";
-const char* password =  "YOUR_PASSWORD";
-const char* IFTTT_key =  "YOUR_KEY";
-const char* event =  "EVENT_NAME";
- 
+#include &lt;IOXhop_FirebaseESP32.h&gt;                                            // firebase library
+
+#define FIREBASE_HOST "esp32-led-9a0ab.firebaseio.com/"                         // the project name address from firebase id
+
+#define FIREBASE_AUTH ""                    // the secret key generated from firebase
+
+#define WIFI_SSID ""                                          // input your home or public wifi name
+
+#define WIFI_PASSWORD ""                                    //password of wifi ssid
+
+String fireStatus = "";                                                     // led status received from firebase
+
+int led = 5;
+
 void setup() {
- 
-  Serial.begin(115200);
- 
-  // We start by connecting to a WiFi network
-  Serial.println();
-  Serial.println();
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
 
-  WiFi.begin(ssid, password);
+  Serial.begin(9600);
+
+  delay(1000);
+
+  pinMode(5, OUTPUT);
+
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);                                      //try to connect with wifi
+
+  Serial.print("Connecting to ");
+
+  Serial.print(WIFI_SSID);
 
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
+
     Serial.print(".");
+
+    delay(500);
+
   }
 
-  Serial.println("");
-  Serial.println("WiFi connected.");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+  Serial.println();
+
+  Serial.print("Connected to ");
+
+  Serial.println(WIFI_SSID);
+
+  Serial.print("IP Address is : ");
+
+  Serial.println(WiFi.localIP());                                                      //print local IP address
+
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);                                       // connect to firebase
+
+  Firebase.setString("LED_STATUS", "OFF");                                          //send initial string of led status
 
 }
 
 void loop() {
- 
-  if ((WiFi.status() == WL_CONNECTED)) { // This is a way to see if the WiFi is connected
 
-   
+  fireStatus = Firebase.getString("LED_STATUS");                     // get led status input from firebase
+
+  if (fireStatus == "ON") {                         // compare the input of led status received from firebase
+
+    Serial.println("Led Turned ON");
+
+    digitalWrite(5, HIGH);                                                         // make output led ON
+
   }
+
+  else if (fireStatus == "OFF") {              // compare the input of led status received from firebase
+
+    Serial.println("Led Turned OFF");
+
+    digitalWrite(5, LOW);                                                         // make output led OFF
+
+  }
+
+  else {
+
+    Serial.println("Wrong Credential! Please send ON/OFF");
+
+  }
+
 }
 
 </code></pre>
