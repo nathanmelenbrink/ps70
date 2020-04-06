@@ -93,7 +93,7 @@ pubnub
 
 			<img src='./fb2.png' alt='firebase database'>
 
-			<p>You are looking at the root of your database, which is "null" because there isn't anything there yet. Next we need to create a secret key to give to our Huzzah board so it can access this database. Click the gear icon next to "Project Overview" and select "Project settings". On the "Project settings" page, click "Service accounts" and then "Database secrets": </p>
+			<p>You are looking at the root of your database, which is "null" because there isn't anything there yet. First let's change permissions (click "Rules" and set both read and write to "true"). Next we need to create a secret key to give to our Huzzah board so it can access this database. Click the gear icon next to "Project Overview" and select "Project settings". On the "Project settings" page, click "Service accounts" and then "Database secrets": </p>
 
 			<img src='./fb3.png' alt='database secrets'>
 
@@ -169,8 +169,71 @@ void loop() {
 
 	<h3> Web Interface</h3>
 	<p> While we can now talk to our device remotely, directly meddling with the database isn't exactly a smooth UI. Let's make a simple web interface to do this. </p>
+
+	<p> Save the code below as a new HTML file (e.g., in your Week 10 folder). On your Firebase console page, look under where it says "Get started by adding Firebase to your app" and click the Web icon (&lt;/&gt;). On the next page, make a name for your app (like LED Toggle), and then copy the auto-generated configuration code into the firebaseConfig variable below. </p>
 		
-	<p> On your Firebase console page, look under where it says "Get started by adding Firebase to your app" and click the Web icon (&lt;/&gt;). On the next page, make a name for your app (like LED Toggle), and then copy the auto-generated configuration code into a new HTML page and save it in your website's Week 10 folder.  </p>
+
+<pre><code class="html">
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>PHYSCI 70: Introduction to Digital Fabrication</title>
+</head>
+
+<body>
+
+	 <button id="turn-on" name="turnon">Turn On</button>
+	 <button id="turn-off" name="turnoff">Turn Off</button>
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+	     https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+
+	<script>
+	// Your web app's Firebase configuration
+	var firebaseConfig = {
+		apiKey: "REPLACE_WITH_YOUR_OWN",
+		authDomain: "REPLACE_WITH_YOUR_OWN",
+		databaseURL: "REPLACE_WITH_YOUR_OWN",
+		projectId: "REPLACE_WITH_YOUR_OWN",
+		storageBucket: "REPLACE_WITH_YOUR_OWN",
+		messagingSenderId: "REPLACE_WITH_YOUR_OWN",
+		appId: "REPLACE_WITH_YOUR_OWN"
+	};
+		// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
+
+	// Get a database reference to our blog
+	var ref = firebase.database().ref("/");
+
+	// make the buttons call the function below 
+	document.getElementById('turn-on').addEventListener('click', turnOn, false);
+	document.getElementById('turn-off').addEventListener('click', turnOff, false);
+
+	function turnOn(){
+		console.log("turning on");
+		ref.update({
+			"LED_STATUS": "ON"
+		});
+	}
+
+	function turnOff(){
+		console.log("turning off");
+		ref.update({
+			"LED_STATUS": "OFF"
+		});
+	}	
+</script>
+
+</body>
+</code></pre>
+
+	<p> Save your code, commit and push as usual. Navigate to your new HTML page, and try turning the on and off. Here's a <a href='./firebase_demo.html'> live demo</a>. </p>
 
 	</div >
 </div>
