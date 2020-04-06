@@ -96,8 +96,10 @@ Hope this helps explain my previous answer, please also go watch some of the vid
 
 		</ul>
 
+			<p> First, head to <a href='https://ifttt.com/'>IFTTT</a> and create an account. Login and navigate to the <a href='https://ifttt.com/maker_webhooks'> Webhooks</a> page. Click "Documentation" and you'll see a page with your key and instructions on how to make a POST or GET request. </p>
 
-			<p> We can start with some of the WiFi library boilerplate code that we used in the last example (no need to start a server instance this time): </p>
+
+			<p> In Arduino, we can start with some of the WiFi library boilerplate code that we used in the last example (no need to start a server instance this time). Also, paste in your key from IFTTT and make up a name for the event you want to trigger. </p>
 		
 
 <pre><code class="language-arduino">
@@ -105,6 +107,8 @@ Hope this helps explain my previous answer, please also go watch some of the vid
 
 const char* ssid = "YOUR_SSID";
 const char* password =  "YOUR_PASSWORD";
+const char* IFTTT_key =  "YOUR_KEY";
+const char* event =  "EVENT_NAME";
  
 void setup() {
  
@@ -133,11 +137,9 @@ void setup() {
 void loop() {
  
   if ((WiFi.status() == WL_CONNECTED)) { // This is a way to see if the WiFi is connected
- 
+
    
   }
- 
-
 }
 
 </code></pre>
