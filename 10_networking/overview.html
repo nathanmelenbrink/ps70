@@ -71,12 +71,19 @@ Your computer can be a host to other computers. Likewise, your router can be a h
 
 
 		<h3> Bluetooth </h3>
-
+		<p> Bluetooth is a wireless technology standard used for exchanging data between fixed and mobile devices over short distances (up to tens of meters) using short-wavelength UHF radio waves in the industrial, scientific and medical radio bands, from 2.400 to 2.485 GHz, and building personal area networks (from Wikipedia). We won't be using Bluetooth classic this week; we'll be using BLE. </p>
 
 		<h3> Bluetooth Low Energy (BLE) </h3>
 
+
+		<p> Bluetooth Low Energy, BLE for short, is a power-conserving variant of Bluetooth. BLE’s primary application is short distance transmission of small amounts of data (low bandwidth). Unlike Bluetooth that is always on, BLE remains in sleep mode constantly except for when a connection is initiated. This makes it consume very low power. BLE consumes up to 100x less power than Bluetooth (depending on the use case). Learn more <a href='https://www.bluetooth.com/learn-about-bluetooth/bluetooth-technology/radio-versions/'>here</a>. </p> 	
+
+		<img src='./ble.png' alt='ble vs bluetooth'>
+
 		<p> For BLE projects, people often care a lot about reducing power draw as much as possible. This allows e.g., sensors to run for a long time on a small battery. There are some best practices for reducing power draw, such as using timers instead of delays (which keep your processor awake the whole time). There are <a href='https://www.instructables.com/id/Very-Low-Power-BLE-Made-Easy-With-Arduino/'>plenty of libraries and tutorials</a> out there that discuss this. </p>
-		
+
+
+		<p> With Bluetooth Low Energy, there are two types of devices: the server and the client. The ESP32 can act either as a client or as a server. The server advertises its existence, so it can be found by other devices, and contains the data that the client can read. The client scans the nearby devices, and when it finds the server it is looking for, it establishes a connection and listens for incoming data. This is called point-to-point communication.</p>
 
 
 	</div >
