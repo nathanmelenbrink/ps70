@@ -42,41 +42,22 @@
 <!-- FIRST ROW -->
 <div class="row">
 	<div class="large-3  columns">
-		<h3> Feather ESP32 </h3>
+		<h3> WiFi and Bluetooth </h3>
 	</div >
 
 	<div class="small-12 medium-12 large-9  columns">
 
-		<h3> Huzzah Bluetooth Tutorial</h3>
-		<p> Materials needed for this tutorial:  
-			<ul> 
-				<li><a href='https://www.adafruit.com/product/3405'>Huzzah board</a> </li>
-				<li>Protoboard</li>
- 				<li>LED</li>
+		<h3> WiFi Communication </h3>
+		
 
-			</ul>
-		</p> 
-
-		<p> For the sake of consistency, this tutorial will demonstrate turning an LED on and off using Bluetooth Low Energy (BLE). Your laptop likely has Bluetooth, and there are plenty of examples for controlling IoT devices from laptops over Bluetooth. For this example, we'll look at controlling a BLE device using a smartphone app. This would be useful for e.g., outdoor applications where there is no WiFi available (or indoor locations with restrictive WiFi networks). </p>
-
-		<p> First we need to download an app to connect to the Huzzah over Bluetooth. There are plenty of options (including writing your own), and any of them should work. I'm using the <a href='https://play.google.com/store/apps/details?id=com.macdom.ble.blescanner&hl=en_US'>BLE Scanner</a> app by Bluepixel Technologies. Another option is <a href='https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp'>nRF Connect</a> -- just search in your app store of choice. </p>
-
-		<p> There are also lots of options for libraries and protocols for talking to BLE devices. For this example, we will use the libraries that were installed by default when we installed the ESP32 library. These examples can be found in File &gt; Examples &gt; ESP32 BLE Arduino. Open the BLE_write example, which we will modify to be able to turn on an LED from the phone app. Once you're familiar with this technique, check out the other examples like BLE_uart for bidirectional communication. </p>
+		<h3> Bluetooth </h3>
 
 
-
-
+		<h3> Bluetooth Low Energy (BLE) </h3>
 
 		<p> For BLE projects, people often care a lot about reducing power draw as much as possible. This allows e.g., sensors to run for a long time on a small battery. There are some best practices for reducing power draw, such as using timers instead of delays (which keep your processor awake the whole time). There are <a href='https://www.instructables.com/id/Very-Low-Power-BLE-Made-Easy-With-Arduino/'>plenty of libraries and tutorials</a> out there that discuss this. </p>
 		
 
-<pre><code class="language-arduino">
-#include &lt;Servo.h&gt;
-
-</code></pre>
-
-
-		
 
 	</div >
 </div>
