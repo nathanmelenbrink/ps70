@@ -57,22 +57,87 @@
 			</ul>
 		</p> 
 
-		<p> For the sake of consistency, this tutorial will demonstrate turning an LED on and off using Bluetooth Low Energy (BLE). Your laptop likely has Bluetooth, and there are plenty of examples for controlling IoT devices from laptops over Bluetooth. For this example, we'll look at controlling a BLE device using a smartphone app. This would be useful for e.g., outdoor applications where there is no WiFi available (or indoor locations with restrictive WiFi networks). </p>
+		<p> For the sake of consistency, this tutorial will demonstrate turning an LED on and off using Bluetooth Low Energy (BLE). Your laptop likely has Bluetooth, and there are plenty of examples for controlling IoT devices from laptops over Bluetooth. For this example, we'll look at controlling a BLE device using a smartphone app. This would be useful for e.g., outdoor applications where there is no WiFi available (or indoor locations with restrictive WiFi networks). The ESP32 can act as a BLE server or as a BLE client. </p>
 
 		<p> First we need to download an app to connect to the Huzzah over Bluetooth. There are plenty of options (including writing your own), and any of them should work. I'm using the <a href='https://play.google.com/store/apps/details?id=com.macdom.ble.blescanner&hl=en_US'>BLE Scanner</a> app by Bluepixel Technologies. Another option is <a href='https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp'>nRF Connect</a> -- just search in your app store of choice. </p>
 
 		<p> There are also lots of options for libraries and protocols for talking to BLE devices. For this example, we will use the libraries that were installed by default when we installed the ESP32 library. These examples can be found in File &gt; Examples &gt; ESP32 BLE Arduino. Open the BLE_write example, which we will modify to be able to turn on an LED from the phone app. Once you're familiar with this technique, check out the other examples like BLE_uart for bidirectional communication. </p>
 
+		<p> Upload the BLE_write example, open your Serial monitor and follow the instructions to connect to your smartphone app to the ESP32 (in the app, after connecting go to CUSTOM CHARACTERISTIC in CUSTOM SERVICE and write something). If you don't see anything in your Serial monitor, press the button on the Huzzah. Now we can modify this code to toggle an LED. </p>
+
+		<!--explain the code from the library: https://iotbyhvm.ooo/esp32-ble-tutorials/ 
 
 
+		add step by step to modify code 
+
+		-->
 
 
-		<p> For BLE projects, people often care a lot about reducing power draw as much as possible. This allows e.g., sensors to run for a long time on a small battery. There are some best practices for reducing power draw, such as using timers instead of delays (which keep your processor awake the whole time). There are <a href='https://www.instructables.com/id/Very-Low-Power-BLE-Made-Easy-With-Arduino/'>plenty of libraries and tutorials</a> out there that discuss this. </p>
-		
-
+		<p> The edited code should look like this: </p>
 <pre><code class="language-arduino">
-#include &lt;Servo.h&gt;
+/*
+    Based on Neil Kolban example for IDF: https://github.com/nkolban/esp32-snippets/blob/master/cpp_utils/tests/BLE%20Tests/SampleWrite.cpp
+    Ported to Arduino ESP32 by Evandro Copercini
+*/
 
+#include &lt;BLEDevice.h&gt;
+#include &lt;BLEUtils.h&gt;
+#include &lt;BLEServer.h&gt;
+
+// See the following for generating UUIDs:
+// https://www.uuidgenerator.net/
+
+#define SERVICE_UUID        "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
+#define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+
+int LED_PIN = 5;
+char LED_STATUS;
+
+class MyCallbacks: public BLECharacteristicCallbacks {
+    void onWrite(BLECharacteristic *pCharacteristic) {
+      std::string value = pCharacteristic->getValue();
+      if (value.length() > 0) { 
+        for (int i = 0; i < value.length(); i++){
+          LED_STATUS = value[i];
+        }
+      }
+    }
+};
+
+void setup() {
+  Serial.begin(115200);
+  BLEDevice::init("MyESP32");
+  BLEServer *pServer = BLEDevice::createServer();
+
+  BLEService *pService = pServer->createService(SERVICE_UUID);
+
+  BLECharacteristic *pCharacteristic = pService->createCharacteristic(
+                                         CHARACTERISTIC_UUID,
+                                         BLECharacteristic::PROPERTY_READ |
+                                         BLECharacteristic::PROPERTY_WRITE
+                                       );
+
+  pCharacteristic->setCallbacks(new MyCallbacks());
+
+  pCharacteristic->setValue("Hello World");
+  pService->start();
+
+  BLEAdvertising *pAdvertising = pServer->getAdvertising();
+  pAdvertising->start();
+  
+  pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, LOW);
+}
+
+void loop() {
+  int val = (int)LED_STATUS;  // cast the char* as an int 
+  if (val == 49)              // ASCII code for the number 1
+    digitalWrite(LED_PIN, HIGH);
+  else 
+    digitalWrite(LED_PIN, LOW);
+
+  delay(2000);
+}
 </code></pre>
 
 
