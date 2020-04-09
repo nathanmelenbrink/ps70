@@ -59,7 +59,22 @@
 
 		<p> We previously looked at creating a web server on the Huzzah ESP32 board. However, you can also use the Huzzah as a web client, which can then access outside srvers. </p> 
 
+		<h3>Application Programming Interfaces (APIs)</h3>
+
+		<p> An application programming interface is a computing interface to a software component or a system, that defines how other components or systems can use it. It defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used, the conventions to follow, etc. </p>
+
+		<p> APIs exist for all sorts of things. You can check some directory sites to see lists of popular APIs (thanks Chris!): </p>
+
+		<ul> 
+			<li> <a href='https://github.com/public-apis/public-apis'> GitHub public APIs </a></li>
+			<li> <a href='https://www.programmableweb.com/apis/directory'> Programmable Web </a></li>
+			<li> <a href='https://any-api.com/'> Any API</a></li>
+			<li> <a href='https://apilist.fun/'> API List </a></li>
+			<!-- <li> <a href='https://app.swaggerhub.com/search'>SwaggerHub	 -->
+		</ul>
+
 		<p> SparkFun has a <a href='https://learn.sparkfun.com/tutorials/esp32-thing-plus-hookup-guide/'>tutorial for using an ESP32 to poll a remote domain</a> (http://example.com/) as a client. The following is a modification of that example to work the the <a href='https://www.weather.gov/documentation/services-web-api'>National Weather Service's API</a>. A <a href='https://techtutorialsx.com/2018/03/17/esp32-arduino-getting-weather-data-from-api/'>similar example</a> uses the OpenWeatherMap API, which requires you to register for an API key. </p>
+
 
 <pre><code class="language-arduino">
 #include &lt;WiFi.h&gt;
