@@ -60,7 +60,7 @@
 		<p>We can set up a simple example to talk to a p5 sketch over Serial. Upload this simple code to your microcntroller: </p>
 
 <pre><code class="language-arduino">
-const int sensorPin = 0;    // analog pin A0
+const int sensorPin = A0;    // analog pin A0
 
 void setup() {
   // initialize the serial port for communication
@@ -72,7 +72,8 @@ void loop() {
   int sensorValue = analogRead(sensorPin);
   
   // write the value to p5.js
-  Serial.write(analogRead(sensorPin));
+  Serial.write(sensorValue);
+  delay(10);
 }
 </code></pre>
 
