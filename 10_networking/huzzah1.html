@@ -87,6 +87,8 @@ const char* password = "yourpasswd";
 
 		<p> The ESP32 is now acting as a web server on your local network. Clicking the links on the webpage create different GET requests, which pass different instructions to the ESP32 server. Try logging in with other devices on your network. Pay attention to the serial monitor; it will let you know when new clients connect to your server. </p>
 
+		<p> If you want to stream data to your browser without the overhead of HTTP GET requests, you'd have to use Websockets. <a href='https://esp8266-shop.com/blog/websocket-connection-between-esp8266-and-node-js-server/'>Node JS</a> is a great way to do that. </p>
+
 		<p> While this technique will work fine for controlling devices from within your home or other local network, the contents of your local server are not accessible to the world wide web. In other words, you won't be able to talk to your devices from outside of your LAN. There are a couple ways to get around that, which we'll discuss in the <a href='./huzzah1b.html'>next step.</a></p>
 		
 
