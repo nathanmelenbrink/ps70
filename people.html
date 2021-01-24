@@ -110,7 +110,13 @@ function random_page() {
 		<p> <b>Students</b> </p>
 
 		<div style="margin-left:2.5%">
-			<p> TBD
+			<p> <a href="javascript:random_page()">random page</a><br>
+			<br>
+			<script type="text/javascript">
+			for (i = 0; i < pages.length; ++i) {
+			   document.write("<a href="+pages[i][0]+">"+pages[i][1]+"</a><br>")
+			   }
+			</script>
 			</p>
 		</div>
 
