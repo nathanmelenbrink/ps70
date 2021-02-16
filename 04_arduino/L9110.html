@@ -1,0 +1,178 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>PHYS S-12: Introduction to Digital Fabrication</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script>
+	$(function(){
+	  $("#header").load("../header.html");
+	  $("#footer").load("../footer.html");
+	});
+</script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+</head>
+<body>
+
+<div id="header"></div>
+
+
+<!-- NEW SECTION -->
+<div class="row">
+
+	<!-- ROW TITLE -->
+	<div class="col-md-3">
+		<h3> Driving a motor with the L9110 </h3>
+	</div >
+
+	<div class="col-md-9">
+
+	<h3> Motor Driving </h3>
+
+	<p> For this workshop, please collect the following: 
+		<ul> 
+			<li>Metro M0 Express microcontroller </li>
+			<li>DC motor (N20 or Canon motor)</li>
+			<li>L9110 </li>
+		</ul>
+	</p> 
+
+	<p> We'll be using the L9110 motor driver to make it easier to control our motors in two directions. See the <a href='https://datasheetspdf.com/pdf-file/839657/ASIC/L9110/1'>L9110 Data Sheet </a>for more information on this component. </p>
+
+	<p> First, screw your motor leads into the screw terminals. Orientation (red/black) does not matter. Use the port for Motor A. </p>
+
+	<img src="./L9110-0.jpg" alt="L9110 first step">
+
+	<p> Next, connect GND and 5V from the Metro to the L9110 (GND and VCC). For each connection, combine a pin-pin wire and a socket-socket wire to make a pin-socket wire. You can make these connections directly to the Metro, or via breadboard. </p>
+
+	<img src="./L9110-1.jpg" alt="L9110 second step">
+
+	<p> In the same way, connect the A-1A and A-1B pins of the L9110 to pins 3 and 4 of the Metro. </p>
+
+	<img src="./L9110-3.jpg" alt="L9110 third step">
+
+	<p> Now plug in your USB cable and upload the following code to your Metro: </p>
+
+<pre><code class="language-arduino">
+const int A1A = 3;	// define pin 3 for A-1A
+const int A1B = 4;	// define pin 4 for A-1B
+
+void setup() {
+  pinMode(A1A, OUTPUT);	// specify these pins as outputs
+  pinMode(A1B, OUTPUT);    
+}
+
+void loop() {
+
+  digitalWrite(A1A, LOW);	// the A pin sets the speed (off/on)
+  digitalWrite(A1B, HIGH); 	// the B pin sets the direction (CW/CCW) 
+  
+  delay(2000); 				// allow the motor to run for 2 seconds
+
+  digitalWrite(A1B, LOW); 	// switch the direction of the motor	
+  
+  delay(2000); 				// allow the motor to run for 4 seconds
+
+  digitalWrite(A1A, LOW);	// turn the motor off	
+  
+  delay(5000); 				// turn the motor off for 5 seconds
+}
+</code></pre>
+
+
+	<p> This approach works fine for simple commands to a single motor. But if we start adding motors or doing more complex commands, it will become useful to encapsulate some of this code in a custom function. Here's an example of a function for driving Motor A: </p>
+
+
+<pre><code class="language-arduino">
+/*
+ * This is a custom function to drive Motor A
+ * inputs: direction (L/R), duration (int) 
+ * outputs: motor control
+ */
+void motorA(char d, int t) {
+  if(d =='R'){
+    digitalWrite(A1B, HIGH); 
+  } else if (d =='L'){
+    digitalWrite(A1B, LOW);    
+  }
+
+  digitalWrite(A1A, HIGH);	// turn motor ON
+  delay(t); // allow motor to run for specified time
+ 
+  digitalWrite(A1A, LOW);	// turn motor OFF
+  digitalWrite(A1B, LOW);    
+}
+</code></pre>
+
+	<p> Then we can call this function from our main loop() function. Putting it all together looks like this: </p>
+
+
+<pre><code class="language-arduino">
+const int A1A = 3;	// define pin 3 for A-1A
+const int A1B = 4;	// define pin 4 for A-1B
+
+void setup() {
+  pinMode(A1A, OUTPUT);	// specify these pins as outputs
+  pinMode(A1B, OUTPUT);    
+}
+
+void loop() {
+  motorA('L', 2000); 	// turn left for 2 seconds
+  delay(1000); 			// delay for 1 second
+  motorA('R', 2000); 	// turn right for 2 seconds
+  delay(1000); 			// delay for 1 second
+}
+
+
+/*
+ * This is a custom function to drive Motor A
+ * inputs: direction (L/R), duration (int) 
+ * outputs: motor control
+ */
+void motorA(char d, int t) {
+  if(d =='R'){
+    digitalWrite(A1B, HIGH); 
+  } else if (d =='L'){
+    digitalWrite(A1B, LOW);    
+  }
+
+  digitalWrite(A1A, HIGH);	// turn motor ON
+  delay(t); // allow motor to run for specified time
+ 
+  digitalWrite(A1A, LOW);	// turn motor OFF
+  digitalWrite(A1B, LOW);    
+}
+</code></pre>
+
+	<p> Note that the delays are "blocking" which means that they prevent other functions from running simultaneously. We can get around this limitation using timers, but this is a bit more advanced. </p>
+
+  <p> Once we're able to control the speed with a digital (HIGH/LOW) output, we can modify the code to have speed control using <a href='https://www.arduino.cc/en/Tutorial/PWM'> PWM</a>. The function to do this is <code>analogWrite()</code>. Instead of HIGH or LOW, it takes a number between 0-255, such as <code>analogWrite(A1A, 175);</code>. Try getting your motor to move at different speeds. </p>
+
+	<p> Once you're comfortable controlling your motor with the L9110, you should try <a href='https://roberthart56.github.io/SCFAB/SC_lab/Output_Devices/FET/index.html'> driving a motor with a transistor.</a> </p>
+
+
+	</div>
+</div>
+
+
+
+
+<div id="footer"></div>
+
+
+</body>
+</html>
