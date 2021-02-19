@@ -91,6 +91,7 @@ https://www.arduino.cc/en/Tutorial/InputPullupSerial
   }
 </code></pre>
 
+
     <p>Build a circuit as described in the Button example (pushbutton attached to pin 2 from +3.3V and 10K resistor attached to pin 2 from ground): </p>
 
     <img src="./pulldown.png" alt="pulldown"> <br><br>
@@ -98,17 +99,20 @@ https://www.arduino.cc/en/Tutorial/InputPullupSerial
     <p>The 10k resistor is acting as a PULLDOWN resistor, meaning that in the absence of a connection to +3.3V, pin 2 will report it's connection to ground (LOW). Essentially we've created a "path of some resistance" to ground. When the button is unpressed, the circuit will take this path. When the button is pressed, a "path of much less resistance" is created to +3.3V, so pin 2 will report HIGH. What happens if you remove the resistor? Try moving your hand around the circuit. The results will be unpredictable (floating input). Read more about pullup and pulldown resistors on <a href='https://learn.sparkfun.com/tutorials/pull-up-resistors/all'>SparkFun</a>. 
     </p>
 
+    <p>We can convert this to a PULLUP resistor configuration by switching the 3.3V and GND connections on the breadboard. The behavior of the button is now reversed (pressing button turns LED off). </p>
+
+    <img src="./pullup.png" alt="pullup"> <br><br> 
+
     <p> Luckily, many microcontrollers have built-in PULLUP resistors, which operate in the opposite way. Open the DigitalInputPullup example and rewire your circuit so that the button connects pin 2 to ground:</p>
 
-    <img src="./pullup.png" alt="pullup"> <br><br>
+    <img src="./inputpullup.png" alt="inputpullup"> <br><br>
 
     <p> This example also allows us to see what's going on under the hood with the Serial monitor. </p>
 
 
-
 		<h3> Nested Conditional Statements </h3>
 
-		<p> We can put conditional statement inside one another in order to see if multiple conditions have been met. A great tool in Arduino is the <code>millis()</code> function, which returns the number of milliseconds since the program began. We can make a simple time-based conditional statement: 
+		<p> We can put conditional statements inside one another in order to see if multiple conditions have been met. A great tool in Arduino is the <code>millis()</code> function, which returns the number of milliseconds since the program began. We can make a simple time-based conditional statement: 
 		</p>
 
 <pre><code class="language-arduino">

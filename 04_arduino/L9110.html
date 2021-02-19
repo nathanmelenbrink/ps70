@@ -62,38 +62,111 @@
 
   <img src="./L9110-1.jpg" alt="L9110 second step">
 
-  <p> In the same way, connect the A-1A and A-1B pins of the L9110 to pins 3 and 4 of the Metro. </p>
+  <p> In the same way, connect the A-1A and A-1B pins of the L9110 to pins 3 and 4 of the Metro. (Avoid pin 2, which cannot do PWM). </p>
 
   <img src="./L9110-3.jpg" alt="L9110 third step">
 
   <p> Now plug in your USB cable and upload the following code to your Metro: </p>
 
 <pre><code class="language-arduino">
-const int A1A = 3;  // define pin 3 for A-1A
-const int A1B = 4;  // define pin 4 for A-1B
+const int A1A = 3;  // define pin 3 for A-1A (PWM Speed)
+const int A1B = 4;  // define pin 4 for A-1B (direction)
 
 void setup() {
-  pinMode(A1A, OUTPUT); // specify these pins as outputs
-  pinMode(A1B, OUTPUT);    
+  pinMode(A1A, OUTPUT);     // specify these pins as outputs
+  pinMode(A1B, OUTPUT);
+  digitalWrite(A1A, LOW);   // start with the motors off 
+  digitalWrite(A1B, LOW);
 }
 
 void loop() {
+  // start the motor 
+  digitalWrite(A1A, HIGH);   
+  digitalWrite(A1B, LOW);
+  delay(4000);              // allow the motor to run for 4 seconds
 
-  digitalWrite(A1A, LOW); // the A pin sets the speed (off/on)
-  digitalWrite(A1B, HIGH);  // the B pin sets the direction (CW/CCW) 
-  
-  delay(2000);        // allow the motor to run for 2 seconds
+  // stop the motor
+  digitalWrite(A1A, LOW);   // setting both pins LOW stops the motor 
+  digitalWrite(A1B, LOW);   // redundant, but doesn't hurt 
+  delay(2000);              // keep the motor off for 2 seconds
 
-  digitalWrite(A1B, LOW);   // switch the direction of the motor  
-  
-  delay(2000);        // allow the motor to run for 4 seconds
-
-  digitalWrite(A1A, LOW); // turn the motor off 
-  
-  delay(5000);        // turn the motor off for 5 seconds
 }
-</code></pre>
+</code></pre> 
 
+  <p> We can switch the direction of the motor from CW to CCW by reversing the signals on pins A1B and A1A. </p>
+
+<pre><code class="language-arduino">
+const int A1A = 3;  // define pin 3 for A-1A (PWM Speed)
+const int A1B = 4;  // define pin 4 for A-1B (direction)
+
+void setup() {
+  pinMode(A1A, OUTPUT);     // specify these pins as outputs
+  pinMode(A1B, OUTPUT);
+  digitalWrite(A1A, LOW);   // start with the motors off 
+  digitalWrite(A1B, LOW);
+}
+
+void loop() {
+  // start the motor 
+  digitalWrite(A1A, HIGH);   
+  digitalWrite(A1B, LOW);
+  delay(4000);              // allow the motor to run for 4 seconds
+
+  // stop the motor
+  digitalWrite(A1A, LOW);   // setting both pins LOW stops the motor
+  digitalWrite(A1B, LOW);
+  delay(2000);              // keep the motor off for 2 seconds
+
+  // start the motor in opposite direction
+  digitalWrite(A1A, LOW);  // A1A needs to be LOW to switch direction
+  digitalWrite(A1B, HIGH);  
+  delay(4000);              // allow the motor to run for 4 seconds
+
+  // stop the motor
+  digitalWrite(A1A, LOW);   // setting both pins LOW stops the motor
+  digitalWrite(A1B, LOW);
+  delay(2000);   
+
+}
+</code></pre> 
+
+  <h3>Analog Mode </h3>
+  <p> In addition to changing directions using <code>digitalWrite()</code> commands, we can also change the motor speed using PWM. However, once we start sending a pin PWM signals (using <code>analogWrite()</code>), it will stop listening for <code>digitalWrite()</code> commands, so we'll need to stop the motor using <code>analogWrite(A1A, 0)</code> instead.</p>
+
+<pre><code class="language-arduino">
+const int A1A = 3;  // define pin 3 for A-1A (PWM Speed)
+const int A1B = 4;  // define pin 4 for A-1B (direction)
+
+void setup() {
+  pinMode(A1A, OUTPUT);     // specify these pins as outputs
+  pinMode(A1B, OUTPUT);
+  digitalWrite(A1A, LOW);   // start with the motors off 
+  digitalWrite(A1B, LOW);
+}
+
+void loop() {
+  // start the motor at a medium speed
+  analogWrite(A1A, 100);   
+  digitalWrite(A1B, LOW);
+  delay(4000);              // allow the motor to run for 4 seconds
+
+  // stop the motor
+  analogWrite(A1A, 0);   // setting both pins LOW stops the motor
+  digitalWrite(A1B, LOW);
+  delay(2000);              // keep the motor off for 2 seconds
+
+  // start the motor in opposite direction and faster
+  analogWrite(A1A, 200);  
+  digitalWrite(A1B, HIGH);  // switch direction
+  delay(4000);              // allow the motor to run for 4 seconds
+
+  // stop the motor
+  analogWrite(A1A, 0);   // setting both pins LOW stops the motor
+  digitalWrite(A1B, LOW);
+  delay(2000);   
+
+}
+</code></pre> 
 
   <p> This approach works fine for simple commands to a single motor. But if we start adding motors or doing more complex commands, it will become useful to encapsulate some of this code in a custom function. Here's an example of a function for driving Motor A: </p>
 
@@ -106,12 +179,13 @@ void loop() {
  */
 void motorA(char d, int t) {
   if(d =='R'){
+    digitalWrite(A1A, LOW); 
     digitalWrite(A1B, HIGH); 
   } else if (d =='L'){
+    digitalWrite(A1A, HIGH); 
     digitalWrite(A1B, LOW);    
   }
 
-  digitalWrite(A1A, HIGH);  // turn motor ON
   delay(t); // allow motor to run for specified time
  
   digitalWrite(A1A, LOW); // turn motor OFF
@@ -146,12 +220,13 @@ void loop() {
  */
 void motorA(char d, int t) {
   if(d =='R'){
+    digitalWrite(A1A, LOW); 
     digitalWrite(A1B, HIGH); 
   } else if (d =='L'){
+    digitalWrite(A1A, HIGH); 
     digitalWrite(A1B, LOW);    
   }
 
-  digitalWrite(A1A, HIGH);  // turn motor ON
   delay(t); // allow motor to run for specified time
  
   digitalWrite(A1A, LOW); // turn motor OFF
