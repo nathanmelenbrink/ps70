@@ -15,11 +15,11 @@
 
 		<script type="module">
 
-			import * as THREE from '../build/three.module.js';
+			import * as THREE from 'three.module.js';
 
-			import Stats from './jsm/libs/stats.module.js';
+			import Stats from 'stats.module.js';
 
-			import { STLLoader } from './jsm/loaders/STLLoader.js';
+			import { STLLoader } from 'STLLoader.js';
 
 			let container, stats;
 
@@ -58,7 +58,7 @@
 				// ASCII file
 
 				const loader = new STLLoader();
-				loader.load( './models/stl/ascii/slotted_disk.stl', function ( geometry ) {
+				loader.load( 'Octocat-v1.stl', function ( geometry ) {
 
 					const material = new THREE.MeshPhongMaterial( { color: 0xff5533, specular: 0x111111, shininess: 200 } );
 					const mesh = new THREE.Mesh( geometry, material );
@@ -79,7 +79,7 @@
 
 				const material = new THREE.MeshPhongMaterial( { color: 0xAAAAAA, specular: 0x111111, shininess: 200 } );
 
-				loader.load( './models/stl/binary/pr2_head_pan.stl', function ( geometry ) {
+				loader.load( 'Flexi-Rex-improved.stl', function ( geometry ) {
 
 					const mesh = new THREE.Mesh( geometry, material );
 
@@ -94,20 +94,6 @@
 
 				} );
 
-				loader.load( './models/stl/binary/pr2_head_tilt.stl', function ( geometry ) {
-
-					const mesh = new THREE.Mesh( geometry, material );
-
-					mesh.position.set( 0.136, - 0.37, - 0.6 );
-					mesh.rotation.set( - Math.PI / 2, 0.3, 0 );
-					mesh.scale.set( 2, 2, 2 );
-
-					mesh.castShadow = true;
-					mesh.receiveShadow = true;
-
-					scene.add( mesh );
-
-				} );
 
 				// Colored binary STL
 				loader.load( './models/stl/binary/colored.stl', function ( geometry ) {
