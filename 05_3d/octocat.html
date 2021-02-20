@@ -1,27 +1,75 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
     <head>
-        <title>Viewstl Javascript Plugin - Init Example</title>
+        <title>stl viewer</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <style>
+            body {
+                font-family: Monospace;
+                background-color: #f0f0f0;
+                margin: 0px;
+                overflow: hidden;
+            }
+        </style>
     </head>
-
     <body>
-        <div id="stl_cont" style="width:500px;height:500px;margin:0 auto;"></div>
+<script src="three.min.js"></script>
+<script src="STLLoader.js"></script>
+<script src="OrbitControls.js"></script>
 
-        <script src="stl_viewer.min.js"></script>        
-        <script>
-            var stl_viewer=new StlViewer
-            (
-                document.getElementById("stl_cont"),
-                {
-                    auto_rotate:true,
-                    bgcolor:"#20FAAC",
-                    allow_drag_and_drop:true,
-                    models:
-                    [
-                        {filename:"Octocat-v1.stl"}
-                    ]
-                }
-            );
-        </script>
+<script>
+    <div id="model" style="width: 500px; height: 500px"> </div>
+    function STLViewer(model, elementID) {
+    var elem = document.getElementById(elementID)
+    var camera = new THREE.PerspectiveCamera(70, 
+    elem.clientWidth/elem.clientHeight, 1, 1000);
+    var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(elem.clientWidth, elem.clientHeight);
+elem.appendChild(renderer.domElement);
+        window.addEventListener('resize', function () {
+    renderer.setSize(elem.clientWidth, elem.clientHeight);
+    camera.aspect = elem.clientWidth/elem.clientHeight;
+    camera.updateProjectionMatrix();
+}, false);
         
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.rotateSpeed = 0.05;
+controls.dampingFactor = 0.1;
+controls.enableZoom = true;
+controls.autoRotate = true;
+controls.autoRotateSpeed = .75;
+        
+        var scene = new THREE.Scene();
+scene.add(new THREE.HemisphereLight(0xffffff, 1.5));
+        
+        var middle = new THREE.Vector3();
+geometry.computeBoundingBox();
+geometry.boundingBox.getCenter(middle);
+mesh.geometry.applyMatrix(new THREE.Matrix4().makeTranslation( 
+                              -middle.x, -middle.y, -middle.z ) );
+        
+    var largestDimension = Math.max(geometry.boundingBox.max.x,
+                            geometry.boundingBox.max.y, 
+                            geometry.boundingBox.max.z)
+camera.position.z = largestDimension * 1.5;
+        
+        var animate = function () {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+}; 
+        
+            animate();
+    });
+    
+
+        </script>
+        <script type="text/javascript">
+window.onload = function() {
+    STLViewer("Octocat-v1.stl", "model")
+}
+</script>
     </body>
+</html>
