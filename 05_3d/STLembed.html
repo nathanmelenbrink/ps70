@@ -56,7 +56,6 @@ $(function(){
     <script src="three.js"></script>
     <script src="stats.js"></script>
     <script src="detector.js"></script>
-    <script src="OrbitControls.js"></script>
     <script>
 
         var camera, scene, renderer,
@@ -265,7 +264,6 @@ $(function(){
             camera.position.y = 0;
             scene.add( camera );
 
-            
             var directionalLight = new THREE.DirectionalLight( 0xffffff );
             directionalLight.position.x = 0; 
             directionalLight.position.y = 0; 
@@ -312,7 +310,6 @@ $(function(){
         function animate() {
 
             // note: three.js includes requestAnimationFrame shim
-//            controls.update();
             requestAnimationFrame( animate );
             render();
             stats.update();
