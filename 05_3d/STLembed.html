@@ -301,10 +301,10 @@ $(function(){
 
             document.body.appendChild( renderer.domElement );
 
-            stats = new Stats();
-            stats.domElement.style.position = 'absolute';
-            stats.domElement.style.top = '0px';
-            document.body.appendChild(stats.domElement);
+//            stats = new Stats();
+//            stats.domElement.style.position = 'absolute';
+//            stats.domElement.style.top = '0px';
+//            document.body.appendChild(stats.domElement);
         }
 
         function animate() {
@@ -312,7 +312,7 @@ $(function(){
             // note: three.js includes requestAnimationFrame shim
             requestAnimationFrame( animate );
             render();
-            stats.update();
+//            stats.update();
 
         }
 
