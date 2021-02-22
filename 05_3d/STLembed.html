@@ -264,10 +264,6 @@ $(function(){
             camera.position.y = 0;
             scene.add( camera );
             controls = new THREE.OrbitControls (camera, renderer.domElement);
-            controls.enableDamping = true;
-            controls.dampingFactor = 0.25;
-            controls.enableZoom = true;
-            controls.autoRotate = true;
             
             var directionalLight = new THREE.DirectionalLight( 0xffffff );
             directionalLight.position.x = 0; 
@@ -315,7 +311,7 @@ $(function(){
         function animate() {
 
             // note: three.js includes requestAnimationFrame shim
-            controls.update();
+            
             requestAnimationFrame( animate );
             render();
             stats.update();
