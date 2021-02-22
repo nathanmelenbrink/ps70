@@ -56,10 +56,18 @@ $(function(){
     <script src="three.js"></script>
     <script src="stats.js"></script>
     <script src="detector.js"></script>
+    <script src="OrbitControls.js"></script>
     <script>
 
         var camera, scene, renderer,
         geometry, material, mesh, light1, stats;
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.rotateSpeed = 0.05;
+        controls.dampingFactor = 0.1;
+        controls.enableZoom = true;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = .75;
 
         function trim (str) {
             str = str.replace(/^\s+/, '');
