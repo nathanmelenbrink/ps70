@@ -264,11 +264,13 @@ $(function(){
             camera.position.z = 70;
             camera.position.y = 0;
             scene.add( camera );
-            controls = new THREE.OrbitControls (camera, renderer.domElement);
-            controls.enableDamping = true;
-            controls.dampingFactor = 0.25;
-            controls.enableZoom = true;
-            controls.autoRotate = true;
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.rotateSpeed = 0.05;
+controls.dampingFactor = 0.1;
+controls.enableZoom = true;
+controls.autoRotate = true;
+controls.autoRotateSpeed = .75;
             
             var directionalLight = new THREE.DirectionalLight( 0xffffff );
             directionalLight.position.x = 0; 
