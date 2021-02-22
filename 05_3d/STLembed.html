@@ -51,7 +51,7 @@ $(function(){
 <iframe src="https://myhub.autodesk360.com/ue2d519a8/shares/public/SH56a43QTfd62c1cd968c3b6e1092bc87d03?mode=embed" width="800" height="600" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"  frameborder="0"></iframe>
 </div >
 <div class="row">    
-<h3>Three JS </h3><br>
+<h3>Three.js </h3><br>
 
     <script src="three.js"></script>
     <script src="stats.js"></script>
@@ -263,7 +263,12 @@ $(function(){
             camera.position.z = 70;
             camera.position.y = 0;
             scene.add( camera );
-
+            controls = new THREE.OrbitControls (camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.25;
+            controls.enableZoom = true;
+            controls.autoRotate = true;
+            
             var directionalLight = new THREE.DirectionalLight( 0xffffff );
             directionalLight.position.x = 0; 
             directionalLight.position.y = 0; 
@@ -310,6 +315,7 @@ $(function(){
         function animate() {
 
             // note: three.js includes requestAnimationFrame shim
+            controls.update();
             requestAnimationFrame( animate );
             render();
             stats.update();
@@ -329,7 +335,7 @@ $(function(){
         }
 
 </script>
-    </div >
+</div >
 <div class="row">
 <h3>Sculpture - Haystack 2016. </h3><br>
 <div class="col-md-9">
