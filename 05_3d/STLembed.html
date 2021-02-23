@@ -14,7 +14,7 @@ gtag('config', 'UA-131686897-2');
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>3D Model Web Viewers</title>
+<title>PHYSCI 70: Introduction to Digital Fabrication</title>
 <meta name="description" content="Index Page">
 <script src="../js/vendor/jquery.min.js"></script>
 <script>
@@ -40,19 +40,30 @@ $(function(){
 <!-- FIRST ROW -->
 <div class="row">
 <h3><a href ="https://www.viewstl.com/embed/">ViewSTL.com </a></h3><br>
-
+    <p>One of the simpler ways to embed an STL model onto your webpage is to use <a href ="https://www.viewstl.com/embed/">this STL viewer embedding tool</a>.  <br>
+Push the STL file to your Github repo, paste the link to the file into the field in part 1, copy and paste the iframe code generated in part 2 into your HTML document.<br>
+You can easily customize the color of your model, the background, shading, and other display aspects with this tool.<br>  You can interact with the model in this viewer, zoom, rotate, etc.
+    </p><br>
 <iframe id="vs_iframe" src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fnathanmelenbrink.github.io%2Fps70%2F05_3d%2FFlexi-Rex-improved.stl&color=green&bgcolor=pink" style="border:0;margin:0;width:100%;height:400px;"></iframe>
 
 </div >
     
 <div class="row">
 <h3><a href ="https://knowledge.autodesk.com/support/fusion-360/troubleshooting/caas/sfdcarticles/sfdcarticles/How-to-embed-a-viewer-of-a-Fusion-360-design-into-a-website.html">Embedding Fusion 360 Design </a></h3><br>
-
+    <p>To embed a Fusion 360 model onto a website, go to <a href ="https://myhub.autodesk360.com/">your project hub,</a><br>
+    Create a project and upload your STL model<br>
+    Once it's uploaded, click on the file and then select the "Share" icon. <br>
+    Select "Embed".<br>
+    Select the size.<br>
+    Copy the code and paste it into the code of your website.   <br> 
+    You can manipulate the model in this viewer too but it has many more features than in the first example, the ability to measure, orient, change opacity, etc.</p>
 <iframe src="https://myhub.autodesk360.com/ue2d519a8/shares/public/SH56a43QTfd62c1cd968c3b6e1092bc87d03?mode=embed" width="800" height="600" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"  frameborder="0"></iframe>
 </div >
 <div class="row">    
-<h3>Three.js </h3><br>
-
+<h3><a href ="https://threejs.org/examples/#webgl_loader_stl">Three.js</a> </h3><br>
+<p>This last example is the most powerful/customizable but also complicated way to embed 3D models onto your webpage. Three.js is a JavaScript library used to create and display animated 3D computer graphics in a web browser using WebGL. You must include different Javascript modules in your repo and establish at least a "scene", "camera", and "renderer" in your HTML document in order to render/display anything. There are also some hurdles if you want to <a href="https://threejs.org/docs/index.html#manual/en/introduction/How-to-run-things-locally">run things locally.</a><br> There are many tutorials <a href= "https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene">[1]</a> 
+<a href="https://riptutorial.com/three-js">[2]</a> 
+ <a href="https://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html">   [3]</a> on how to get started but I recommend checking out the <a href="https://threejs.org/examples/#webgl_animation_keyframes">examples</a> on the official three.js page to get a sense of its capabilities.</p>
     <script src="three.js"></script>
     <script src="stats.js"></script>
     <script src="detector.js"></script>
@@ -289,7 +300,7 @@ $(function(){
                 console.log(e);
             }
 
-            xhr.open( "GET", 'Octocat-v1.stl', true );
+            xhr.open( "GET", 'https://nathanmelenbrink.github.io/ps70/05_3d/Octocat-v1.stl', true );
             xhr.responseType = "arraybuffer";
             //xhr.setRequestHeader("Accept","text/plain");
             //xhr.setRequestHeader("Content-Type","text/plain");
@@ -330,18 +341,6 @@ $(function(){
 
 </script>
 </div >
-<div class="row">
-<h3>Sculpture - Haystack 2016. </h3><br>
-<div class="col-md-9">
-<img width="400"  src="./art1.jpg" alt="art1">
-<img width="400"  src="./art2.jpg" alt="art2">
-</div >
-</div >
-
-
-
-
-
 
 
 <div id="footer"></div>
