@@ -1,0 +1,5 @@
+
+# ignore macOS auto generated files
+.DS_Store
+**/.DS_Store
+
