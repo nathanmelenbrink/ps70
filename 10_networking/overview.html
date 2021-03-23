@@ -65,6 +65,70 @@ Your computer can be a host to other computers. Likewise, your router can be a h
 		<img src='./client-server-model.jpg' alt='client server model'>
 		<!-- https://learntomato.flashrouters.com/what-is-a-client-what-is-a-server-what-is-a-host/ -->
 
+
+		<h3>What is HTTP?</h3>
+		<p>(From <a href='https://www.w3schools.com/tags/ref_httpmethods.asp'> W3 Schools</a>) The Hypertext Transfer Protocol (HTTP) is designed to enable communications between clients and servers.</p>
+		<p>HTTP works as a request-response protocol between a client and server.</p>
+		<p>Example: A client (browser) sends an HTTP request to the server; then the server 
+		returns a response to the client. The response contains status information about 
+		the request and may also contain the requested content.</p>
+		<hr>
+
+		<h3>HTTP Methods</h3>
+		<ul>
+		  <li><b>GET</b></li>
+		  <li><b>POST</b></li>
+		  <li><strong>PUT</strong></li>
+		  <li><strong>HEAD</strong></li>
+		  <li><strong>DELETE</strong></li>
+		  <li><strong>PATCH</strong></li>
+		  <li><strong>OPTIONS</strong></li>
+		</ul>
+		<p>The two most common HTTP methods are: GET and POST.</p>
+		<hr>
+
+		<h3>The GET Method</h3>
+		<p><strong>GET is used to request data from a specified 
+		resource.</strong></p>
+
+		<p><strong>GET is one of the most common HTTP methods. </strong></p>
+		<p>Note that the query string (name/value pairs) is sent in the URL of 
+		a GET request:</p>
+		<div class="w3-code w3-border notranslate">
+		<div>
+		/test/demo_form.php?name1=value1&amp;name2=value2
+		</div></div>
+
+		<p><b>Some other notes on GET requests:</b></p>
+		<ul>
+		  <li>GET requests can be cached</li>
+		  <li>GET requests remain in the browser history</li>
+		  <li>GET requests can be bookmarked</li>
+		  <li>GET requests should never be used when dealing with sensitive data</li>
+		  <li>GET requests have length restrictions</li>
+		  <li>GET requests are only used to request data (not modify)</li>
+		</ul>
+		<hr>
+
+		<h3>The POST Method</h3>
+		<p class="intro"><strong>POST is used to send data to a server to create/update a resource.</strong></p>
+		<p>The data sent to the server with POST is stored in the request body of the 
+		HTTP request:</p>
+		<div class="w3-code w3-border notranslate">
+		 <div>
+		POST /test/demo_form.php HTTP/1.1<br>
+		Host: w3schools.com<br>
+		   name1=value1&amp;name2=value2
+		</div></div>
+		<p><strong>POST is one of the most common HTTP methods. </strong></p>
+		<p><b>Some other notes on POST requests:</b></p>
+		<ul>
+		  <li>POST requests are never cached</li>
+		  <li>POST requests do not remain in the browser history</li>
+		  <li>POST requests cannot be bookmarked</li>
+		  <li>POST requests have no restrictions on data length</li>
+		</ul>
+
 		<h3> WiFi Communication </h3>
 		
 		<p> <a href='https://en.wikipedia.org/wiki/Wi-Fi'>WiFi </a> is a family of wireless networking technologies, based on the IEEE 802.11 family of standards, which are commonly used for local area networking (LAN) of devices and Internet access. Compatible devices can network through wireless access points to each other as well as to wired devices and the Internet (from Wikipedia). </p> 
