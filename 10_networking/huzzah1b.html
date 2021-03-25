@@ -250,19 +250,18 @@ void loop() {
 	<pre><code class="language-arduino">
 #include &lt;WiFi.h&gt;                                 // esp32 library
 #include &lt;FirebaseESP32.h&gt;                        // firebase library
-#include "esp32-hal-ledc.h"
+#include &lt;ESP32Servo.h&gt;
+
 
 #define FIREBASE_HOST ""  // the project name address from firebase id
 #define FIREBASE_AUTH ""                          // the secret key generated from firebase
 #define WIFI_SSID ""                                // input your home or public wifi name
 #define WIFI_PASSWORD ""                            // password of wifi ssid
 
+
 int fireInt = 0;                                          // led status received from firebase
 const int ServoPin = 32;
-
-// setting PWM properties
-const int ServoChannel = 0;
-const int resolution = 12;   //use 12 bits of resolution
+Servo myservo;  // create servo object to control a servo
 
 //Define FirebaseESP32 data object
 FirebaseData firebaseData;
@@ -289,22 +288,14 @@ void setup() {
   Firebase.reconnectWiFi(true);
   Firebase.set(firebaseData, "/SERVO_ANGLE", fireInt);              // set initial string of "OFF"
 
-  // configure PWM functionalitites
-  ledcSetup(ServoChannel, 50, 16); // 50 hz PWM, 16-bit resolution
-  // attach the channel to the GPIO to be controlled
-  ledcAttachPin(ServoPin, ServoChannel);
+  myservo.attach(ServoPin); // attach servo to pin
 }
 
 void loop() {
 
   Firebase.get(firebaseData, "/SERVO_ANGLE");                     // get led status input from firebase
   fireInt = firebaseData.intData();                        // change to e.g. intData() or boolData()
-  Serial.println(fireInt);
-
-  int ServoValue = map(fireInt, 0, 180, 0, 4095);
-
-  Serial.println(ServoValue);
-  ledcWrite(ServoChannel, ServoValue);    
+  myservo.write(fireInt);
 
   delay(1000);                                 // not strictly necessary
 }
