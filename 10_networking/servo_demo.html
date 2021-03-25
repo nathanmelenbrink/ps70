@@ -16,6 +16,7 @@
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
 
 <script>
@@ -37,7 +38,7 @@
 
 	// Get a database reference to our blog
 	var ref = firebase.database().ref("/");
-	//var database = firebase.database();
+	// var database = firebase.database();
 
 	// make the buttons call the function below 
 	document.getElementById('turn-on').addEventListener('click', turnOn, false);
