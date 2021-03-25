@@ -51,12 +51,12 @@
 		<p> Materials needed for this tutorial: 
 			<ul> 
 				<li><a href='https://www.adafruit.com/product/3405'>Huzzah board</a> </li>
-				<li>Protoboard</li>
-				<li>LED</li>
+				<li>Breadboard</li>
+				<li>LED, 470 Ohm Resistor</li>
 			</ul>
 		</p> 
 
-		<p> The previous tutorial showed how to build a web interface to control your ESP32 over a Local Area Network. If you want to talk to your ESP32, you'll need to do a bit more work. There are many options: </p>
+		<p> The previous tutorial showed how to build a web interface to control your ESP32 over a Local Area Network. If you want to talk to your ESP32 from outside your LAN, you'll need to do a bit more work. There are many options: </p>
 
 		<ul> 
 			<li> Build a full-stack server with a Model View Controller (MVC) architecture. This requires you to have (i.e. purchase) hosting services from e.g., BlueHost or DigitalOcean. Here's a <a href='https://randomnerdtutorials.com/control-esp32-esp8266-gpios-from-anywhere/'>tutorial</a> that walks through this method. Other useful tools for this method may include <a href='https://www.ibm.com/cloud-computing/bluemix/'> IBM</a> or <a href='https://aws.amazon.com/iot/'>Amazon Web Services</a>.  </li> 
@@ -85,7 +85,7 @@ pubnub
 
 		</ul>
 
-			<p> The first step is to head to <a href='https://firebase.google.com/'>Firebase</a> and sign in with your Google account. Click "Get Started" and then "Add Project". Next, specify your project name (I called mine ESP32-LED), which will be used to generate a url (like https://esp32-led-9a0ab.firebaseio.com) where you can access your project database. You can opt in to Google Analytics if you wish. Click OK; you should be taken to the Firebase console page for your project. Click "Database" from the panel on the left.  </p>
+			<p> The first step is to head to <a href='https://firebase.google.com/'>Firebase</a> and sign in with your Google account. Click "Get Started" and then "Add Project". Next, specify your project name (I called mine ESP32-LED), which will be used to generate a url (like https://esp32-led-9a0ab.firebaseio.com) where you can access your project database. You can opt in to Google Analytics if you wish. Click OK; you should be taken to the Firebase console page for your project. Click "Realtime Database" from the panel on the left.  </p>
 
 			<img src='./fb1.png' alt='firebase screen grab'>
 
@@ -93,11 +93,12 @@ pubnub
 
 			<img src='./fb2.png' alt='firebase database'>
 
-			<p>You are looking at the root of your database, which is "null" because there isn't anything there yet. First let's change permissions (click "Rules" and set both read and write to "true"). Next we need to create a secret key to give to our Huzzah board so it can access this database. Click the gear icon next to "Project Overview" and select "Project settings". On the "Project settings" page, click "Service accounts" and then "Database secrets": </p>
+			<p>Write down the URL that points to your database (https://esp32-led-9a0ab.firebaseio.com) . You are looking at the root of your database, which is "null" because there isn't anything there yet. First let's change permissions (click "Rules" and set both read and write to "true"). Next we need to create a secret key to give to our Huzzah board so it can access this database. Click the gear icon next to "Project Overview" and select "Project settings". On the "Project settings" page, click "Service accounts" and then "Database secrets": </p>
 
 			<img src='./fb3.png' alt='database secrets'>
 
 			<p>Hover over the secret key, and select "Show". Copy this and save it somewhere to use in later steps. Also make sure to write down the auto-generated URL where you can access your database (something like esp32-led-9a0ab.firebaseio.com).  </p>
+
 
 			<p> Set up your circuit so that there is an LED attached to pin 5. In Arduino IDE, make sure you've installed the necessary libraries for ESP32 and the Feather boards <a href='./huzzah1.html'>(see previous step if not)</a>. </p>
 
@@ -124,7 +125,7 @@ int ledpin = 5;
 FirebaseData firebaseData;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   delay(1000);
   pinMode(ledpin, OUTPUT);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);                          // try to connect with wifi
@@ -240,6 +241,74 @@ void loop() {
 </code></pre>
 
 	<p> Save your code, commit and push as usual. Navigate to your new HTML page, and try turning the LED on and off. Here's a <a href='./firebase_demo.html'> live demo</a>. </p>
+
+
+	<h3> Controlling a Servo Motor </h3>
+
+	<p> We can modify the previous example to control a servo motor instead. The Arduino code is below, and the <a href='./servo_demo.html'> live demo is here</a>.</p> 
+
+	<pre><code class="language-arduino">
+#include &lt;WiFi.h&gt;                                 // esp32 library
+#include &lt;FirebaseESP32.h&gt;                        // firebase library
+#include "esp32-hal-ledc.h"
+
+#define FIREBASE_HOST ""  // the project name address from firebase id
+#define FIREBASE_AUTH ""                          // the secret key generated from firebase
+#define WIFI_SSID ""                                // input your home or public wifi name
+#define WIFI_PASSWORD ""                            // password of wifi ssid
+
+int fireInt = 0;                                          // led status received from firebase
+const int ServoPin = 32;
+
+// setting PWM properties
+const int ServoChannel = 0;
+const int resolution = 12;   //use 12 bits of resolution
+
+//Define FirebaseESP32 data object
+FirebaseData firebaseData;
+
+void setup() {
+  Serial.begin(115200);
+  delay(1000);
+  pinMode(ServoPin, OUTPUT);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);                          // try to connect with wifi
+
+  Serial.print("Connecting to ");
+  Serial.print(WIFI_SSID);
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+
+  Serial.println();
+  Serial.print("Connected to ");
+  Serial.println(WIFI_SSID);
+  Serial.print("IP Address is : ");
+  Serial.println(WiFi.localIP());                                // print local IP address
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);                  // connect to firebase
+  Firebase.reconnectWiFi(true);
+  Firebase.set(firebaseData, "/SERVO_ANGLE", fireInt);              // set initial string of "OFF"
+
+  // configure PWM functionalitites
+  ledcSetup(ServoChannel, 50, 16); // 50 hz PWM, 12-bit resolution
+  // attach the channel to the GPIO to be controlled
+  ledcAttachPin(ServoPin, ServoChannel);
+}
+
+void loop() {
+
+  Firebase.get(firebaseData, "/SERVO_ANGLE");                     // get led status input from firebase
+  fireInt = firebaseData.intData();                        // change to e.g. intData() or boolData()
+  Serial.println(fireInt);
+
+  int ServoValue = map(fireInt, 0, 180, 0, 4095);
+
+  Serial.println(ServoValue);
+  ledcWrite(ServoChannel, ServoValue);    
+
+  delay(1000);                                 // not strictly necessary
+}
+</code></pre>
 
 	</div >
 </div>
