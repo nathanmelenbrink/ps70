@@ -8,15 +8,15 @@
 
 <body>
 
-	 <button id="turn-on" name="turnon">Turn On</button>
-	 <button id="turn-off" name="turnoff">Turn Off</button>
+	 <button id="turn-on" name="turnon">Turn CW</button>
+	 <button id="turn-off" name="turnoff">Turn CCW</button>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
 
 <script>
@@ -45,14 +45,14 @@
 	document.getElementById('turn-off').addEventListener('click', turnOff, false);
 
 	function turnOn(){
-		console.log("turning on");
+		console.log("turning to 0");
 		ref.update({
 			"SERVO_ANGLE": 0
 		});
 	}
 
 	function turnOff(){
-		console.log("turning off");
+		console.log("turning to 180");
 		ref.update({
 			"SERVO_ANGLE": 180
 		});

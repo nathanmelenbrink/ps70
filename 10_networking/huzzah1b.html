@@ -290,7 +290,7 @@ void setup() {
   Firebase.set(firebaseData, "/SERVO_ANGLE", fireInt);              // set initial string of "OFF"
 
   // configure PWM functionalitites
-  ledcSetup(ServoChannel, 50, 16); // 50 hz PWM, 12-bit resolution
+  ledcSetup(ServoChannel, 50, 16); // 50 hz PWM, 16-bit resolution
   // attach the channel to the GPIO to be controlled
   ledcAttachPin(ServoPin, ServoChannel);
 }
