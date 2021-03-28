@@ -45,8 +45,10 @@
 
 		<h3> Stepper Motors </h3>
 		<p> 	
-			Stepper motors are great for position control. They can be found in desktop printers, plotters, 3d printers, CNC milling machines, and anything else requiring precise position control. 
+			<a href='https://en.wikipedia.org/wiki/Stepper_motor'>Stepper motors</a> are great for position control. They can be found in desktop printers, plotters, 3d printers, CNC milling machines, and anything else requiring precise position control. 
 		</p>
+
+		<img src='./stepper-motor.gif' alt='stepper motor'>
 
 		<h3> Pros </h3>
 		<ul> <li> Excellent position accuracy</li>
@@ -60,11 +62,53 @@
    			<li> It's possible to "skip" steps with high loads </li>
 		    <li> Draws maximum current constantly </li>
 		</ul>
-		</p>
+		
+		<p> We will be using bipolar stepper motors. Compared to unipolar stepper motors, bipolar steppers require more complicated circutry (in order to switch polarities) but are stronger by weight. </p>
 
 		<iframe width="916" height="687" src="https://www.youtube.com/embed/u12dt1RqLW0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-		<iframe width="916" src="https://www.youtube.com/embed/bkqoKWP4Oy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<iframe width="916" height="550" src="https://www.youtube.com/embed/bkqoKWP4Oy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+		<h3> Driving Stepper Motors</h3>
+
+		<p> There are a number of ways to drive stepper motors. We can send motor coils HIGH and LOW pulses directly from our microcontroller, but that won't give us much current.  </p>
+
+		<p>A chopper drive addresses the problem of obtaining high torque at high speed from a stepper motor by turning the output voltage to the motor on and off rapidly (aka “chopping”) to control the motor current. At each step of the motor, a very high voltage (typically eight times higher than the motor’s nominal voltage) is applied to the motor windings. This causes the current to rise rapidly, according to the relationship between current rise and inductance. It also allows higher current to be produced, according to Ohm’s law. (From <a href='https://www.linearmotiontips.com/what-is-a-chopper-drive-for-a-stepper-motor/'> Linear Motion Tips</a>.</p>
+
+		<img src='./chopper.jpg' alt='stepper motor'>
+
+		<h3> Microstepping</h3>
+
+		<p> <a href='https://www.linearmotiontips.com/microstepping-basics/'>Microstepping</a> is a method of controlling stepper motors, typically used to achieve higher resolution or smoother motion at low speeds. 
+		Microstepping control divides each full step into smaller steps to help smooth out the motor’s rotation, especially at slow speeds. For example, a 1.8 degree step can be divided up to 256 times, providing a step angle of 0.007 degrees (1.8 ÷ 256), or 51,200 microsteps per revolution. </p>
+
+		<p>  Microstepping is achieved by using pulse-width modulated (PWM) voltage to control current to the motor windings. The driver sends two voltage sine waves, 90 degrees out of phase, to the motor windings. While current increases in one winding, it decreases in the other winding. This gradual transfer of current results in smoother motion and more consistent torque production than full- or half-step control.</p>
+
+		
+
+		<h3>DRV883 Driver </h3>
+
+		<p> We will be using the <a href='https://www.pololu.com/product/2134'>DRV8834 Low-Voltage Stepper Driver</a>. Make sure to review the product description and datasheet. 
+		</p>
+
+		<p> Note: This product can get hot enough to burn you long before the chip overheats. Take care when handling this product and other components connected to it. </p>
+
+		<h3>Stepper Motor </h3>
+
+		<p>  <a href='https://www.omc-stepperonline.com/nema-17-bipolar-1-8deg-26ncm-36-8oz-in-0-4a-12v-42x42x34mm-4-wires.html?search=Nema%2017%20Bipolar%201.8deg%2026Ncm%20%2836.8oz.in%29%200.4A%2012V%2042x42x34mm%204%20Wires'>Nema 17 Bipolar 1.8deg 26Ncm (36.8oz.in) 0.4A 12V 42x42x34mm 4 Wires</a>. </p>
+
+		<p> Note some of the Electrical Specifications: 
+			<ul> <li> Rated Current/phase: 0.4A </li>
+    			<li> Voltage: 12V</li>
+    			<li> Phase Resistance: 30ohms</li>
+    		</ul>
+    	</p>
+
+
+
+    	<p> There is a maximum current rating of 0.4A with a 30Ω coil resistance, which would indicate a maximum motor supply of 12V. Using such a motor with a higher voltage would allow higher step rates, but the current must actively be limited to under 0.4A. (Anyway, we won't be using more than 9V). 
+		 </p>
+
 
 
 	</div >
