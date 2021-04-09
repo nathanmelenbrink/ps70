@@ -3,6 +3,7 @@ let path;
 
 
 function setup() {
+	console.log('setup');
 	createCanvas(710, 400, WEBGL);
 
 	path = [];
