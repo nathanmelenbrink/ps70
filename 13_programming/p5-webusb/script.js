@@ -18,6 +18,8 @@ function setup() {
 function draw() {
 	background(0);
 
+	orbitControl();
+
 	drawGrid();
 	drawAxis();
 	drawPath(); 
