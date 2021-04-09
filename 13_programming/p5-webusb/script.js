@@ -102,8 +102,8 @@ function drawPath() {
           let textDecoder = new TextDecoder();
           //console.log(data);
           //console.log(textDecoder.decode(data));
-          // path.push(new p5.Vector(mouseX, mouseY, textDecoder.decode(data)));
-           path.push(new p5.Vector(0, 0, 0));
+          //path.push(new p5.Vector(mouseX, mouseY, textDecoder.decode(data)));
+           path.push(new p5.Vector(mouseX, mouseY, 0));
           // if (data.getInt8() === 13) {
           //   currentReceiverLine = null;
           // } else {
