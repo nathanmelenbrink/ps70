@@ -3,16 +3,13 @@ let path = [];
 
 
 function setup() {
-	console.log('setup');
 	createCanvas(710, 400, WEBGL);
 
-	// Move the camera on the z axis (pointing toward the screen)
     camera(0, -100, width * 1.5, 0, 0, 0, 0, 1, 0);
 
     // Rotate on the y axis with the mouse 
-    rotateY(map(mouseX, 0, width, 0, PI));
+    //rotateY(map(mouseX, 0, width, 0, PI));
 
-	// path = [];
 }
 
 function draw() {
@@ -103,15 +100,8 @@ function drawPath() {
 
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
-          //console.log(data);
-          //console.log(textDecoder.decode(data));
+          console.log(textDecoder.decode(data));
           path.push(new p5.Vector(mouseX, mouseY, parseInt(textDecoder.decode(data)),10));
-          // path.push(new p5.Vector(mouseX, mouseY, 0));
-          // if (data.getInt8() === 13) {
-          //   currentReceiverLine = null;
-          // } else {
-          //   appendLine('receiver_lines', textDecoder.decode(data));
-          // }
         };
       
         port.onReceiveError = error => {
@@ -148,10 +138,5 @@ function drawPath() {
       }
     });
 
-    // let colorPicker = document.getElementById("color_picker");
-
-    // colorPicker.addEventListener("change", function(event) {
-    //   port.send(new TextEncoder("utf-8").encode(colorPicker.value));
-    // });
   });
 })();
