@@ -75,7 +75,7 @@ function drawPath() {
 	strokeWeight(3);
 	for (let i = 0; i < path.length - 1; i++) {
 		line(path[i].x, path[i].y, path[i].z, path[i+1].x, path[i+1].y, path[i+1].z);
-		console.log(path[i].x);
+		//console.log(path[i].x);
 	}
 
 	// Draw points
