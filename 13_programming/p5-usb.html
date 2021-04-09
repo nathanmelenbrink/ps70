@@ -47,49 +47,69 @@
 
 	<div class="col-md-9">
 
-		<h3>Browsers and USB </h3>
-		
-		<p> Web browsers cannot directly talk to USB devices like microcontrollers because by default they don't have access to serial ports. This limitation is typically overcome by running a server on your computer that can act as the communication bridge between the browser and the microcontroller. </p>
+		<h3>p5 and WebUSB </h3>
 
-		<p> Another way of overcoming this limitation is by using microcontrollers that are able to talk over USB directly. Check out <a href='https://learn.adafruit.com/using-webusb-with-arduino-and-tinyusb?view=all'>Adafruit's documentation</a> on how to do this. This method is particularly useful because it allows your browser to directly ask permission to access your microcontroller over USB, meaning you don't need to go through the step of establishing a connection bridge yourself. </p>
+		<p> This tutorial combines <a href='https://learn.adafruit.com/using-webusb-with-arduino-and-tinyusb?view=all'>Adafruit's documentation</a> on WebUSB with a p5 demo for plotting points in 3D space. This WebUSB method is particularly useful because it allows your browser to directly ask permission to access your microcontroller over USB, meaning you don't need to go through the step of establishing a connection bridge yourself. </p>
 
-		<p> One example specific to p5 is the <a href='https://github.com/p5-serial/p5.serialport'>P5.serialserver</a> (or p5.serialcontrol). This requires a separate program that you run to create a server, which can be downloaded <a href='https://github.com/p5-serial/p5.serialcontrol/releases/tag/0.1.2'>here</a>. (Some other tutorials that use this method include <a href='https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-serial-input-to-the-p5-js-ide/'>Serial Input to p5</a>, 
-		<a href='https://itp.nyu.edu/physcomp/labs/labs-serial-communication/two-way-duplex-serial-communication-using-p5js/'>Two-Way (Duplex) Serial Communication Using An Arduino and p5</a>, and an example for <a href='https://create.arduino.cc/projecthub/alankrantas/use-teachable-machine-ai-to-control-anything-2ad1ee'> Teachable Machine</a>. 
+		<img src='./p5web.gif' alt='p5 demo'>
+
+		<p> For this tutorial, you'll need the following: 
+			<ul> 
+				<li>Metro M0 </li>
+				<li>breadboard</li>
+				<li>hookup wires </li>
+				<li>potentiometer or other analog input  </li>
+			</ul>
 		</p> 
 
-		<p>We can set up a simple example to talk to a p5 sketch over Serial. Upload this simple code to your microcntroller: </p>
+		<p>Similar to the Adafruit tutorial, we'll want to install the Adafruit_TinyUSB library and make sure to go to Tools -> USB Stack and select TinyUSB. Copy and upload the following code. </p>
 
 <pre><code class="language-arduino">
-const int sensorPin = A0;    // analog pin A0
+#include "Adafruit_TinyUSB.h"
 
-void setup() {
-  // initialize the serial port for communication
-  Serial.begin(9600);
+// USB WebUSB object
+Adafruit_USBD_WebUSB usb_web;
+
+// Landing Page: scheme (0: http, 1: https), url
+WEBUSB_URL_DEF(landingPage, 1 /*https*/, "https://nathanmelenbrink.github.io/ps70/13_programming/p5-webusb/index.html");
+
+void setup(){
+  usb_web.setLandingPage(&landingPage);
+  usb_web.begin();
+
+  Serial.begin(115200);
+
+  // wait until device mounted
+  while ( !USBDevice.mounted() ) delay(1);
+
+  Serial.println("p5 WebUSB Serial example");
 }
 
-void loop() {
-  // read from potentiometer
-  int sensorValue = analogRead(sensorPin);
+void loop(){
+  int reading = analogRead(A2);
+  usb_web.println(reading);
   
-  // write the value to p5.js
-  Serial.write(sensorValue);
-  delay(10);
+  delay(100);
 }
 </code></pre>
 
-		<p> The javascript side is a little more complicated. We'll want to make a folder that contains both an index.html file and a sketch.js file. The index.html file should look something like this: </p>
+		<p> The javascript side is a little more complicated. We'll want to make a folder that contains an index.html file, a serial.js file, and a sketch.js file. Use the browser Inspect tool to see the contents of the demo file. </p>
+
+		<!-- <img > -->
+
+		<p> The index.html file should look something like this: </p>
 
 <pre><code class="html">
 &lt;!doctype html&gt;
 &lt;html class="no-js" lang="en"&gt;
 &lt;head&gt;
 		&lt;meta charset="UTF-8"&gt;
-		&lt;script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/lib/p5.js">&lt;/script&gt;
-		&lt;script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5.serialserver@0.0.28/lib/p5.serialport.js">&lt;/script&gt;
-		&lt;script language="javascript" type="text/javascript" src="sketch.js">&lt;/script&gt;
+		&lt;script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/lib/p5.js"&gt; &lt;/script&gt;
+		&lt;script language="javascript" type="text/javascript" src="serial.js"&gt; &lt;/script&gt;
+		&lt;script language="javascript" type="text/javascript" src="sketch.js"&gt; &lt;/script&gt;
 	&lt;/head&gt;
 	&lt;body&gt;
-
+		&lt;button id="connect"&gt;Connect&lt;/button&gt;
 	&lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
