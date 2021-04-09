@@ -1,4 +1,3 @@
-
 let path = [];
 let numPoints = 100;
 
@@ -15,13 +14,11 @@ function setup() {
 
 function draw() {
 	background(0);
-
 	orbitControl();
 
 	drawGrid();
 	drawAxis();
 	drawPath(); 
-
 }
 
 
@@ -66,9 +63,6 @@ function drawGrid() {
 }
 
 function drawPath() {
-	
-	
-	//stroke(255, 0, 0);
 
 	// Draw lines
 	strokeWeight(3);
@@ -81,7 +75,7 @@ function drawPath() {
 	// Draw points
 	// strokeWeight(12);
 	// path.forEach(p=>{
-	// 	point(p.x, p.y);
+	// 	point(p.x, p.y, p.z);
 	// })
 }
 
@@ -110,18 +104,14 @@ function drawPath() {
           let textDecoder = new TextDecoder();
           let decodedData = parseInt(textDecoder.decode(data), 10);
           if (isNumeric(decodedData)){
-          	// path.push(new p5.Vector(mouseX, mouseY, decodedData));
-      		 
-			
+      	
 			// Shift all elements 1 place to the left
 			for (let i=1; i < numPoints; i++ ) {
 				path[i-1] = path[i];
 			}
 
+			// Add new point to the end of the array
 			path[numPoints-1] = new p5.Vector(mouseX, mouseY, decodedData);
-      		
-
-
           }
         };
       

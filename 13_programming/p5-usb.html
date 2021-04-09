@@ -1,0 +1,107 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131686897-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-131686897-2');
+</script>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>PHYSCI 70: Introduction to Digital Fabrication</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script>
+	$(function(){
+	  $("#header").load("../header.html");
+	  $("#footer").load("../footer.html");
+	});
+</script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<!-- FIRST ROW -->
+<div class="row">
+	<div class="col-md-3">
+		<h3> Application Programming </h3>
+	</div >
+
+	<div class="col-md-9">
+
+		<h3>Browsers and USB </h3>
+		
+		<p> Web browsers cannot directly talk to USB devices like microcontrollers because by default they don't have access to serial ports. This limitation is typically overcome by running a server on your computer that can act as the communication bridge between the browser and the microcontroller. </p>
+
+		<p> Another way of overcoming this limitation is by using microcontrollers that are able to talk over USB directly. Check out <a href='https://learn.adafruit.com/using-webusb-with-arduino-and-tinyusb?view=all'>Adafruit's documentation</a> on how to do this. This method is particularly useful because it allows your browser to directly ask permission to access your microcontroller over USB, meaning you don't need to go through the step of establishing a connection bridge yourself. </p>
+
+		<p> One example specific to p5 is the <a href='https://github.com/p5-serial/p5.serialport'>P5.serialserver</a> (or p5.serialcontrol). This requires a separate program that you run to create a server, which can be downloaded <a href='https://github.com/p5-serial/p5.serialcontrol/releases/tag/0.1.2'>here</a>. (Some other tutorials that use this method include <a href='https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-serial-input-to-the-p5-js-ide/'>Serial Input to p5</a>, 
+		<a href='https://itp.nyu.edu/physcomp/labs/labs-serial-communication/two-way-duplex-serial-communication-using-p5js/'>Two-Way (Duplex) Serial Communication Using An Arduino and p5</a>, and an example for <a href='https://create.arduino.cc/projecthub/alankrantas/use-teachable-machine-ai-to-control-anything-2ad1ee'> Teachable Machine</a>. 
+		</p> 
+
+		<p>We can set up a simple example to talk to a p5 sketch over Serial. Upload this simple code to your microcntroller: </p>
+
+<pre><code class="language-arduino">
+const int sensorPin = A0;    // analog pin A0
+
+void setup() {
+  // initialize the serial port for communication
+  Serial.begin(9600);
+}
+
+void loop() {
+  // read from potentiometer
+  int sensorValue = analogRead(sensorPin);
+  
+  // write the value to p5.js
+  Serial.write(sensorValue);
+  delay(10);
+}
+</code></pre>
+
+		<p> The javascript side is a little more complicated. We'll want to make a folder that contains both an index.html file and a sketch.js file. The index.html file should look something like this: </p>
+
+<pre><code class="html">
+&lt;!doctype html&gt;
+&lt;html class="no-js" lang="en"&gt;
+&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/lib/p5.js">&lt;/script&gt;
+		&lt;script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5.serialserver@0.0.28/lib/p5.serialport.js">&lt;/script&gt;
+		&lt;script language="javascript" type="text/javascript" src="sketch.js">&lt;/script&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+		<p> Finally, you'll need a sketch.js file, which can look something like <a href='https://github.com/ITPNYU/physcomp/tree/master/Labs/P5SerialLabs/P5ReadSerial/readSerial'>this</a>. Make sure to change your port name. </p>
+	</div >
+</div>
+
+
+
+<div id="footer"></div>
+
+
+</body>
+</html>
