@@ -93,9 +93,9 @@ void loop(){
 }
 </code></pre>
 
-		<p> The javascript side is a little more complicated. We'll want to make a folder that contains an index.html file, a serial.js file, and a sketch.js file. Use the browser Inspect tool to see the contents of the demo file. </p>
+		<p> The javascript side is a little more complicated. We'll want to make a folder that contains an index.html file, a serial.js file, and a sketch.js file. Use the browser Inspect tool to see the contents of the demo file (click the "Sources" panel). </p>
 
-		<!-- <img > -->
+		<img src='./sources.png' alt='source'>
 
 		<p> The index.html file should look something like this: </p>
 
@@ -109,12 +109,17 @@ void loop(){
 		&lt;script language="javascript" type="text/javascript" src="sketch.js"&gt; &lt;/script&gt;
 	&lt;/head&gt;
 	&lt;body&gt;
-		&lt;button id="connect"&gt;Connect&lt;/button&gt;
+		&lt;div class="connect-container"&gt;
+			&lt;button id="connect"&gt;Connect&lt;/button&gt;
+			&lt;span id="status">&lt;/span&gt;
+      	&lt;/div&gt;
 	&lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 
-		<p> Finally, you'll need a sketch.js file, which can look something like <a href='https://github.com/ITPNYU/physcomp/tree/master/Labs/P5SerialLabs/P5ReadSerial/readSerial'>this</a>. Make sure to change your port name. </p>
+		<p> We'll need to include a file to help connect to the Serial port, called serial.js. It should look something like <a href='https://nathanmelenbrink.github.io/ps70/13_programming/p5-webusb/serial.js'>this</a> </p>
+
+		<p> Finally, you'll need a sketch.js file, which can look something like <a href='https://nathanmelenbrink.github.io/ps70/13_programming/p5-webusb/sketch.js'>this</a>. Make sure to change your port name. </p>
 	</div >
 </div>
 
