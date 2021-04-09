@@ -83,6 +83,7 @@ function drawPath() {
 }
 
 
+
 (function() {
   'use strict';
 
@@ -90,6 +91,10 @@ function drawPath() {
     let connectButton = document.querySelector("#connect");
     let statusDisplay = document.querySelector('#status');
     let port;
+
+    function isNumeric(value) {
+	    return /^\d+$/.test(value);
+	}
 
     function connect() {
       port.connect().then(() => {
@@ -100,8 +105,9 @@ function drawPath() {
 
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
-          console.log(textDecoder.decode(data));
-          path.push(new p5.Vector(mouseX, mouseY, parseInt(textDecoder.decode(data)),10));
+          let decodedData = parseInt(textDecoder.decode(data), 10);
+          if (isNumeric(decodedData))
+      		 path.push(new p5.Vector(mouseX, mouseY, decodedData));
         };
       
         port.onReceiveError = error => {
