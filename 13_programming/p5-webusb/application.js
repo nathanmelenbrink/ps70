@@ -11,6 +11,16 @@
         statusDisplay.textContent = '';
         connectButton.textContent = 'Disconnect';
 
+        port.onReceive = data => {
+          let textDecoder = new TextDecoder();
+          console.log(textDecoder.decode(data));
+          // if (data.getInt8() === 13) {
+          //   currentReceiverLine = null;
+          // } else {
+          //   appendLine('receiver_lines', textDecoder.decode(data));
+          // }
+        };
+      
         port.onReceiveError = error => {
           console.error(error);
         };
@@ -45,10 +55,10 @@
       }
     });
 
-    let colorPicker = document.getElementById("color_picker");
+    // let colorPicker = document.getElementById("color_picker");
 
-    colorPicker.addEventListener("change", function(event) {
-      port.send(new TextEncoder("utf-8").encode(colorPicker.value));
-    });
+    // colorPicker.addEventListener("change", function(event) {
+    //   port.send(new TextEncoder("utf-8").encode(colorPicker.value));
+    // });
   });
 })();
