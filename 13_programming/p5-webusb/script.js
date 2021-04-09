@@ -1,5 +1,5 @@
 
-let path;
+let path = [];
 
 
 function setup() {
@@ -12,7 +12,7 @@ function setup() {
     // Rotate on the y axis with the mouse 
     rotateY(map(mouseX, 0, width, 0, PI));
 
-	path = [];
+	// path = [];
 }
 
 function draw() {
