@@ -30,6 +30,7 @@ var serial = {};
     let readLoop = () => {
       this.device_.transferIn(this.endpointIn, 64).then(result => {
         this.onReceive(result.data);
+        console.log(result.data);
         readLoop();
       }, error => {
         this.onReceiveError(error);
