@@ -7,8 +7,9 @@ function setup() {
 
     camera(0, -100, width * 1.5, 0, 0, 0, 0, 1, 0);
 
-    // Rotate on the y axis with the mouse 
-    //rotateY(map(mouseX, 0, width, 0, PI));
+    for (let i = 0; i < numPoints; i++ ) {
+    	path[i] = new p5.Vector(0, 0, 0);
+    }
 
 }
 
@@ -71,7 +72,7 @@ function drawPath() {
 
 	// Draw lines
 	strokeWeight(3);
-	for (let i = 0; i < path.length - 1; i++) {
+	for (let i = 0; i < numPoints - 1; i++) {
 		let val = i / numPoints * 204.0 + 51;
     	stroke(val);
 		line(path[i].x, path[i].y, path[i].z, path[i+1].x, path[i+1].y, path[i+1].z);
