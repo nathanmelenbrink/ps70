@@ -1,6 +1,6 @@
 
 let path = [];
-
+let numPoints = 100;
 
 function setup() {
 	createCanvas(710, 400, WEBGL);
@@ -51,11 +51,10 @@ function drawAxis() {
 
 function drawGrid() {
 	let cellSize = 50; 
-	//stroke(255, finishedDrawing? 50 : 255);
+
 	stroke(255);
 	strokeWeight(1);
 
-	//pushMatrix()
 	for (let x = 0; x <= width; x += cellSize) {
 		line(x, 0, x, height);
 	}
@@ -66,13 +65,16 @@ function drawGrid() {
 }
 
 function drawPath() {
-	stroke(255, 0, 0);
+	
+	
+	//stroke(255, 0, 0);
 
 	// Draw lines
 	strokeWeight(3);
 	for (let i = 0; i < path.length - 1; i++) {
+		let val = i / numPoints * 204.0 + 51;
+    	stroke(val);
 		line(path[i].x, path[i].y, path[i].z, path[i+1].x, path[i+1].y, path[i+1].z);
-		//console.log(path[i].x);
 	}
 
 	// Draw points
@@ -106,8 +108,20 @@ function drawPath() {
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
           let decodedData = parseInt(textDecoder.decode(data), 10);
-          if (isNumeric(decodedData))
-      		 path.push(new p5.Vector(mouseX, mouseY, decodedData));
+          if (isNumeric(decodedData)){
+          	// path.push(new p5.Vector(mouseX, mouseY, decodedData));
+      		 
+			
+			// Shift all elements 1 place to the left
+			for (let i=1; i < numPoints; i++ ) {
+				path[i-1] = path[i];
+			}
+
+			path[numPoints-1] = new p5.Vector(mouseX, mouseY, decodedData);
+      		
+
+
+          }
         };
       
         port.onReceiveError = error => {
