@@ -49,6 +49,8 @@
 
 		<h3>p5 and WebUSB </h3>
 
+		<p> Demo <a href='./p5-webusb/index.html'>here</a>.</p>
+
 		<p> This tutorial combines <a href='https://learn.adafruit.com/using-webusb-with-arduino-and-tinyusb?view=all'>Adafruit's documentation</a> on WebUSB with a p5 demo for plotting points in 3D space. This WebUSB method is particularly useful because it allows your browser to directly ask permission to access your microcontroller over USB, meaning you don't need to go through the step of establishing a connection bridge yourself. </p>
 
 		<img src='./p5web.gif' alt='p5 demo'>
@@ -117,9 +119,9 @@ void loop(){
 &lt;/html&gt;
 </code></pre>
 
-		<p> We'll need to include a file to help connect to the Serial port, called serial.js. It should look something like <a href='https://nathanmelenbrink.github.io/ps70/13_programming/p5-webusb/serial.js'>this</a> </p>
+		<p> We'll need to include a file to help connect to the Serial port, called serial.js. It should look like <a href='https://nathanmelenbrink.github.io/ps70/13_programming/p5-webusb/serial.js'>this</a>: </p>
 
-		<p> Finally, you'll need a sketch.js file, which can look something like <a href='https://nathanmelenbrink.github.io/ps70/13_programming/p5-webusb/sketch.js'>this</a>. Make sure to change your port name. </p>
+		<p> Finally, you'll need a sketch.js file, which can look something like <a href='https://nathanmelenbrink.github.io/ps70/13_programming/p5-webusb/sketch.js'>this</a>. The first half of the code consists of p5 drawing functions, while the second half of the code handles the Serial port listener (you only need to pay attention to lines 103-116, where points are removed and added to the <code>path</code> array). You'll want to find a way to replace <code>mouseX</code> and <code>mouseY</code> with your sensor data as well. </p>
 	</div >
 </div>
 
