@@ -1,0 +1,14 @@
+body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: black;
+    padding-top: 0px !important;
+  }
+
+p {font-size: 16px;}
+.margin {margin-bottom: 15px;}
+
+.container-fluid {
+  padding: 0px;
+  padding-bottom: 70px;
+}
