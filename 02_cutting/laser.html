@@ -8,10 +8,10 @@
 <meta name="description" content="Index Page">
 <script src="../js/vendor/jquery.min.js"></script>
 <script>
-	$(function(){
-	  $("#header").load("../header.html");
-	  $("#footer").load("../footer.html");
-	});
+  $(function(){
+    $("#header").load("../header.html");
+    $("#footer").load("../footer.html");
+  });
 </script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -23,80 +23,71 @@
 </head>
 <body>
 
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+
 <div id="header"></div>
 
-<!-- FIRST ROW -->
-<div class="row">
-	<div class="col-md-3">
-		<h3> Laser Cutting and the Vinyl Cutter</h3>
-	</div >
-
-	<div class="col-md-9">
-
-		<h3> Laser cutters</h3>
-		
-		<p><a href='https://thunderlaserusa.com/nova24-laser-engraver-cutter/'>Our 40 Watt Thunder Laser</a> and
-		<a href='./laserSOP.html'>its operating instructions.</a></p>
-		
-<p><a href='https://www.3dfablight.com/'>Fablight.</a> (An example of a more powerful lasercutter.) </p>
-	<!-- <p>See HTMAA
-<a href='http://academy.cba.mit.edu/classes/computer_cutting/index.html'>"2D cutting" page</a> for more links.  </p> -->
-
-	<h3> Laser cutting</h3>
-
-		<p></p>
-		<img width="400"  src="./aardvark.jpg" alt="aardvark"><br>
-		<ul>
-			<li>What it does. </li>
-			<li>Safety.</li>
-			<ul>
-				<li>FIRE PREVENTION.</li>
-				<li>Chemical Exposure.</li>
-
-			</ul>
-
-			<li>Materials:<a href='http://tinkertech.io/laser-cutter-materials-guide/'> link to a list.</a></li>
-
-			<ul>
-				<li>Plant-derived:  Cardboard, wood, leather, fiber...</li>
-				<li>Plastics: Acrylic (plexiglass). Delrin.</li>
-				<li>Never cut: PVC plastic, ABS plastic.  See list above, and ask if in doubt about a material. </li>
-			</ul>
-
-			<li>Cutting lines (vector files) </li>
-			<ul>
-				<li>kerf. </li>
-				<li>Speed and power.</li>
-
-			</ul>
-
-			<li>Making 3D from 2D </li>
-			<ul>
-
-				<li><a href='http://fab.cba.mit.edu/classes/863.12/people/salzberg/week2.html'>Press-fit constuction.</a>
-					Boxes, frames and structures.</li>
-				<li><a href='https://www.youtube.com/watch?v=GsIi17Xialg'> Slicing 3D objects. </a></li>
-				<li><a href='http://academy.cba.mit.edu/classes/computer_cutting/flexures.png'> Flexures.</a></li>
-			</ul>
-
-			<li>Rastering using bitmap files.</li>
-            <a href='https://nathanmelenbrink.github.io/ps70/02_cutting/engraving.html'>Engraving</a>
-
-				<iframe width="962" height="541" src="./Laser_raster.mp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-				<img width="400"  src="./raster_table.jpg" alt="table"> <br>
+<xmp theme="united" style="display:none;">
+<br>
 
 
-	</div >
-</div>
+### [Thunder Laser Nova24](https://thunderlaserusa.com/) in SC 103
+
+### Standard Operating Procedure
+  - Turn on Exhaust fan
+  - Turn on Cooling water
+  - Turn on both laser switches
+  - Open RDWorks V8
+  - Import vector files or bitmaps
+  - Insert material
+  - On the laser control panel
+    - Hit esc (if necessary) and move head to origin
+    - Hit ORIGIN to set origin
+    - Adjust laser height (use Z/U button and side arrows). Check with 6 mm spacer.
+  - Back on the computer, check area with “go scale” button
+  - Set power and speed
+  - Hit “Start”
+
+### Shutdown Procedure
+  - Turn off both laser switches.
+  - Turn off Cooling water.
+  - Turn off Exhaust fan.
+
+### Safety issues
+  - Always keep within the tape on the floor in fron of laser while cutting. Watch during the entire cut.
+  - If a fire occurs, hit the emergency stop, turn off exhaust fan and wait for fire to subside.
+  - If it does not subside, use your judgement to fight fire with fire blanket or extinguisher.
+  - When fire is beyond safe control, Call operations on the red phone to report fire. Pull fire
+alarm. Exit building.
+- Wait a few minutes after cutting plastics before opening the laser cutter to allow for outgassing.   
 
 
+### Materials 
+- Most anything plant-derived: cardboard, wood, leather, fiber...
+- Some plastics: Acrylic (plexiglass), Delrin
+- Never cut: PVC plastic, ABS plastic. Ask if in doubt about a material.
 
-<div id="footer"></div>
+### Cutting 
+- lines (vector files) <br> 
+	- kerf <br> 
+	<img width="400"  src="./kerf2.png" alt="kerf"> <img width="400"  src="./kerf1.png" alt="kerf"> 
+	- speed and power
+- <a href='./engraving.html'> images (raster files)</a>
 
-<script src="../js/vendor/jquery.min.js"></script>
-<script src="../js/foundation.min.js"></script>
-<script src="../js/htdaa.js"></script>
+
+<iframe width="400" height="240" src="./Laser_raster.mp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-</body>
+<!-- 
+
+### Benchmarks
+
+TODO: Include a table of common materials in the lab and settings to cut them 
+
+-->
+
+</xmp>
+
+
+<script src="../js/strapdown.js"></script>
 </html>
