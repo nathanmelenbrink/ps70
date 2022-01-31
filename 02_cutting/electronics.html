@@ -1,0 +1,175 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>PHYSCI 70: Introduction to Digital Fabrication</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script>
+  $(function(){
+    $("#header").load("../header.html");
+    $("#footer").load("../footer.html");
+  });
+</script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+
+<div id="header"></div>
+
+<xmp theme="united" style="display:none;">
+
+## Electronics basics
+
+
+<!-- ### A few of the most common components and their symbols -->
+
+  ![pic](./electronics/components.png)
+
+  [Resistor color code link](http://www.resistorguide.com/resistor-color-code/)
+
+---
+
+## Voltage
+
+
+#### Current flows through a circuit;
+
+#### Voltage is the energy that the charges have at a particular place in the circuit.
+
+  ![pic](./electronics/arduino_power.jpg)
+
+The picture above shows a way to supply voltage to a protoboard circuit. The Arduino Uno (similar to the Metro) provides 5 V. Note that it can also provide 3.3 V. Note that many microcontrollers are not 5 V tolerant, and can be damaged by more than 3.3 V. Alternatively, you can power your [breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard) with an external power supply (any voltage) through a barrel connector to which leads have been soldered.  
+
+
+![pic](./electronics/Voltage-ArduinoLEDCircuit00.png)
+![pic](./electronics/Voltage-ArduinoLEDCircuitMultimeter.JPG)
+
+- On the left a schematic and on the right a Tinkercad simulation of the circuit. Below, a measurement of the voltage. The arduino pins at 3.3V (or 5V) and GND act as the "battery".
+[Tutorial on breadboard circuits](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard).
+
+![pic](./electronics/dmm.png)
+
+Using a multimeter to measure voltage (with respect to ground) at points in a circuit. Use mini-hooks to connect the black lead to ground. 
+
+![pic](./electronics/Voltage-MultimeterReadDiagram.png)
+
+- The multimeter is used in the DC voltage mode to measure the voltage around the circuit.  The voltage reference
+or "ground" is chosen to be the negative terminal of the battery. A graph of these voltages is shown on the right procceding
+around the circuit from A through E and back through the battery to A again.
+
+---
+
+##Current
+
+  - Ohm's law applies to resistors.  Use Ohm's law to calculate the current flowing through
+  a resistor.
+
+  ![pic](./electronics/Current-OhmsLawDiagram.png)
+
+  - An LED does not have the simple relation between voltage and current that a resistor does (Ohm's law
+  does not work for diodes).  To learn what current is flowing through the LED, you need to use the fact that the current flowing through the resistor is
+  the same as that flowing through the LED.  Then measure the voltage across the resistor and use Ohm's Law to find the current.
+  Build the circuit shown above, and calculate the current flowing through the circuit.
+
+---
+
+  ##Arduino as a voltmeter.
+  ![pic](./electronics/voltmeter.jpg)
+
+  Use the Arduino as a voltmeter. In the picture above, the A0 pin of the Arduino is used with the yellow lead, to measure
+  voltage, using analogRead.  Use the program in Arduino IDE, File>Examples>Basic>AnalogReadSerial.  Open the serial monitor
+  or the serial plotter in the Arduino IDE.  Probe the circuit to measure voltages relative to ground.
+
+---
+
+##Power
+
+Power is the energy per unit time that is used or dissipated by a circuit element.  It is calculated as:
+
+<b> P = I x V </b>
+
+With current in Amperes and V in volts, Power has units of Joules/second or Watts.
+
+Alternatively, Ohm's Law can be used to give:
+
+<b>P=I<sup>2</sup>R or P=V<sup>2</sup>/R </b>
+
+---
+
+##Voltage Divider
+
+![pic](./electronics/VoltageDivider.png)
+
+- Voltage divider.  Here is a voltage divider, which forms the basis for many sensors.  Build this circuit
+with resistors, and measure voltages.  Does it make sense to you?
+
+---
+
+  ![pic](./electronics/Potentiometer.png)
+
+- Potentiometers.  A potentiometer is a voltage divider with a movable contact.  It can be used to provide a variable voltage, or act
+as a variable resistance.
+
+---
+
+##I-V Curves
+
+![pic](./electronics/resistor_iv.png)
+
+Ohm's Law describes a linear relationship between current and voltage: ∆V = iR.  It holds for a resistor, conducting
+current within its normal operating range. For other devices, such as diodes (for example, LEDs) the relation is not linear.  For
+these devices, we need to use the Current-voltage curve (I-V) to model the behavior in a circuit.
+
+[Current-voltage curves](https://en.wikipedia.org/wiki/Current%E2%80%93voltage_characteristic)
+
+
+## Capacitors, time-varying voltage, Oscilloscope
+
+![pic](./electronics/CapacitorDiagram.png)
+
+
+  - A capacitor stores energy within its internal electric fields.  As current flows through the capacitor, the voltage across its teminals
+increases as V = (1/C)*Q where C is the capacitance in Farads and Q is the total charge that has passed through the capacitor.
+
+  - [Applet by Falstad demonstrating capacitor charging.](https://www.falstad.com/circuit/e-cap.html)
+
+  - Oscilloscope.
+
+  ![pic](./electronics/scope.png)
+
+    - Use Oscilloscope to measure voltage of Arduino as it blinks.
+    - Use the Oscilloscope to monitor capacitor voltage as it charges.
+
+
+
+<!-- ##Other resources for electronics.
+
+- <b>[Getting started with Arduino](../Arduino/index.html)</b>
+
+- <b>[Intro by Lara Tomholt](Lara_Tomholt_Workshop.pdf)</b>
+
+- <b>[More introductory material from a HTMAA recitation.](https://tourlomousis.pages.cba.mit.edu/fabclass-recitation-electronics/basic_concepts/index.html)</b>
+ -->
+
+
+
+
+_Thanks to Rob Hart, Gabby Perry_ 
+
+
+</xmp>
+
+
+<script src="../js/strapdown.js"></script>
+</html>
