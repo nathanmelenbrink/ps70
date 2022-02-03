@@ -47,16 +47,24 @@
 
 #### Voltage is the energy that the charges have at a particular place in the circuit.
 
+![pic](https://www.edn.com/wp-content/uploads/media-1314069-witte-blog10-impedance-fig1.jpg)
+
+Sometimes people use the analogy of a water pipe, where voltage corresponds to water pressure, current is the flow rate, and resistance corresponds to constrictions in the pipe. 
+
+<!-- Another analogy is given by the arduino projects book.  -->
+  
+
   ![pic](./electronics/arduino_power.jpg)
 
 The picture above shows a way to supply voltage to a protoboard circuit. The Arduino Uno (similar to the Metro) provides 5 V. Note that it can also provide 3.3 V. Note that many microcontrollers are not 5 V tolerant, and can be damaged by more than 3.3 V. Alternatively, you can power your [breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard) with an external power supply (any voltage) through a barrel connector to which leads have been soldered.  
 
 
 ![pic](./electronics/Voltage-ArduinoLEDCircuit00.png)
-![pic](./electronics/Voltage-ArduinoLEDCircuitMultimeter.JPG)
 
-- On the left a schematic and on the right a Tinkercad simulation of the circuit. Below, a measurement of the voltage. The arduino pins at 3.3V (or 5V) and GND act as the "battery".
+On the left a schematic and on the right a Tinkercad simulation of the circuit. Below, a measurement of the voltage. The arduino pins at 3.3V (or 5V) and GND act as the "battery".
 [Tutorial on breadboard circuits](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard).
+
+![pic](./electronics/Voltage-ArduinoLEDCircuitMultimeter.JPG)
 
 ![pic](./electronics/dmm.png)
 
@@ -64,9 +72,9 @@ Using a multimeter to measure voltage (with respect to ground) at points in a ci
 
 ![pic](./electronics/Voltage-MultimeterReadDiagram.png)
 
-- The multimeter is used in the DC voltage mode to measure the voltage around the circuit.  The voltage reference
-or "ground" is chosen to be the negative terminal of the battery. A graph of these voltages is shown on the right procceding
-around the circuit from A through E and back through the battery to A again.
+The multimeter is used in the DC voltage mode to measure the voltage around the circuit.  The voltage reference or "ground" is chosen to be the negative terminal of the battery. A graph of these voltages is shown on the right procceding around the circuit from A through E and back through the battery to A again.
+
+
 
 ---
 
@@ -78,13 +86,36 @@ around the circuit from A through E and back through the battery to A again.
   ![pic](./electronics/Current-OhmsLawDiagram.png)
 
   - An LED does not have the simple relation between voltage and current that a resistor does (Ohm's law
-  does not work for diodes).  To learn what current is flowing through the LED, you need to use the fact that the current flowing through the resistor is
-  the same as that flowing through the LED.  Then measure the voltage across the resistor and use Ohm's Law to find the current.
+  does not work for diodes).  To learn what current is flowing through the LED, you need to use the fact that the current flowing through the resistor is the same as that flowing through the LED. Then measure the voltage across the resistor and use Ohm's Law to find the current.
   Build the circuit shown above, and calculate the current flowing through the circuit.
 
 ---
 
-  ##Arduino as a voltmeter.
+##Kirchhoff's Circuit Laws
+
+[Kirchhoff's current law](https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws) states that, for any node (junction) in an electrical circuit, the sum of currents flowing into that node is equal to the sum of currents flowing out of that node. 
+
+  ![pic](./electronics/KCL.png)
+
+The current entering any junction is equal to the current leaving that junction. _i2 + i3 = i1 + i4_
+
+Kirchhoff's Voltage Rule states that the directed sum of the potential differences (voltages) around any closed loop is zero.
+
+ ![pic](./electronics/KVL.png)
+
+_v1 + v2 + v3 + v4 = 0_
+
+---
+
+
+##Resistance
+
+![pic](./electronics/series.png)
+
+---
+
+  ##Arduino as a voltmeter 
+
   ![pic](./electronics/voltmeter.jpg)
 
   Use the Arduino as a voltmeter. In the picture above, the A0 pin of the Arduino is used with the yellow lead, to measure
@@ -142,7 +173,7 @@ these devices, we need to use the Current-voltage curve (I-V) to model the behav
   - A capacitor stores energy within its internal electric fields.  As current flows through the capacitor, the voltage across its teminals
 increases as V = (1/C)*Q where C is the capacitance in Farads and Q is the total charge that has passed through the capacitor.
 
-  - [Applet by Falstad demonstrating capacitor charging.](https://www.falstad.com/circuit/e-cap.html)
+  - [Applet by Falstad demonstrating capacitor charging](https://www.falstad.com/circuit/e-cap.html)
 
   - Oscilloscope.
 
@@ -153,6 +184,9 @@ increases as V = (1/C)*Q where C is the capacitance in Farads and Q is the total
 
 
 
+## Resources 
+
+[Makeability Lab Intro to Electronics](https://makeabilitylab.github.io/physcomp/electronics/)
 <!-- ##Other resources for electronics.
 
 - <b>[Getting started with Arduino](../Arduino/index.html)</b>
