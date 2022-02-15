@@ -42,12 +42,12 @@
 
   <div class="col-md-9">
 
-  <h3> Motor Driving </h3>
+    <h3> Motor Driving </h3>
 
   <p> For this workshop, please collect the following: 
     <ul> 
-      <li>Metro M0 Express microcontroller </li>
-      <li>DC motor (N20 or Canon motor)</li>
+      <li>Metro microcontroller </li>
+      <li>DC motor </li>
       <li>L9110 </li>
     </ul>
   </p> 
@@ -69,8 +69,8 @@
   <p> Now plug in your USB cable and upload the following code to your Metro: </p>
 
 <pre><code class="language-arduino">
-const int A1A = 3;  // define pin 3 for A-1A (PWM Speed)
-const int A1B = 4;  // define pin 4 for A-1B (direction)
+const int A1A = 3;  // define pin 3 for A-1A 
+const int A1B = 4;  // define pin 4 for A-1B 
 
 void setup() {
   pinMode(A1A, OUTPUT);     // specify these pins as outputs
@@ -93,10 +93,11 @@ void loop() {
 }
 </code></pre> 
 
-  <p> We can switch the direction of the motor from CW to CCW by reversing the signals on pins A1B and A1A. </p>
+  <p> We can switch the direction of the motor from CW to CCW by reversing the signals on pins A1B and A1A. Nominally, A-1B controls direction, so switching it from LOW to HIGH will have the effect of changing direction. However, when both pins are HIGH the motor stops (see the truth table in the datasheet). In other words, when we set the direction pin (A1B) HIGH, the logic of the speed pin (A1A) is inverted. 
+</p>
 
 <pre><code class="language-arduino">
-const int A1A = 3;  // define pin 3 for A-1A (PWM Speed)
+const int A1A = 3;  // define pin 3 for A-1A (speed)
 const int A1B = 4;  // define pin 4 for A-1B (direction)
 
 void setup() {
@@ -133,6 +134,8 @@ void loop() {
   <h3>Analog Mode </h3>
   <p> In addition to changing directions using <code>digitalWrite()</code> commands, we can also change the motor speed using PWM. However, once we start sending a pin PWM signals (using <code>analogWrite()</code>), it will stop listening for <code>digitalWrite()</code> commands, so we'll need to stop the motor using <code>analogWrite(A1A, 0)</code> instead.</p>
 
+  <p>Remember that when the direction pin (A1B) is HIGH, the logic of the speed pin (A1A) is inverted. So when A1B is LOW, <code>analogWrite(A1A, 255)</code> will move the motor at full speed, but when A1B is HIGH, <code>analogWrite(A1A, 0)</code> will move the motor at full speed. </p>
+
 <pre><code class="language-arduino">
 const int A1A = 3;  // define pin 3 for A-1A (PWM Speed)
 const int A1B = 4;  // define pin 4 for A-1B (direction)
@@ -140,25 +143,28 @@ const int A1B = 4;  // define pin 4 for A-1B (direction)
 void setup() {
   pinMode(A1A, OUTPUT);     // specify these pins as outputs
   pinMode(A1B, OUTPUT);
-  digitalWrite(A1A, LOW);   // start with the motors off 
+  analogWrite(A1A, 0);   // start with the motors off 
   digitalWrite(A1B, LOW);
 }
 
 void loop() {
-  // start the motor at a medium speed
-  analogWrite(A1A, 100);   
+  // start the motor at a low speed
+  analogWrite(A1A, 50);   
   digitalWrite(A1B, LOW);
   delay(4000);              // allow the motor to run for 4 seconds
 
   // stop the motor
   analogWrite(A1A, 0);   // setting both pins LOW stops the motor
-  digitalWrite(A1B, LOW);
   delay(2000);              // keep the motor off for 2 seconds
 
-  // start the motor in opposite direction and faster
-  analogWrite(A1A, 200);  
+  // start the motor in opposite direction at the same speed
   digitalWrite(A1B, HIGH);  // switch direction
+  analogWrite(A1A, 255-50); // here the logic for speed is inverted   
   delay(4000);              // allow the motor to run for 4 seconds
+
+  // speed up the motor
+  analogWrite(A1A, 50);   // here the logic for speed is inverted  
+  delay(2000);   
 
   // stop the motor
   analogWrite(A1A, 0);   // setting both pins LOW stops the motor
@@ -174,31 +180,26 @@ void loop() {
 <pre><code class="language-arduino">
 /*
  * This is a custom function to drive Motor A
- * inputs: direction (L/R), duration (int) 
+ * inputs: direction (HIGH/LOW), speed (0-255)
  * outputs: motor control
  */
-void motorA(char d, int t) {
-  if(d =='R'){
-    digitalWrite(A1A, LOW); 
+void motorA(byte d, int s) {
+  if(d == 1){
+    analogWrite(A1A, 255-s); 
     digitalWrite(A1B, HIGH); 
-  } else if (d =='L'){
-    digitalWrite(A1A, HIGH); 
+  } else if (d == 0){
+    analogWrite(A1A, s); 
     digitalWrite(A1B, LOW);    
-  }
-
-  delay(t); // allow motor to run for specified time
- 
-  digitalWrite(A1A, LOW); // turn motor OFF
-  digitalWrite(A1B, LOW);    
+  }    
 }
 </code></pre>
 
-  <p> Then we can call this function from our main loop() function. Putting it all together looks like this: </p>
+  <p> (Remember that when the direction is HIGH, the speed should be inverted, in other words <code>255-s</code> instead of <code>s</code>). Then we can call this function from our main loop() function. Putting it all together looks like this: </p>
 
 
 <pre><code class="language-arduino">
-const int A1A = 3;  // define pin 3 for A-1A
-const int A1B = 4;  // define pin 4 for A-1B
+const int A1A = 3;  // define pin 3 for A-1A (PWM Speed)
+const int A1B = 4;  // define pin 4 for A-1B (direction)
 
 void setup() {
   pinMode(A1A, OUTPUT); // specify these pins as outputs
@@ -206,37 +207,29 @@ void setup() {
 }
 
 void loop() {
-  motorA('L', 2000);  // turn left for 2 seconds
-  delay(1000);      // delay for 1 second
-  motorA('R', 2000);  // turn right for 2 seconds
-  delay(1000);      // delay for 1 second
+  motorA(LOW, 255);  // turn motor CW at full speed
+  delay(2000);      // delay for 2 seconds
+  motorA(HIGH, 63);  // turn motor CCW at quarter speed
+  delay(4000);      // delay for 4 seconds
 }
-
 
 /*
  * This is a custom function to drive Motor A
- * inputs: direction (L/R), duration (int) 
+ * inputs: direction (HIGH/LOW), speed (0-255)
  * outputs: motor control
  */
-void motorA(char d, int t) {
-  if(d =='R'){
-    digitalWrite(A1A, LOW); 
+void motorA(byte d, int s) {
+  if(d == 1){
+    analogWrite(A1A, 255-s); 
     digitalWrite(A1B, HIGH); 
-  } else if (d =='L'){
-    digitalWrite(A1A, HIGH); 
+  } else if (d == 0){
+    analogWrite(A1A, s); 
     digitalWrite(A1B, LOW);    
-  }
-
-  delay(t); // allow motor to run for specified time
- 
-  digitalWrite(A1A, LOW); // turn motor OFF
-  digitalWrite(A1B, LOW);    
+  }    
 }
 </code></pre>
 
   <p> Note that the delays are "blocking" which means that they prevent other functions from running simultaneously. We can get around this limitation using timers, but this is a bit more advanced. </p>
-
-  <p> Once we're able to control the speed with a digital (HIGH/LOW) output, we can modify the code to have speed control using <a href='https://www.arduino.cc/en/Tutorial/PWM'> PWM</a>. The function to do this is <code>analogWrite()</code>. Instead of HIGH or LOW, it takes a number between 0-255, such as <code>analogWrite(A1A, 175);</code>. Try getting your motor to move at different speeds. </p>
 
   <p> Once you're comfortable controlling your motor with the L9110, you should try <a href='https://roberthart56.github.io/SCFAB/SC_lab/Output_Devices/FET/index.html'> driving a motor with a transistor.</a> </p>
 
@@ -246,9 +239,9 @@ void motorA(char d, int t) {
 
   <p> For this workshop, please collect the following: 
     <ul> 
-      <li>Metro M0 Express microcontroller </li>
+      <li>Metro microcontroller </li>
       <li>potentiometer</li>
-      <li>DC motor (N20 or Canon motor)</li>
+      <li>DC motor </li>
       <li>L9110 </li>
     </ul>
   </p> 
@@ -269,26 +262,23 @@ void motorA(char d, int t) {
 
 <pre><code class="language-arduino">
 /*  Code to run motor in one direction based on potentiometer reading.
- *  Motor driver control on pin 3/
- *  Potentiometer plugged into A0, A2, and A4 on Metro M0 ( or similar).
+ *  Motor driver speed control on pin 3 (direction LOW by default)
+ *  Potentiometer plugged into A0, A2, and A4 on Metro M0 (or similar).
  */
-
-
 
 void setup() {
   pinMode(3, OUTPUT);
   pinMode(A0, OUTPUT);  //This will be GND for the potentiometer
-  pinMode(A4, OUTPUT);  //This will be 3.3V for the pot.
+  pinMode(A4, OUTPUT);  //This will be 3.3V for the pot
 
   digitalWrite(A0, LOW);
   digitalWrite(A4, HIGH);
-
 }
 
 void loop() {
   int pot_value = analogRead(A2);   //pot wiper is on A2
-  int motor_level = map(pot_value, 0, 1023, 255, 0); // map motor_level to pot_value so that zero corresponds to lowest speed.
-  analogWrite(3, motor_level);
+  int motor_speed = map(pot_value, 0, 1023, 255, 0); // map motor_level to pot_value so that zero corresponds to lowest speed
+  analogWrite(3, motor_speed);
   delay(1);
 }
 </code></pre>
@@ -298,11 +288,11 @@ void loop() {
    <p> Once you can control your motor with the potentiometer in one direction, you can keep going to: </p>
    <ul>
   <li>Make the motor run either direction as you turn the pot.</li>
-  <li>Use another sensor to control the motor.  Try the <a href='https://roberthart56.github.io/SCFAB/SC_lab/Sensors/Light/Photodetectors/index.html'>Phototransistor.</a></li>
+  <li>Use another sensor to control the motor. Try the <a href='https://roberthart56.github.io/SCFAB/SC_lab/Sensors/Light/Photodetectors/index.html'>Phototransistor.</a></li>
   </ul>
+
   </div>
 </div>
-
 
 
 
