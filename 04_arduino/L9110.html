@@ -149,7 +149,7 @@ void setup() {
 
 void loop() {
   // start the motor at a low speed
-  analogWrite(A1A, 50);   
+  analogWrite(A1A, 150);   
   digitalWrite(A1B, LOW);
   delay(4000);              // allow the motor to run for 4 seconds
 
@@ -159,11 +159,11 @@ void loop() {
 
   // start the motor in opposite direction at the same speed
   digitalWrite(A1B, HIGH);  // switch direction
-  analogWrite(A1A, 255-50); // here the logic for speed is inverted   
+  analogWrite(A1A, 255-150); // here the logic for speed is inverted   
   delay(4000);              // allow the motor to run for 4 seconds
 
   // speed up the motor
-  analogWrite(A1A, 50);   // here the logic for speed is inverted  
+  analogWrite(A1A, 0);   // here the logic for speed is inverted  
   delay(2000);   
 
   // stop the motor
