@@ -1,0 +1,61 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>PHYSCI 70: Introduction to Digital Fabrication</title>
+<meta name="description" content="Index Page">
+<script src="../../js/vendor/jquery.min.js"></script>
+<script>
+  $(function(){
+    $("#header").load("../../header.html");
+    $("#footer").load("../../footer.html");
+  });
+</script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link href="../../css/style.css" rel="stylesheet">
+<link href="../../css/font-awesome.min.css" rel="stylesheet">
+<script src="../../js/vendor/modernizr.js"></script>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+
+<div id="header"></div>
+
+<xmp theme="united" style="display:none;">
+
+## Light Sensors 
+
+
+| Features | Phototransistor | Photoresistor |  
+|-----------------|---------------|---------------|
+|  Sensitivity to light   |    Low       |       High    |
+|  Directional   |    No           |       Yes    |
+| Resistance changes? |    No        |    Yes     |
+
+### Phototransistor
+
+A phototransistor conducts more or less current as a function of light level. The signal is just the current times the resistance R. Sensitivity can be changed by changing the value of R in the range 1kOhm - 100kOhm. We have phototransistors that are sensitive in the visible and others sensitive in the near infrared. 
+
+![phototransistor](./phototransistor.png)
+
+LDRs (light dependent resistors) are very popular and cheap, but not very accurate. See [Adafruit's](https://learn.adafruit.com/photocells) documentation. 
+
+![ldr](./ldr.png)
+
+### Photoresistor
+
+A photoresistor changes its resistance as a function of light. As it receives more light its resistance decreases, and the voltage at the point labeled A0 decreases. Any of the analog inputs A0 - A5, could be used (see the AnalogReadSerial example for Arduino code).
+
+![photoresistor](./photoresistor.png)
+
+</xmp>
+
+
+<script src="../../js/strapdown.js"></script>
+</html>
