@@ -63,14 +63,13 @@
 			<ul> 
 				<li><a href='https://learn.sparkfun.com/tutorials/hobby-servo-tutorial'>Sparkfun Tutorial</a></li>
 				<li><a href='http://fab.cba.mit.edu/classes/865.18/motion/servo/index.html'>MIT MAS.865 page</a></li>
-				<li><a href='https://roberthart56.github.io/SCFAB/SC_lab/Output_Devices/Motion/servomotors.html'>Rob's example</a></li>
 			</ul>
 		</p>
 
 		<p> Most of the actuators we'll look at are "open loop", meaning that we give them commands but don't expect any feedback. Servos are probably the easiest way to add "closed loop" actuation to your project. In industry, the word "servo" is used to describe different kinds of motors than we're using here; "servo" just means "closed loop". 
 		</p>
 
-		<p> The servos included in your kits are <a href='https://www.amazon.com/gp/product/B072V529YD/ref=ppx_od_dt_b_asin_title_s00?ie=UTF8&psc=1'>9g Micro Servos</a>. Take a look at <a href='https://images-na.ssl-images-amazon.com/images/I/61jUf7Q-0uL.pdf'>the data sheet </a>to learn useful specifications, like its range of motion (120 degrees, not 180), operating voltage (4.8V-6V), operating speed (60 degrees in 0.09 seconds) and running current (~500mA). </p>
+		<p> The servos we have around the lab are <a href='https://www.amazon.com/gp/product/B072V529YD/ref=ppx_od_dt_b_asin_title_s00?ie=UTF8&psc=1'>9g Micro Servos</a>. Take a look at <a href='https://images-na.ssl-images-amazon.com/images/I/61jUf7Q-0uL.pdf'>the data sheet </a>to learn useful specifications, like its range of motion (120 degrees, not 180), operating voltage (4.8V-6V), operating speed (60 degrees in 0.09 seconds) and running current (~500mA). </p>
 
 		<p> The easiest way to get up and running with a Servo motor is to use the Arduino Servo library. Let's start by pasting this minimal example: </p>
 
@@ -95,7 +94,7 @@ void loop() {
 
 		<p> This code will move your servo as fast as it can to the middle position (90 degrees out of a range of 180). (Note that your servo may only have a range of 120 degrees.) </p>
 
-		<p> As we saw in the data sheet, this servo is happiest with 4.8-6V. We can get 5V from either the Vhi or the USB pins (learn about the difference <a href='https://learn.adafruit.com/introducing-adafruit-itsybitsy-m4/pinouts'> at Adafruit</a>). You can try powering the servo with 3V instead -- it should still work, but more slowly. </p>
+		<p> As we saw in the data sheet, this servo is happiest with 4.8-6V. You can try powering the servo with 3V instead -- it should still work, but more slowly and with less torque. </p>
 
 		<p>In most applications, we'll want the servo to do more than just remain at a particular position. Sometimes, we'll want to program a servo to move in a certain way on repeat. With the same wiring, try uploading the following code (from the Arduino "Sweep" example): </p>
 
