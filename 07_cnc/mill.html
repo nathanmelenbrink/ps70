@@ -1,0 +1,92 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>PHYSCI 70: Introduction to Digital Fabrication</title>
+<meta name="description" content="Index Page">
+<script src="../js/vendor/jquery.min.js"></script>
+<script>
+  $(function(){
+    $("#header").load("../header.html");
+    $("#footer").load("../footer.html");
+  });
+</script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+
+<div id="header"></div>
+
+<xmp theme="united" style="display:none;">
+
+## SRM-20 Mill  
+
+The SRM-20 is sometimes called a "circuit board mill", because it's most commonly used to mill copper traces for circuit boards. However, it also works great for milling soft materials like wax. We'll prepare an STL file, then import it using a browser interface called "mods" from our friends at MIT, which will convert the shape to gcode to control the machine. 
+
+### Preparing the STL
+
+Model a single unified mesh, including walls that will contain the mold. Export as stl. 
+
+![stl file](./stl.png)
+
+### Start Mods 
+
+- On the Windows Desktop, double-click the shortcut "start mods"
+- Navigate to [mods.cba.mit.edu](mods.cba.mit.edu)
+
+<!-- - Right click -> Programs -> Open Server Program -> Machines -> Roland mill -> SRM-20 -> mill 2.5D stl 
+- You should see "socket opened" in the WebSocket device window. The machine should respond to the "move to origin" and "move to home" keys. -->
+
+### Prepare Machine
+
+- Hit "move to home" to bring spindle up. 
+- Clean sacrificial layer, and attach wax block using double-stick tape.
+- Put an end mill (flat or ball end) in the collet (insert high - almost all the shaft in the collet).
+- Hit "move to origin". Adjust x, y, and z to as needed. (For a 1.5" wax block try x=25, y=5, z=30)
+- Loosen the toolbit screw, let the tool rest on the top face of the stock and then tighten its screw.
+
+
+### Roughing Pass 
+
+Often, we'll want to complete a roughing pass to remove most of the material we want to remove, before a finishing pass (with a smaller end mill) to add fine detail. One way to do this with mods: 
+
+- Right click -> Programs -> Open Server Program -> Machines -> Roland mill -> SRM-20 -> mill 2.5D stl 
+- You should see "socket opened" in the WebSocket device window. The machine should respond to the "move to origin" and "move to home" keys.
+- Insert a 1/8" end mill 
+- Check units. Does the part seem to be the right size? 
+- Select stl file, change settings, and calculate 
+- Send file to device 
+
+![stl file](./rough.png)
+
+Alternatively, you can do a roughing pass using the finishing pass technique below, but with a 1/8" bit. (You'll want to set the Z zero to be a little higher than the top of the stock, so that you don't remove too much material). 
+
+### Finishing Pass 
+
+- Right click -> Programs -> Open Server Program -> Machines -> Roland mill -> SRM-20 -> mill 3D stl 
+- Insert a 1/16" or 1/32" end mill 
+- Check units. Does the part seem to be the right size? 
+- Select stl file, change settings, and calculate 
+- Send file to device 
+
+### Common Errors 
+
+- When the machine finishes running, wait ~5 seconds before opening shield. If you open too soon, communication is lost. In that case, turn off SRM20 and turn it on again. Communication should re-establish.
+
+![stl file](./mistakes.png)
+
+</xmp>
+
+
+<script src="../js/strapdown.js"></script>
+</html>
