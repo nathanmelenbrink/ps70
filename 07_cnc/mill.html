@@ -43,6 +43,7 @@ Model a single unified mesh, including walls that will contain the mold. Export 
 
 - On the Windows Desktop, double-click the shortcut "start mods"
 - Navigate to [mods.cba.mit.edu](mods.cba.mit.edu)
+- See [video demo](http://academy.cba.mit.edu/classes/computer_machining/3D.mp4)
 
 <!-- - Right click -> Programs -> Open Server Program -> Machines -> Roland mill -> SRM-20 -> mill 2.5D stl 
 - You should see "socket opened" in the WebSocket device window. The machine should respond to the "move to origin" and "move to home" keys. -->
@@ -82,6 +83,9 @@ Alternatively, you can do a roughing pass using the finishing pass technique bel
 ### Common Errors 
 
 - When the machine finishes running, wait ~5 seconds before opening shield. If you open too soon, communication is lost. In that case, turn off SRM20 and turn it on again. Communication should re-establish.
+- If the 'calculate' step is taking too long, check that your units are correct. If your mesh is very dense that can also slow things down. 
+- The image below shows what happens when not enough of the end mill extends from the collet. The collet has rubbed the top edge of the mold, which shouldn't happen. 
+- You can also see that the "roughing pass" didn't quite line up with the finishing pass, leaving a contour around the sphere. Make sure you don't remove too much material on the roughing pass by lifting the end mill ~1mm above the top of the stock. 
 
 ![stl file](./mistakes.png)
 
