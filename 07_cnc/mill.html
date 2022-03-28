@@ -43,15 +43,14 @@ Model a single unified mesh, including walls that will contain the mold. Export 
 
 - On the Windows Desktop, double-click the shortcut "start mods"
 - Navigate to [mods.cba.mit.edu](mods.cba.mit.edu)
+- Right click -> Programs -> Open Server Program -> Machines -> Roland mill -> SRM-20 -> mill 3D stl 
+- You should see "socket opened" in the WebSocket device window. The machine should respond to the "move to origin" and "move to home" keys.
 - See [video demo](http://academy.cba.mit.edu/classes/computer_machining/3D.mp4)
-
-<!-- - Right click -> Programs -> Open Server Program -> Machines -> Roland mill -> SRM-20 -> mill 2.5D stl 
-- You should see "socket opened" in the WebSocket device window. The machine should respond to the "move to origin" and "move to home" keys. -->
 
 ### Prepare Machine
 
 - Hit "move to home" to bring spindle up. 
-- Clean sacrificial layer, and attach wax block using double-stick tape.
+- Clean sacrificial layer, and attach wax block using double-stick tape (not hot glue).
 - Put an end mill (flat or ball end) in the collet (insert high - almost all the shaft in the collet).
 - Hit "move to origin". Adjust x, y, and z to as needed. (For a 1.5" wax block try x=25, y=5, z=30)
 - Loosen the toolbit screw, let the tool rest on the top face of the stock and then tighten its screw.
@@ -59,7 +58,11 @@ Model a single unified mesh, including walls that will contain the mold. Export 
 
 ### Roughing Pass 
 
-Often, we'll want to complete a roughing pass to remove most of the material we want to remove, before a finishing pass (with a smaller end mill) to add fine detail. One way to do this with mods: 
+Often, we'll want to complete a roughing pass to remove most of the material we want to remove, before a finishing pass (with a smaller end mill) to add fine detail. 
+
+I prefer to do a roughing pass using the finishing pass technique below (the mill 3D program), but with a 1/8" bit. (You'll want to set the Z zero to be a little higher than the top of the stock, so that you don't remove too much material). 
+
+Alternatively, you can use the "mill 2.5D" program: 
 
 - Right click -> Programs -> Open Server Program -> Machines -> Roland mill -> SRM-20 -> mill 2.5D stl 
 - You should see "socket opened" in the WebSocket device window. The machine should respond to the "move to origin" and "move to home" keys.
@@ -70,7 +73,7 @@ Often, we'll want to complete a roughing pass to remove most of the material we 
 
 ![stl file](./rough.png)
 
-Alternatively, you can do a roughing pass using the finishing pass technique below, but with a 1/8" bit. (You'll want to set the Z zero to be a little higher than the top of the stock, so that you don't remove too much material). 
+
 
 ### Finishing Pass 
 
