@@ -32,7 +32,9 @@
 ## ESP-NOW
 
 RandomNerd has a well-done [tutorial on one-way ESP NOW](https://randomnerdtutorials.com/esp-now-esp32-arduino-ide/).
-It sends data in the form of a structure, which is great, but a little complex for a first example. Below we show a minimal example instead.
+It sends data in the form of a structure, which is great, but a little complex for a first example. RandomNerd also has a [tutorial](https://randomnerdtutorials.com/esp-now-two-way-communication-esp32/) on two-way sending.  This is completely asynchronous - the callback function for receiving puts the result in a memory location that can be accessed as needed.  The tutorial code shows how to use a commercially available sensor and an OLED.  
+
+Below we show a minimal example instead. We simplified the code so that each board receives a byte, adds one, and sends it back.  
 
 First, get mac addresses of boards:
 
@@ -49,8 +51,6 @@ void loop(){
 
 }
 ```
-
-RandomNerd also has a [tutorial](https://randomnerdtutorials.com/esp-now-two-way-communication-esp32/) on two-way sending.  This is completely asynchronous - the callback function for receiving puts the result in a memory location that can be accessed as needed.  The tutorial code shows how to use a commercially available sensor and an OLED.  I simplified the code so that each board receives a byte, adds one, and sends it back.  
 
 <!-- - [code for TxRx](./txrx.txt)
  -->
@@ -76,8 +76,6 @@ RandomNerd also has a [tutorial](https://randomnerdtutorials.com/esp-now-two-way
 // REPLACE WITH THE MAC Address of your receiver.  Code is the same for both boards, with the exception of the following line.
 uint8_t broadcastAddress[] =  {0xFC, 0xF5, 0xC4, 0x6B, 0xAC, 0x68};    this is board no 1.
 //uint8_t broadcastAddress[] =  {0x24, 0x62, 0xAB, 0xB0, 0x34, 0x8C};  this is board no 2
-
-
 
 // Variable to store if sending data was successful
 String success;
