@@ -51,6 +51,7 @@ Note that ESP32s do not like WiFi features like 5GHz, two-factor authentication,
 There are many idiosyncracies for the ESP32 boards. It's helpful to bookmark the [pinout reference](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/).
 
 - All devices must be connected to the same WiFi network 
+- You cannot use `analogWrite()` for PWM. You must use `ledcWrite()` instead. See [explanation](https://randomnerdtutorials.com/esp32-pwm-arduino-ide/). 
 - ADC2 pins cannot be used while using the WiFi library (most ESP32 projects). ADC 1 pins are okay - that's 32-39, which, for the adafruit Huzzah, includes 32=A7, 33=A9, 34=A2, 36=A4, 39=A3.
 
 
