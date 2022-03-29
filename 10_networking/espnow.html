@@ -29,25 +29,33 @@
 
 <xmp theme="united" style="display:none;">
 
-## Setting up ESP32 Huzzah
+## ESP-NOW
 
-    <p> First we need to configure Arduino IDE to work with the Huzzah. First, download and install the <a href='http://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers'> CP2104 USB Driver</a>. Next, add this to Perferences &gt; Additional Boards Manager URLs: <code>https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code>. Finally, under Tools &gt; Boards Manager, add the "esp32" boards package. Select Adafruit ESP32 Feather as your board and select the corresponding port. </p>
+RandomNerd has a well-done [tutorial on one-way ESP NOW](https://randomnerdtutorials.com/esp-now-esp32-arduino-ide/).
+It sends data in the form of a structure, which is great, but a little complex for a first example. Below we show a minimal example instead.
 
-    <p> Note: the terms here can be confusing. <a href='https://en.wikipedia.org/wiki/ESP32'>ESP32</a> refers to a series of low-cost, low-power system-on-a-chip microcontrollers with integrated Wi-Fi and Bluetooth. Its precursor was the ESP8266 -- many tutorials will be compatible with both. <a href='https://www.adafruit.com/feather'>Feather</a> is a line of development boards from Adafruit. The <a href='https://www.adafruit.com/product/3405'>Huzzah32</a> is the specific Feather board that is built around the ESP32. </p>
+First, get mac addresses of boards:
 
-## Setting up ESP32-CAM
+``` 
+#include "WiFi.h"
+ 
+void setup(){
+  Serial.begin(115200);
+  WiFi.mode(WIFI_MODE_STA);
+  Serial.println(WiFi.macAddress());
+}
+ 
+void loop(){
 
-RandomNerd has a great guide for [setting up ESP32-CAM](https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/). It's worthwhile to follow this example all the way through. 
+}
+```
 
-Note that ESP32s do not like WiFi features like 5GHz, two-factor authentication, etc. It's best to use networks with simple SSID and password credentials. In 102, we have a network called "MAKERSPACE" and password "12345678". 
+RandomNerd also has a [tutorial](https://randomnerdtutorials.com/esp-now-two-way-communication-esp32/) on two-way sending.  This is completely asynchronous - the callback function for receiving puts the result in a memory location that can be accessed as needed.  The tutorial code shows how to use a commercially available sensor and an OLED.  I simplified the code so that each board receives a byte, adds one, and sends it back.  
+
+- [code for TxRx](./txrx.txt)
 
 
-## Disclaimers 
-
-There are many idiosyncracies for the ESP32 boards. It's helpful to bookmark the [pinout reference](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/).
-
-For example, ADC2 pins cannot be used while using the WiFi library (most ESP32 projects). ADC 1 pins are okay - that's 32-39, which, for the adafruit Huzzah, includes 32=A7, 33=A9, 34=A2, 36=A4, 39=A3.
-
+[hello-world for ESP NOW at hackaday](https://hackaday.io/project/164132-hello-world-for-esp-now) uses a different mode of sending, in which one device broadcasts to all devices in range. 
 
 </xmp>
 
