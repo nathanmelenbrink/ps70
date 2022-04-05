@@ -81,6 +81,8 @@
 
 		<p>A chopper drive addresses the problem of obtaining high torque at high speed from a stepper motor by turning the output voltage to the motor on and off rapidly (aka “chopping”) to control the motor current. At each step of the motor, a very high voltage (typically eight times higher than the motor’s nominal voltage) is applied to the motor windings. This causes the current to rise rapidly, according to the relationship between current rise and inductance. It also allows higher current to be produced, according to Ohm’s law. (From <a href='https://www.linearmotiontips.com/what-is-a-chopper-drive-for-a-stepper-motor/'> Linear Motion Tips</a>).</p>
 
+		<p>Voltage = Current x Resistance, so stepper motors with higher coil resistance need less current to operate at the same voltage.  </p>
+
 		<img src='./chopper.jpg' alt='stepper motor'>
 
 		<h3> Microstepping</h3>
@@ -90,18 +92,18 @@
 
 		<p>  Microstepping is achieved by using pulse-width modulated (PWM) voltage to control current to the motor windings. The driver sends two voltage sine waves, 90 degrees out of phase, to the motor windings. While current increases in one winding, it decreases in the other winding. This gradual transfer of current results in smoother motion and more consistent torque production than full- or half-step control.</p>
 
-		
+		<h3>Stepper Drivers </h3>
 
-		<h3>DRV883 Driver </h3>
-
-		<p> We will be using the <a href='https://www.pololu.com/product/2134'>DRV8834 Low-Voltage Stepper Driver</a>. Make sure to review the product description and datasheet. 
+		<p> We will be using either the <a href='https://www.pololu.com/product/1182'>A4988 Driver</a> or the <a href='https://www.pololu.com/product/2134'>DRV8834 Low-Voltage Stepper Driver</a> (for 5V, portable projects). Make sure to review the product description and datasheet. 
 		</p>
 
-		<p> Note: This product can get hot enough to burn you long before the chip overheats. Take care when handling this product and other components connected to it. </p>
+		<p> Note: These products can get hot enough to burn you long before the chip overheats. Take care when handling this product and other components connected to it. </p>
 
 		<h3>Stepper Motor </h3>
 
-		<p>  <a href='https://www.omc-stepperonline.com/nema-17-bipolar-1-8deg-26ncm-36-8oz-in-0-4a-12v-42x42x34mm-4-wires.html?search=Nema%2017%20Bipolar%201.8deg%2026Ncm%20%2836.8oz.in%29%200.4A%2012V%2042x42x34mm%204%20Wires'>Nema 17 Bipolar 1.8deg 26Ncm (36.8oz.in) 0.4A 12V 42x42x34mm 4 Wires</a>. </p>
+		<p> We have a number of different bipolar stepper motors in the lab. (We also have <a href='https://create.arduino.cc/projecthub/debanshudas23/getting-started-with-stepper-motor-28byj-48-3de8c9'>28BYJ-48 unipolar steppers</a> and drivers, but that's a separate topic). 
+		Find motors around the lab and look up their data sheets, especially rated current/phase, voltage, and phase resistance (e.g. US-17HS441, 17HS19-2004S1, etc.). Let's use the following motor for this example: 
+		<a href='https://www.omc-stepperonline.com/nema-17-bipolar-1-8deg-26ncm-36-8oz-in-0-4a-12v-42x42x34mm-4-wires.html?search=Nema%2017%20Bipolar%201.8deg%2026Ncm%20%2836.8oz.in%29%200.4A%2012V%2042x42x34mm%204%20Wires'>Nema 17 Bipolar 1.8deg 26Ncm (36.8oz.in) 0.4A 12V 42x42x34mm 4 Wires</a>. </p>
 
 		<p> Note some of the Electrical Specifications: 
 			<ul> <li> Rated Current/phase: 0.4A </li>
