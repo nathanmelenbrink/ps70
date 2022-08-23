@@ -1,111 +1,51 @@
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131686897-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  gtag('config', 'UA-131686897-2');
-</script>
+	<title>PS70: Introduction to Digital Fabrication</title>
 
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<title>PHYSCI 70: Introduction to Digital Fabrication</title>
-<meta name="description" content="Index Page">
-<script src="../js/vendor/jquery.min.js"></script>
-<script>
-	$(function(){
-	  $("#header").load("../header.html");
-	  $("#footer").load("../footer.html");
-	});
-</script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<link href="../css/style.css" rel="stylesheet">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<link href="../css/style.css" rel="stylesheet">
-<script src="../js/vendor/modernizr.js"></script>
 </head>
-
 <body>
 
-<div id="header"></div>
-
-<!-- FIRST ROW -->
-<div class="row">
-	<div class="col-md-3">
-		<h3> 07: Electronic Output Devices </h3>
-	</div >
-
-	<div class="col-md-9">
-
-		<h3> Tuesday: </h3>
-		<p>
-			3:00: Assignment Review <br>
-		<!-- 	3:15: <a href='https://roberthart56.github.io/SCFAB/SC_lab/Output_Devices/output.html'>Output devices overview</a> --> 
-			3:15: <a href='./servo.html'>Servo motor workshop</a><br>
-			3:45: <a href='https://roberthart56.github.io/SCFAB/SC_lab/Output_Devices/Light/led/index.html'>RGB LEDs</a>, <a href='./led-buzzers'>LED Strips</a>, OLED / <a href='https://learn.adafruit.com/adafruit-1-14-240x135-color-tft-breakout'>TFT displays</a>
-			
-		</p>
-
-		<h3> Reading: </h3>
-
-		<p>
-			<a href='https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds'>LEDs</a>, <a href='https://learn.sparkfun.com/tutorials/transistors'>Transistors</a>, <a href='https://learn.sparkfun.com/tutorials/how-to-use-an-oscilloscope'>How to use an oscilloscope</a>
-		</p>
-
-
-		<h3> Thursday: </h3>
-		<p>
-			3:00: <a href='./output.html'>Output devices overview</a>, <a href='http://fab.cba.mit.edu/classes/865.18/motion/index.html'>Motors and Actuators</a> <br>
-			3:15: <a href='./buzzers.html'>Buzzers</a>, <a href='https://itp.nyu.edu/physcomp/labs/motors-and-transistors/using-a-transistor-to-control-high-current-loads-with-an-arduino/'>Controlling current with an FET</a>, <a href='https://circuitdigest.com/microcontroller-projects/esp32-based-audio-player'>Speakers and amplifiers</a> (ESP32),	and other output devices. 
-			<ul>
-				<li>Demonstrate operation of an output device you haven't used before. </li>
-				<li>Measure signals with a 'scope. </li>
-				<li>Integrate a simple example of an input device and an output device, paying attention to required libraries. </li>
-			</ul> 
-		</p>
-
-		<h3> Labs: </h3>
-		<p>
-			1. Work on this week's assignment. Show that you are comfortable with code structures that allow integrating input and output devices simultaneously using timers or interrupts. <br> 
-			2. Install drivers for <a href='https://nathanmelenbrink.github.io/ps70/10_networking/huzzah1.html'>Huzzah</a> and <a href='https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/'>ESP32-CAM</a> <br> 
-			3. Continue development on final projects. <br>
-
-		</p>
-
-		<h3> Assignment: </h3>
-			
-		<p>	1. Use an output device that you haven't used before. <br>
-			2. Write a microcontroller program that integrates at least one input device and one output device. Avoid the delay() function by using either timers or interrupts. <br>
-			3. Use an oscilloscope to discover the time domain at which your output device is operating. Is it on a fixed clock? What's its speed? Share images and describe your findings. <br>  
-			<!-- 3. (Optional) Prepare a 3D model for <a href='../09_casting/index.html'>molding and casting</a>. You will each receive ~8oz of food-grade silicone. Consider designing a 3D-printable positive, which could be used to make a negative in silicone. You could then cast any number of materials into the negative. Please send any remaining 3D printing requests by Mar 21.  -->
-			4. Prepare CAD files for CNC week (after spring break). Consider either 2D DXF files for routing sheet material (like plywood or OSB), or 3D STL files to mill out a (2.5D) shape. We will also cover molding & casting, so you may want to consider milling a mold. 
-		</p>
-
-		<p> Examples: <a href='https://kian2attari.github.io/2020/03/14/week-8.html'>Kian (pan/tilt kit)</a>, <a href='https://kassialove.github.io/PS70-assignments/week8.html'> Kassia (RGB LED / buzzer)</a>, <a href='https://tsevilla16.github.io/TeddySevilla-PS70/week8.html'> Teddy (LED Strip / pot)</a>. 
-
-		
-		<h3> Resources: </h3>
-		<p>
-			<a href='https://roberthart56.github.io/SCFAB/SC_lab/Output_Devices/output.html' >Output devices </a> <br>
-			<a href='http://fab.cba.mit.edu/classes/865.18/motion/index.html' >Page on Motors from MIT machine-building class</a> <br>
-
-			<!-- <a href='http://academy.cba.mit.edu/classes/output_devices/index.html' >"How to Make (almost) Anything" class page on output devices</a> <br> -->
-			<!-- <a href='https://roberthart56.github.io/SCFAB/SC_lab/Projects/index.html' >Demo projects</a> <br> -->
-			<br>
-
-		</p>
-
-	</div >
+<div id="header">
+		<iframe src="../head.html"  style="border: none;" width="100%" height="150px;" scrolling="no" ></iframe>
 </div>
 
+<!-- NEW SECTION -->
+<div class="row">
+
+<!-- ROW TITLE -->
+	<div class="col-md-3">
+		<h3> Output Devices </h3>
+	</div >
+
+	<!-- PAGE CONTENT  -->
+	<div class="col-md-9">
+
+		<style>
+		  iframe { width: 1px; min-width: 100%}
+		</style>
+		<script src="../js/iframeResizer.min.js"></script>
+		<iframe id="myIframe" src="./agenda.html"  style="border: none;" width="100%" ></iframe>
+		<script>
+		  iFrameResize({ log: false }, '#myIframe')
+		</script>
+
+	</div >
+</div>	<!-- END SECTION -->
 
 
 <div id="footer"></div>
+
 
 </body>
 </html>

@@ -1,143 +1,50 @@
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131686897-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  gtag('config', 'UA-131686897-2');
-</script>
+	<title>PS70: Introduction to Digital Fabrication</title>
 
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<title>PHYSCI 70: Introduction to Digital Fabrication</title>
-<meta name="description" content="Index Page">
-<script src="../js/vendor/jquery.min.js"></script>
-<script>
-	$(function(){
-	  $("#header").load("../header.html");
-	  $("#footer").load("../footer.html");
-	});
-</script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<link href="../css/style.css" rel="stylesheet">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<link href="../css/style.css" rel="stylesheet">
-<link href="../css/font-awesome.min.css" rel="stylesheet">
-<script src="../js/vendor/modernizr.js"></script>
 </head>
 <body>
 
-<div id="header"></div>
-
-<!-- FIRST ROW -->
-<div class="row">
-	<div class="col-md-3">
-
-		<h3> 03: Hand tools and fabrication. Mechanical design.</h3>
-	</div >
-
-	<div class="col-md-9">
-
-		<h3> Tuesday: </h3>
-		<p>
-			3:00: Assignment/Website Review <br>
-			<!-- 3:30: <a href='./mechanisms.html'>Mechanism design</a> <br> --> 
-			3:15: <a href='https://learn.sparkfun.com/tutorials/how-to-power-a-project'>Power</a>, <a href='https://learn.sparkfun.com/tutorials/motors-and-selecting-the-right-one/dc-brush-motors---the-classic'>motors</a> / <a href='https://www.makerspaces.com/how-to-solder/'>Soldering</a>. Safety reminders: <br>
-			 		<ul>
-					<li>Wear eye protection. </li>
-					<li>Use fume extractors.</li>
-					<li>Don't touch hot stuff. </li>
-					<li>Lead waste goes in lead waste tubs. </li>
-					<li>Wash hands after soldering.</li>
-				</ul>
-		</p>
-
-		<h3> Reading:</h3> 
-		<p> <a href='./mechanisms.html'>Mechanism design</a>, <a href='https://docs.google.com/presentation/d/1ZqWlTu3C6ChjgVlh-ZcghNG3y8bAC1Wpp0kyp3fGtFE/edit?usp=sharing'>Principles of mechanical design</a>, chapters 4 and 8 of <a href='http://mars1980.github.io/resources/making_things_move.pdf'> Making Things Move</a>. <br> <a href='https://learn.sparkfun.com/tutorials/how-to-power-a-project'>Power</a>, <a href='https://learn.sparkfun.com/tutorials/motors-and-selecting-the-right-one/dc-brush-motors---the-classic'>motors</a>, <a href='https://www.makerspaces.com/how-to-solder/'>soldering</a>. <br>
-			Review <a href='https://learn.sparkfun.com/tutorials/voltage-current-resistance-and-ohms-law'> Ohm's Law</a> and <a href='https://learn.sparkfun.com/tutorials/analog-vs-digital'>Analog vs. Digital</a> inputs <br></p>
-
-		<h3> Thursday: </h3>
-
-		<p> 
-			3:00: <a href='https://roberthart56.github.io/SCFAB/SC_lab/Tools/Conventional/index.html'>Tools, Processes, and Materials</a><br>
-				<ul>
-					<li>Use a hand saw, use the scroll saw, file something. </li>
-					<li>Measure something using calipers, protractor, and level.</li>
-					<li>Use a hand drill, use the drill press, and tap a hole. </li>
-					<li>Joining: nuts & bolts, screws, nails, and glue. </li>
-					<li>Experiment with gears, bearings, belts, pulleys. </li>
-				</ul>
-
-			<!-- 3:45:  <a href='../04_arduino/micro.html'>Introduction to Microcontrollers</a> <br> 	
-			4:00: Circuit Simulation, intro programming with <a href='https://www.tinkercad.com/'>Tinkercad</a>  -->
-
-
-		<h3> Labs:</h3>
-		<p> 			
-		Use the <a href='../02_cutting/electronics.html'> Electronics basics</a> page and its links. Use information posted in Slack #electronics channel.<br><br>
-
-		1. Use the resistor color code.<br>
-		2. Use the multimeter in Voltage, resistance, and continuity modes.<br>
-		3. Build a voltage divider circuit.  Build a potentiometer circuit.<br>
-		4. Build and measure circuits with resistors in parallel and series.<br><br>
-
-		Work on kinetic sculpture assignment. 
-
-		</p> 
-		
-		
-
-		<h3>Assignment: </h3>
-		<p>
-		<ul>
-				<!-- <li>Add a fabricated component to a circuit, so that it does something (motion or light).	</li> -->
-				<!-- <li> Create a kinetic sculpture. Include at least one static joint, at least one prismatic or revolute joint, and circuitry to move your sculpture. </li> -->
-
-				<li>Create a kinetic sculpture. Include circuitry to move your sculpture. </li>
-				<li>Control the sculpture with a circuit on a breadboard that uses components in the lab (e.g., resistors, potentiometer). Use a multimeter to measure the voltages in your circuit.  Use Ohm's law to calculate current through the circuit. </li>
-				<!-- <li>Use the Microcontroller Analog in (ADC) to measure the voltage of a potentiometer, or other voltage-divider-based sensor.</li>
-				<li>(Optional) Use tools like TinkerCAD to simulate your circuit and/or tools like Fusion 360 to design and simulate your mechanism.</li> -->
-				<li> Document your work and learning. <a href='../01_intro/video.html'>Include at least one video/gif</a> of your sculpture. </li>
-			
-			</ul>
-
-			<p> 
-			Some good precedents include <a href='https://sophiecwebster.github.io/PHYSCI-70/03_kinetic/index.html'>Sophie's flock of birds</a>, 
-			<!-- <a href='http://www.seansullivan.ai/physci-70/post/week3/'>Sean's drawing machine</a>, -->
-			<a href='https://kassialove.github.io/PS70-assignments/week3.html'>Kassia's dancers</a>,
-			<a href='https://tomkinsc.github.io/harvard-ps70/2020-02-13/'>Chris's Geneva drive</a>,
-	
-			and <a href='https://mturner6300.github.io/PHYSCI-70/simple-demo/01_intro/week3.html'>Megan's bird</a>. Some examples of kinetic sculptures made with common household supplies can be seen from last summer's course, <a href='https://silviafesta.github.io/PHYS_S-12/Assignments/assignment3.html'>especially Silvia's clever use of string</a>, <a href='https://michelleyl78.github.io/PHYS_S-12/04_class/04_class.html'>Michelle's method of making circular cams</a>, and <a href='https://azswartz.github.io/PS-70/week3/week3.html'>Avi's automatic highlighter. 
-
-		</p>
-
-		<h3> Resources: </h3>
-		<p>
-			Modeling gears in Fusion360 from scratch is a useful exercise. But you can also use a script to help automate the process. The first half of <a href='https://www.youtube.com/watch?v=ZakT54JIhB8' >this video</a> shows you how. <br>
-			Look up artists like <a href='https://www.youtube.com/user/dreamingmachines/videos' >Arthur Ganson </a> and <a href='https://www.youtube.com/watch?v=0_22x26qYPA' >others</a>. These pieces probably took more than a few days to complete, but likely many of them started with study models made from things like cardboard and simple DC motors. <br>
-			Here is a fun old reference for mechanisms: <a href='http://507movements.com/' > 507 Mechanical Movements</a>, and <a href='https://www.fivehundredseven.com/'>offshoots</a>. <br>
-			Rob's <a href='https://roberthart56.github.io/projects/telephone_box/index.html' >example</a> of using simple materials and joining in a prototype. And some  <a href='https://roberthart56.github.io/SCFAB/SC_lab/Projects/Quick_prototypes/index.html'> extremely rapid</a> prototypes<br>
-			Adhesive advice at <a href='thistothat.com'>thistothat.com</a><br>
-			Drilling a centered hole for a <a href='https://roberthart56.github.io/SCFAB/SC_lab/Tools/Drilling/motor_coupler.html'>motor coupler.</a><br>
-			
-		</p>
-
-	</div >
+<div id="header">
+		<iframe src="../head.html"  style="border: none;" width="100%" height="150px;" scrolling="no" ></iframe>
 </div>
 
+<!-- NEW SECTION -->
+<div class="row">
+
+<!-- ROW TITLE -->
+	<div class="col-md-3">
+		<h3> Electronics </h3>
+	</div >
+
+	<!-- PAGE CONTENT  -->
+	<div class="col-md-9">
+
+		<style>
+		  iframe { width: 1px; min-width: 100%}
+		</style>
+		<script src="../js/iframeResizer.min.js"></script>
+		<iframe id="myIframe" src="./agenda.html"  style="border: none;" width="100%" ></iframe>
+		<script>
+		  iFrameResize({ log: false }, '#myIframe')
+		</script>
+
+	</div >
+</div>	<!-- END SECTION -->
 
 
 <div id="footer"></div>
-
-<script src="../js/vendor/jquery.min.js"></script>
-<script src="../js/foundation.min.js"></script>
-<script src="../js/htdaa.js"></script>
 
 
 </body>
