@@ -1,24 +1,24 @@
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>PHYSCI 70: Introduction to Digital Fabrication</title>
-<meta name="description" content="Index Page">
+	<title>PS70: Introduction to Digital Fabrication</title>
 
-<script src="js/vendor/jquery.min.js"></script>
-<script> 
-	$(function(){
-	  $("#header").load("root_header.html"); 
-	  $("#footer").load("root_footer.html"); 
-	});
-</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<link href="./css/style.css" rel="stylesheet">
 
-<link href="css/style.css" rel="stylesheet">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<script src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+
+<div id="header">
+		<iframe src="./head.html"  style="border: none;" width="100%" height="180px;" scrolling="no" ></iframe>
+</div>
 
 <script type="text/javascript">
 
@@ -68,8 +68,6 @@ var pages2020 = new Array(
 )
 
 var pages2022 = new Array(
-	
-
 	["https://chibbyu.github.io/PS70/","Chibuike Uwakwe"],
 	["https://chrishuang001.github.io/PHYSCI-70/","Chris Huang"],
 	["https://danielnunezhuaracha.github.io/PHYSCI-70/", "Daniel Nuñez"],
@@ -93,6 +91,10 @@ var pages2022 = new Array(
 	["https://sineadli20.github.io/PS70/","Shay Li"],
 	["https://sharon-welch.github.io/PHYSCI-70/","Sharon Welch"],
 	["https://shavonna.github.io/PHYSCI-70/index.html", "Shavonna Jackson"]
+) 
+
+var pages2022fall = new Array(
+	["","TBD"]
 ) 
 
 var indices = []
@@ -143,8 +145,8 @@ function random_page() {
 			<!-- <a href="javascript:random_page()">random page</a><br> -->
 			<br>
 			<script type="text/javascript">
-			for (i = 0; i < pages2022.length; ++i) {
-			   document.write("<a href="+pages2022[i][0]+">"+pages2022[i][1]+"</a><br>")
+			for (i = 0; i < pages2022fall.length; ++i) {
+			   document.write("<a href="+pages2022fall[i][0]+">"+pages2022fall[i][1]+"</a><br>")
 			   }
 			</script>
 			</p>
@@ -159,10 +161,11 @@ function random_page() {
 			<p>	
 				
 				<a href="./data/nathan/index.html"> Nathan Melenbrink</a><br>
-				<a href="https://gabbyperry.com/"> Gabby Perry</a><br>
 				<a href="http://fab.cba.mit.edu/classes/863.21/Harvard/people/ibrahimibrahim/index.html"> Ibrahim Ibrahim</a><br>
 				<a href="https://kassialove.github.io/PS70-assignments/"> Kassia Love </a><br>				
 				<a href="http://fab.cba.mit.edu/classes/863.21/Harvard/people/chriszhu/index.html">Chris Zhu</a>
+				<a href='https://laurenbhr.github.io/PHYSCI-70/'> PK/Lauren Byunn-Rieder </a><br> 
+				<a href="http://fab.cba.mit.edu/classes/MAS.863/Harvard/people/Suvin_Sundararajan/index.html"> Suvin Sundararajan</a>
 			</p>
 		</div>
 
@@ -173,6 +176,7 @@ function random_page() {
 			<a href="https://roberthart56.github.io/projects/index.html"> Rob Hart</a><br>
 			<a href= 'https://danielbrosenberg.github.io/physci70' > Daniel Rosenberg </a> <br> 
 			<a href= 'https://fab.cba.mit.edu/classes/865.21/people/joon/aboutme/aboutme.html'> Joonhaeng Lee</a><br> 
+			<a href="https://gabbyperry.com/"> Gabby Perry</a><br>
 			<a href='http://fab.cba.mit.edu/classes/863.17/Harvard/people/KevinGuiney/index.html'> Kevin Guiney </a> <br> 
 			Jim MacArthur <br>
             
@@ -211,10 +215,6 @@ function random_page() {
 </div>
 
 <div id="footer"></div>
-
-<script src="js/vendor/jquery.min.js"></script>
-<script src="js/foundation.min.js"></script>
-<script src="js/htdaa.js"></script>
 
 
 </body>
