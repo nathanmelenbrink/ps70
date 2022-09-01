@@ -777,7 +777,7 @@ h1, h2, h3 {
   font-style: normal;
   color: #333d41;
   text-rendering: optimizeLegibility;
-  margin-top: 2rem; /*0.2*/
+  margin-top: 0.2rem; /*0.2*/
   margin-bottom: 0rem;
   line-height: 1.4;
 }
