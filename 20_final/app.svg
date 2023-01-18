@@ -10,6 +10,9 @@
    viewBox="0 0 1056 816"
    sodipodi:docname="app.svg"
    inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   inkscape:export-filename="/Users/nathan/Documents/GitHub/ps70/20_final/app.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -36,12 +39,12 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      showgrid="false"
-     inkscape:zoom="0.66176471"
-     inkscape:cx="514.53333"
-     inkscape:cy="389.86666"
-     inkscape:window-width="1796"
-     inkscape:window-height="852"
-     inkscape:window-x="89"
+     inkscape:zoom="0.73509235"
+     inkscape:cx="544.82951"
+     inkscape:cy="394.50826"
+     inkscape:window-width="1440"
+     inkscape:window-height="762"
+     inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:current-layer="g1560"
@@ -49,7 +52,14 @@
      id="g1560"
      inkscape:groupmode="layer"
      inkscape:label="icons"
-     transform="matrix(1.3333333,0,0,-1.3333333,0,816)"><g
+     transform="matrix(1.3333333,0,0,-1.3333333,0,816)"><rect
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.072"
+       id="rect4312"
+       width="948.38043"
+       height="724.95245"
+       x="-71.306801"
+       y="-657.16101"
+       transform="scale(1,-1)" /><g
        id="g1562"
        transform="matrix(0.95947643,0,0,0.97203948,13.008471,7.3421642)"
        style="fill:#2b42b5;fill-opacity:1"><g
@@ -479,34 +489,41 @@
          sodipodi:role="line"
          id="tspan1848"
          y="-328.38892"
-         style="font-weight:bold;font-size:19.3148px;stroke-width:0.965738">Applications now open for Spring '23 </tspan></text><text
-       transform="matrix(0.95947643,0,0,-0.97203948,13.008471,8.254993)"
-       style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:Arial;-inkscape-font-specification:ArialMT;writing-mode:lr-tb;white-space:pre;inline-size:387.272;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       id="text1850-4"
-       x="186.78235"
-       y="-297.60797"
-       xml:space="preserve"><tspan
+         style="font-weight:bold;font-size:19.3148px;stroke-width:0.965738">Applications now open for Spring '23 </tspan></text><a
+       id="a7456"
+       xlink:href="https://nathanmelenbrink.github.io/ps70/"
+       target="https://nathanmelenbrink.github.io/ps70/"><text
+         transform="matrix(0.95947643,0,0,-0.97203948,13.008471,8.254993)"
+         style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:Arial;-inkscape-font-specification:ArialMT;writing-mode:lr-tb;white-space:pre;inline-size:387.272;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text1850-4"
          x="186.78235"
          y="-297.60797"
-         id="tspan91432">This introductory course covers a range of fabrication skills </tspan><tspan
-         x="186.78235"
-         y="-279.94591"
-         id="tspan91434">targeted to students of any skill level. Topics covered include </tspan><tspan
-         x="186.78235"
-         y="-262.28386"
-         id="tspan91436">CNC, microcontroller programming, 3D printing, hand tools, </tspan><tspan
-         x="186.78235"
-         y="-244.62182"
-         id="tspan91438">and electronics. Course meetings consist primarily of guided </tspan><tspan
-         x="186.78235"
-         y="-226.95975"
-         id="tspan91440">hands-on workshops with minimal lecture content, in addition </tspan><tspan
-         x="186.78235"
-         y="-209.29769"
-         id="tspan91442">to weekly lab sessions, informal ad hoc workshops, and self-</tspan><tspan
-         x="186.78235"
-         y="-191.63562"
-         id="tspan91444">guided learning in the Science Center Fabrication Lab.</tspan></text><text
+         xml:space="preserve"><tspan
+           x="186.78235"
+           y="-297.60797"
+           id="tspan14976">This introductory course covers a range of fabrication skills </tspan><tspan
+           x="186.78235"
+           y="-279.94591"
+           id="tspan14978">targeted to students of any skill level. Topics covered include </tspan><tspan
+           x="186.78235"
+           y="-262.28386"
+           id="tspan14980">CNC, microcontroller programming, 3D printing, hand tools, </tspan><tspan
+           x="186.78235"
+           y="-244.62182"
+           id="tspan14982">and electronics. Course meetings consist primarily of guided </tspan><tspan
+           x="186.78235"
+           y="-226.95975"
+           id="tspan14984">hands-on workshops with minimal lecture content, in addition </tspan><tspan
+           x="186.78235"
+           y="-209.29769"
+           id="tspan14986">to weekly lab sessions, informal ad hoc workshops, and self-</tspan><tspan
+           x="186.78235"
+           y="-191.63562"
+           id="tspan14988">guided learning in the Science Center Fabrication Lab.
+</tspan><tspan
+           x="186.78235"
+           y="-173.97356"
+           id="tspan14990">https://nathanmelenbrink.github.io/ps70/ </tspan></text></a><text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:30px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.75"
        x="34"
@@ -529,31 +546,7 @@
        height="130.5"
        preserveAspectRatio="none"
        style="image-rendering:optimizeQuality"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAYAAACvDDbuAAAABHNCSVQICAgIfAhkiAAABQlJREFU
-eJzt3UFu6jwUhmH4dYdIrcQKKjFoR2UH0B11Kd0R7ZAho+6iqthA7vgXuZLJObH9wvtITK6S2JRP
-ls914iyHYRgWEsx/rTsgTWFwhWRwhWRwhWRwhWRwhWRwhWRwhWRwhWRwhWRwhWRwhWRwhWRwhRQK
-7nK57OKz3++L+5f9fae2GTku8r32+33z3yvjt3DEFZLBFZLBFZLBFVJ6cIdhmPVzOBxCfYkUEyXX
-K21z7LjI94o4HA6z/27ZHHGFZHCFZHCFZHCFVCW4U4uhl5eX9HZLTS0wslfESvuRvTK1Xq8n/WaP
-j4+hdks54grJ4ArJ4ArJ4ArpT+sOkIwVPCVFW2mhNHat0jbvbdNNR1whGVwhGVwhGVwh3V1xds0K
-2BSRFavScyPF3q1wxBWSwRWSwRVSlTnu8/PzpPOenp6Se6JSm81mcT6frz5vtVrN0JtLVYL7/f1d
-o5kL2YVYz8VOdt+Ox2Pq9bI5VRCSwRWSwRVS+hz36+sr+5L/czqdZr3+PTqdTuFHfWpLD+6/dk5s
-YeptiP86bur1ItfKPm7M+/t70XE9caogJIMrJIMrpNAcd7fbZfUjZLvdtu4Cxq38rZZDz8tBlcxd
-AGWvzEUKsVvhVEFIBldIBldIBldIof9VyF4mzC5Oeili5n7O7Zrr1ehLjd/CEVdIBldIBldIBldI
-6bc1Zk/+eymwStuNrJKVFjWRdrPPbVUUO+IKyeAKyeAKyeAKqavdGrNXxCLFTinaQ4Zjavydsjni
-CsngCsngCsngCqmr4mxMq1vzWhQn2d/1lp9hc8QVksEVksEVksEVUnpxVuOFyzWKiV5Wk3oqTiM7
-XWZzxBWSwRWSwRWSwRVSqDjrfYv4UpFCbOpzaK02UxkT+S2y+1LKEVdIBldIBldIVfZV6Gnem/26
-qLll/51atZHNEVdIBldIBldIBldIoddFtZrA9/w4S6u7uWrI/h7uSK67Y3CFZHCFZHCFVOXusMj1
-xtzqxnWtVhNr7D/hjuTSwuAKyuAKyeAKKbRyVtxIo03VWhQ2NR55aVVM1ng8qJQjrpAMrpAMrpAM
-rpBCK2c9FV3Z585dALV6li6ixqpoKUdcIRlcIRlcIRlcITVbORvT08YUvWx+UeMWxuwVsVKunOnu
-GFwhGVwhGVwhpRdnvd9yN/czUve2IUirneUdcYVkcIVkcIVkcIVUZSv9Vmqs2M3djxrXy26jxu2u
-jrhCMrhCMrhCMrhCChVnb29vWf0IeX19XXx8fFz8e6QgyNwQpOS8a46L3HLZ0y2REaHgfn5+JnUj
-pqf/yVAdThWEZHCFZHCFlB7cYRhm/RwOh1D/lsvlxSdy3NQ2x75b6XER2der0ecxjrhCMrhCMrhC
-MrhCSr+tccx6vZ503mazWRyPx+TeXGr13NTcbbbaJKXGbZdVgvvz8zPpvPP5nNwT3QqnCkIyuEIy
-uEKqMsdtpZfnpmoUU9nvV6tR2EU44grJ4ArJ4ArJ4ArppouzMZH3hpUUbD3tuFjj+bfSdt2tUVoY
-XEEZXCFVmeM+PDxMOm+1WiX3RLeiSnB/f39rNDPZ3Lfh9f6uMuJW/04VhGRwhWRwhWRwhZRenPU0
-gS/V4oXTrV5ynV2IupW+dAWDKySDK6TQHHe322X1I2S73bbugipLfwm1VINTBSEZXCEZXCEZXCEZ
-XCEZXCEZXCEZXCEZXCEZXCEZXCEZXCEZXCEZXCH9BQtPhwZEy14VAAAAAElFTkSuQmCC
-"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAYAAACvDDbuAAAABHNCSVQICAgIfAhkiAAABQlJREFU eJzt3UFu6jwUhmH4dYdIrcQKKjFoR2UH0B11Kd0R7ZAho+6iqthA7vgXuZLJObH9wvtITK6S2JRP ls914iyHYRgWEsx/rTsgTWFwhWRwhWRwhWRwhWRwhWRwhWRwhWRwhWRwhWRwhWRwhWRwhWRwhRQK 7nK57OKz3++L+5f9fae2GTku8r32+33z3yvjt3DEFZLBFZLBFZLBFVJ6cIdhmPVzOBxCfYkUEyXX K21z7LjI94o4HA6z/27ZHHGFZHCFZHCFZHCFVCW4U4uhl5eX9HZLTS0wslfESvuRvTK1Xq8n/WaP j4+hdks54grJ4ArJ4ArJ4ArpT+sOkIwVPCVFW2mhNHat0jbvbdNNR1whGVwhGVwhGVwh3V1xds0K 2BSRFavScyPF3q1wxBWSwRWSwRVSlTnu8/PzpPOenp6Se6JSm81mcT6frz5vtVrN0JtLVYL7/f1d o5kL2YVYz8VOdt+Ox2Pq9bI5VRCSwRWSwRVS+hz36+sr+5L/czqdZr3+PTqdTuFHfWpLD+6/dk5s YeptiP86bur1ItfKPm7M+/t70XE9caogJIMrJIMrpNAcd7fbZfUjZLvdtu4Cxq38rZZDz8tBlcxd AGWvzEUKsVvhVEFIBldIBldIBldIof9VyF4mzC5Oeili5n7O7Zrr1ehLjd/CEVdIBldIBldIBldI 6bc1Zk/+eymwStuNrJKVFjWRdrPPbVUUO+IKyeAKyeAKyeAKqavdGrNXxCLFTinaQ4Zjavydsjni CsngCsngCsngCqmr4mxMq1vzWhQn2d/1lp9hc8QVksEVksEVksEVUnpxVuOFyzWKiV5Wk3oqTiM7 XWZzxBWSwRWSwRWSwRVSqDjrfYv4UpFCbOpzaK02UxkT+S2y+1LKEVdIBldIBldIVfZV6Gnem/26 qLll/51atZHNEVdIBldIBldIBldIoddFtZrA9/w4S6u7uWrI/h7uSK67Y3CFZHCFZHCFVOXusMj1 xtzqxnWtVhNr7D/hjuTSwuAKyuAKyeAKKbRyVtxIo03VWhQ2NR55aVVM1ng8qJQjrpAMrpAMrpAM rpBCK2c9FV3Z585dALV6li6ixqpoKUdcIRlcIRlcIRlcITVbORvT08YUvWx+UeMWxuwVsVKunOnu GFwhGVwhGVwhpRdnvd9yN/czUve2IUirneUdcYVkcIVkcIVkcIVUZSv9Vmqs2M3djxrXy26jxu2u jrhCMrhCMrhCMrhCChVnb29vWf0IeX19XXx8fFz8e6QgyNwQpOS8a46L3HLZ0y2REaHgfn5+JnUj pqf/yVAdThWEZHCFZHCFlB7cYRhm/RwOh1D/lsvlxSdy3NQ2x75b6XER2der0ecxjrhCMrhCMrhC MrhCSr+tccx6vZ503mazWRyPx+TeXGr13NTcbbbaJKXGbZdVgvvz8zPpvPP5nNwT3QqnCkIyuEIy uEKqMsdtpZfnpmoUU9nvV6tR2EU44grJ4ArJ4ArJ4ArppouzMZH3hpUUbD3tuFjj+bfSdt2tUVoY XEEZXCFVmeM+PDxMOm+1WiX3RLeiSnB/f39rNDPZ3Lfh9f6uMuJW/04VhGRwhWRwhWRwhZRenPU0 gS/V4oXTrV5ynV2IupW+dAWDKySDK6TQHHe322X1I2S73bbugipLfwm1VINTBSEZXCEZXCEZXCEZ XCEZXCEZXCEZXCEZXCEZXCEZXCEZXCEZXCEZXCH9BQtPhwZEy14VAAAAAElFTkSuQmCC "
        id="image86295"
        x="628.28333"
        y="-317.41666"
