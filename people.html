@@ -157,6 +157,10 @@ var pages2023fall = new Array(
 	// ["","Yumeng Chen"]
 )
 
+var pages = new Array(
+	["","Sample Student"],
+)
+
 var indices = []
 for (var i = 0; i < pages.length; ++i) indices.push(i)
 
@@ -204,11 +208,9 @@ function random_page() {
 
 		<div style="margin-left:2.5%">
 			<p> 
-			<a href="javascript:random_page()">random page</a><br>
-			<br>
 			<script type="text/javascript">
-			for (i = 0; i < pages2023fall.length; ++i) {
-			   document.write("<a href="+pages2023fall[i][0]+">"+pages2023fall[i][1]+"</a><br>")
+			for (i = 0; i < pages.length; ++i) {
+			   document.write("<a href="+pages[i][0]+">"+pages[i][1]+"</a><br>")
 			   }
 			</script>
 			</p>
@@ -241,33 +243,7 @@ function random_page() {
 					<div class="thumbnail-caption"><a class="caption-link" href="https://kassialove.github.io/PS70-assignments/">Kassia Love</a></div>
 				</div>
 			</li>
-
-			<li>
-				<div class="thumbnail">
-					<div class="thumbnail-img" style ="background-image: url(../lab/staff/ii.jpg)">
-						<a href="http://fab.cba.mit.edu/classes/863.21/Harvard/people/ibrahimibrahim/index.html" ><img class ="transparent"/></a>
-					</div>
-					<div class="thumbnail-caption"><a class="caption-link" href="http://fab.cba.mit.edu/classes/863.21/Harvard/people/ibrahimibrahim/index.html">Ibrahim Ibrahim</a></div>
-				</div>
-			</li>
-
-			<li>
-				<div class="thumbnail">
-					<div class="thumbnail-img" style ="background-image: url(../lab/staff/pk.png)">
-						<a href="https://bililun.github.io/PHYSCI-70/" ><img class ="transparent"/></a>
-					</div>
-					<div class="thumbnail-caption"><a class="caption-link" href="https://bililun.github.io/PHYSCI-70/">PK/Lauren Byunn-Rieder</a></div>
-				</div>
-			</li>
-
-			<li>
-				<div class="thumbnail">
-					<div class="thumbnail-img" style ="background-image: url(../lab/staff/jl.jpg)">
-						<a href="https://fab.cba.mit.edu/classes/863.22/Harvard/people/Jessica/index.html" ><img class ="transparent"/></a>
-					</div>
-					<div class="thumbnail-caption"><a class="caption-link" href="https://fab.cba.mit.edu/classes/863.22/Harvard/people/Jessica/index.html">Jessica Lee</a></div>
-				</div>
-			</li> 
+			
 			<li>
 				<div class="thumbnail">
 					<div class="thumbnail-img" style ="background-image: url(../lab/staff/bm.JPG)">
@@ -276,7 +252,14 @@ function random_page() {
 					<div class="thumbnail-caption"><a class="caption-link" href="https://bobbymmccarthy.github.io/ps70/">Bobby McCarthy</a></div>
 				</div>
 			</li> 
-
+			<li>
+				<div class="thumbnail">
+					<div class="thumbnail-img" style ="background-image: url(../lab/staff/jl.jpg)">
+						<a href="https://fab.cba.mit.edu/classes/863.22/Harvard/people/Jessica/index.html" ><img class ="transparent"/></a>
+					</div>
+					<div class="thumbnail-caption"><a class="caption-link" href="https://fab.cba.mit.edu/classes/863.22/Harvard/people/Jessica/index.html">Jessica Lee</a></div>
+				</div>
+			</li> 
 			
 
 		</ul>
@@ -289,16 +272,7 @@ function random_page() {
 <div class="row">
 	<div class="large-12 columns">		
 
-		<!-- <div style="margin-left:2.5%">
-			<p>	
-				
-				<a href="./data/nathan/index.html"> Nathan Melenbrink</a><br>
-				<a href="http://fab.cba.mit.edu/classes/863.21/Harvard/people/ibrahimibrahim/index.html"> Ibrahim Ibrahim</a><br>
-				<a href="https://kassialove.github.io/PS70-assignments/"> Kassia Love </a><br>				
-				<a href='https://bililun.github.io/PHYSCI-70/'> PK/Lauren Byunn-Rieder </a><br> 
-				
-			</p>
-		</div> -->
+	
 
 		<h3>Additional Support / Former Staff </h3>
 
@@ -314,6 +288,21 @@ function random_page() {
 			<a href='http://fab.cba.mit.edu/classes/863.17/Harvard/people/KevinGuiney/index.html'> Kevin Guiney </a> <br> 
 			<a href="https://ingenuitive.github.io/PHYSCI-70/"> Kalos Chu</a><br>
 			<a href="https://isaberliner.github.io/PS70-2022/" > Isa Berliner</a><br>
+			<a href="http://fab.cba.mit.edu/classes/863.21/Harvard/people/ibrahimibrahim/index.html">Ibrahim Ibrahim</a><br>
+			<a href="https://bililun.github.io/PHYSCI-70/">PK/Lauren Byunn-Rieder</a><br>
+			</p>
+		</div>
+
+		<h3> Previous Students (Fall 2023) </h3>
+
+		<div style="margin-left:2.5%">
+			<p>
+			<br>
+			<script type="text/javascript">
+			for (i = 0; i < pages2023fall.length; ++i) {
+			   document.write("<a href="+pages2023fall[i][0]+">"+pages2023fall[i][1]+"</a><br>")
+			   }
+			</script>
 			</p>
 		</div>
 
@@ -321,7 +310,6 @@ function random_page() {
 
 		<div style="margin-left:2.5%">
 			<p>
-			<!-- <a href="javascript:random_page()">random page</a><br> -->
 			<br>
 			<script type="text/javascript">
 			for (i = 0; i < pages2023spring.length; ++i) {
@@ -336,7 +324,6 @@ function random_page() {
 
 		<div style="margin-left:2.5%">
 			<p>
-			<!-- <a href="javascript:random_page()">random page</a><br> -->
 			<br>
 			<script type="text/javascript">
 			for (i = 0; i < pages2022fall.length; ++i) {
@@ -350,7 +337,6 @@ function random_page() {
 
 		<div style="margin-left:2.5%">
 			<p>
-			<!-- <a href="javascript:random_page()">random page</a><br> -->
 			<br>
 			<script type="text/javascript">
 			for (i = 0; i < pages2022.length; ++i) {
@@ -364,7 +350,6 @@ function random_page() {
 
 		<div style="margin-left:2.5%">
 			<p>
-			<!-- <a href="javascript:random_page()">random page</a><br> -->
 			<br>
 			<script type="text/javascript">
 			for (i = 0; i < pages2021.length; ++i) {
@@ -378,7 +363,6 @@ function random_page() {
 
 		<div style="margin-left:2.5%">
 			<p>
-			<!--  <a href="javascript:random_page()">random page</a><br> -->
 			<br>
 			<script type="text/javascript">
 			for (i = 0; i < pages2020.length; ++i) {
