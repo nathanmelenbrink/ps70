@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Example</title>
+  <link href="./css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="header">
+		<iframe src="./head.html"  style="border: none;" width="100%" height="180px;" scrolling="no" ></iframe>
+  </div>
+  <h2 style = "text-align: center;margin: 5px;">PS70 Search Engine</h3>
+  <h5 style = "text-align: center;margin: 2px;">Search For Terms Across All PS70 Students</h5>
+  <p style = "text-align: center; margin: 2px;">For any terms you search you will be returned all the websites that include those terms</p>
+  <div style = "display: flex; justify-content: center;">
+    <form id="searchForm" onSubmit  = "return false;">
+      <label for="searchInput">Enter Search Term:</label>
+      <input type="text" id="searchInput" required>
+      <button id = "searchBtn" type="button" onclick="performSearch()">Search</button>
+    </form>
+  </div>
+  
+  <div class="row">
+    <div class="large-12">
+      <div id="resultContainer">
+      </div>
+    </div>
+  </div>
+  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+      document.getElementById("searchInput")
+        .addEventListener("keyup", function(event) {
+        
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            console.log("pressed enter")
+            document.getElementById("searchBtn").click();
+        }
+      }); 
+    });
+    
+    function performSearch() {
+      var resultContainer = document.getElementById("resultContainer");
+
+      // Enter Text to Let User know we are loading the data
+      resultContainer.innerHTML = '';
+      var h5 = document.createElement("h5");
+      h5.appendChild(document.createTextNode("Loading Results..."))
+      resultContainer.appendChild(h5)
+
+      // Get the input value
+      let input = document.getElementById("searchInput").value;
+      let API_BASE_URL = 'https://unusual-jay-shoe.cyclic.app'
+      // Make a fetch request
+      fetch(`${API_BASE_URL}/search`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({'searchTerm': input})
+      })
+      .then(response => response.json())
+      .then(jsonUrls => {
+        // Handle the received data (jsonUrls)
+        // For example, you can update the resultContainer with the URLs
+        displayResults(jsonUrls, input);
+      })
+      .catch(error => {
+        console.error('Error during fetch:', error);
+      });
+    }
+
+    function displayResults(urls, input) {
+      var resultContainer = document.getElementById("resultContainer");
+      // Clear Previous Text
+      resultContainer.innerHTML = '';
+
+      // Display the URLs or perform any other desired actions
+      // For example, you can create a list of URLs
+      var ul = document.createElement("ul");
+      urls.forEach(page => {
+        var li = document.createElement("li");
+        var a = document.createElement('a')
+        // console.log(page.pageText)
+        a.appendChild(document.createTextNode(page.url));
+        a.href = page.url;
+        a.target = "_blank";
+        li.style.listStyle = 'none'
+        let newSentences = getSentences(page.pageText, input);
+        let textList = document.createElement("ul")
+        for (let i = 0; i < newSentences.length; i++) {
+          let textListItem = document.createElement("li");
+          textListItem.style.listStyle = 'none';
+
+          // Highlight occurrences of the word in input
+          let highlightedText = highlightOccurrences(newSentences[i], input);
+          textListItem.innerHTML = highlightedText;
+
+          textList.appendChild(textListItem);
+        }
+        li.append(a);
+        li.append(textList);
+        ul.appendChild(li);
+      });
+
+      //Clear Loading Text 
+      resultContainer.innerHTML = ''
+      resultContainer.appendChild(ul);
+    }
+
+    function highlightOccurrences(text, word) {
+      // Use a regular expression with a global flag to match all occurrences
+      let regex = new RegExp(word, 'gi');
+      // Wrap the matches with a <span> element for styling
+      let highlightedText = text.replace(regex, match => `<span style="background-color: yellow">${match}</span>`);
+      return highlightedText;
+    }
+
+    function getSentences(text, targetWord){
+      let puncs = ['.', '!', '?']
+      const sentences = text.split('\n')
+      //determines the length of the sentences that include the targetWord
+      const SENTENCE_MAX_LEN =300;
+      let selectedSentences = []
+      for (let i = 0; i < sentences.length; i++){
+        let wordIndex = sentences[i].toLowerCase().indexOf(targetWord.toLowerCase());
+        if (wordIndex === -1){
+          continue;
+        }
+        if(selectedSentences.length >= 5){
+          break;
+        }
+        let sentenceBegin = Math.max(0, wordIndex - (SENTENCE_MAX_LEN /2))
+        let sentenceEnd = Math.min(wordIndex + (SENTENCE_MAX_LEN /2), sentences[i].length)
+
+        
+        if (wordIndex != -1){
+
+          selectedSentences.push(`${sentences[i].substring(sentenceBegin, sentenceEnd)}`)
+        }
+      }
+      return selectedSentences
+    }
+  </script>
+
+</body>
+</html>
