@@ -9,13 +9,14 @@
 
 <h3> Tuesday: </h3>
 
-3:00: Make sure you can talk to your MCU! (Instructions for ESP32 <a href='https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/'>here</a>)
+3:00: Make sure you can talk to your MCU! Instructions for ESP32 <a href='https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/'>here</a>
 
 - Open Arduino IDE
 - Plug in your microcontroller (ask if you need a cable)
-- Go to Tools > Board > Uno 
+- Go to Tools > Board > ESP32 Arduino > select ESP32 Dev Module or XIAO_ESP32C3
 - Find Tools > Port > *your microcontroller* 
 - Open File > Examples > Basics > Blink
+- Change all "LED_BUILTIN" to the number 12 (or other available pin)
 - Upload the file 
 
 3:00: <a href='../../lab/arduino/L9110.html' target="_self">Use the L9110 H Bridge Power Driver to drive a motor.</a> Write a new function to give the motor commands. <br> 
